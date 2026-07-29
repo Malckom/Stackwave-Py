@@ -1,0 +1,25 @@
+{
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "name": "stackwave-flask",
+  "version": "1.0.0",
+  "description": "Your portfolio site, rebuilt as a real Python (Flask) web app. Same design and pages as before, but now with a working backend:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Malckom/Stackwave-Py.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Malckom/Stackwave-Py/issues"
+  },
+  "homepage": "https://github.com/Malckom/Stackwave-Py#readme"
+}
