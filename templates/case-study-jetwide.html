@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% block title %}Jetwide Consortium Case Study | Stackwave{% endblock %}
+
+{% block extra_style %}
+<style>
+.glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .bento-card {
+            background: #1E293B;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .bento-card:hover {
+            border-color: #b8c3ff;
+            box-shadow: 0 0 20px rgba(184, 195, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #b8c3ff 0%, #26fedc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-border {
+            position: relative;
+        }
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            padding: 1px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, #2e5bff, #00f2d1);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="pt-24">
+<section class="relative min-h-[819px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+
+</div>
+<div class="relative z-10 max-w-[1440px] mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-2xl items-center">
+<div class="space-y-lg">
+<div class="inline-flex items-center gap-xs px-md py-xs bg-primary/10 border border-primary/20 rounded-full text-primary font-label-sm">
+<span class="material-symbols-outlined text-sm">rocket_launch</span>
+                        CASE STUDY: JETWIDE CONSORTIUM
+                    </div>
+<h1 class="font-display-lg text-display-lg leading-tight">
+                        The All-in-One <br/>
+<span class="gradient-text">Travel Ecosystem</span>
+</h1>
+<p class="text-on-surface-variant font-body-lg max-w-xl">
+                        How Jetwide redefined Kenyan safaris and international travel through a unified digital command center, automating visa processes and scaling adventure.
+                    </p>
+<div class="flex gap-lg pt-md">
+<div class="glass-panel p-md rounded-xl">
+<div class="text-primary font-display-lg text-headline-lg">99.9%</div>
+<div class="text-on-surface-variant font-label-sm">SYSTEM UPTIME</div>
+</div>
+<div class="glass-panel p-md rounded-xl">
+<div class="text-secondary-fixed font-display-lg text-headline-lg">60%</div>
+<div class="text-on-surface-variant font-label-sm">VISA OVERHEAD REDUCTION</div>
+</div>
+</div>
+<a class="inline-flex items-center gap-xs text-primary font-label-md hover:gap-md transition-all pt-md" href="https://www.jetwide.org/" target="_blank" rel="noopener">
+                        Visit Live Site <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary/20 blur-3xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
+<div class="rounded-2xl overflow-hidden aspect-video shadow-2xl relative gradient-border">
+<img class="w-full h-full object-cover" data-alt="A futuristic wide-angle shot of a digital travel dashboard displaying global maps, real-time safari vehicle tracking in the Maasai Mara, and visa processing status charts. The interface glows with electric blue and cyber mint accents against a deep slate background, reflecting a high-tech corporate studio aesthetic. Cinematic lighting emphasizes the technical precision and global reach of the travel ecosystem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkjd-pnGBuelCLok0YTg4FdwDrQkDRn5QYACKU29qZ26vwKwwENqGShPL2dz0scFuXUau6HTihWQ9TGH8pkTwhF8x5i72MvynTXc2JQDhGxFdYP6-wWeqIYpVoNfRL62cS-OoAbzDnQpRcKpRysLLcKKET_7iX7Gj_nJKeVlzyEWeJIMN6yqOD-IqGi3hiP7tTR0_8tmwVti_OCnWuwu6XC6HqhkKWX2qMHSFcVedCw0NyRQkZHO8N"/>
+</div>
+</div>
+</div>
+</section>
+<section class="py-3xl bg-surface-container-lowest">
+<div class="max-w-[1440px] mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<div class="md:col-span-8 bento-card p-xl rounded-3xl flex flex-col justify-between">
+<div>
+<h2 class="font-headline-lg text-headline-lg mb-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">troubleshoot</span>
+                                The Challenge
+                            </h2>
+<p class="text-on-surface-variant font-body-lg mb-xl">
+                                Jetwide Consortium faced the complex task of managing fragmented travel services—Safaris, Visa Processing, Job Placement, and Car Hire—across disconnected platforms. Users struggled with a disjointed booking experience, while internal teams were buried in manual visa paperwork and seasonal offer updates.
+                            </p>
+</div>
+<div class="grid grid-cols-2 gap-lg">
+<div class="p-lg bg-surface/50 rounded-xl border border-white/5">
+<span class="material-symbols-outlined text-error mb-xs">cloud_upload</span>
+<div class="font-label-md text-on-surface">Service Silos</div>
+<div class="text-label-sm text-on-surface-variant">Fragmented management tools</div>
+</div>
+<div class="p-lg bg-surface/50 rounded-xl border border-white/5">
+<span class="material-symbols-outlined text-error mb-xs">hourglass_empty</span>
+<div class="font-label-md text-on-surface">Manual Bottlenecks</div>
+<div class="text-label-sm text-on-surface-variant">High visa processing latency</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 space-y-lg">
+<div class="bento-card p-xl rounded-3xl h-full flex flex-col items-center justify-center text-center">
+<div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-primary text-4xl">public</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">Global Impact</h3>
+<p class="text-on-surface-variant font-body-md">Seamlessly connecting Nairobi to the world through automated workflows.</p>
+</div>
+</div>
+<div class="md:col-span-4 bento-card p-xl rounded-3xl overflow-hidden relative group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40" data-alt="A cinematic overhead shot of a safari vehicle crossing the golden plains of the Maasai Mara at sunset, with Mount Kilimanjaro visible in the hazy distance. The image is color-graded with cool deep blues and warm amber highlights to match the digital agency's premium brand aesthetic. Soft focus on the surrounding wilderness emphasizes the vastness and majesty of the Kenyan landscape." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYtC0VAkmGQJfKaJnRkoJAl1Mdyyk770xesczoK1HbPjO4qMhw5BVQ-DPWzS5kBlgov9EbGIBTPLi6Ae7KZ6PBOn4bvyg7X2ocIICTAwAOxtj4YDyI54tklMzAo6Ve1KOtNKGbOoQvj87qc0aRtKjgCfwxfyv5EKLju7XpMek9BfJoLCe1PyNzp1k07R4YNFWovVytRWWvq36pg5iwYYqzcP0_b_Vh5s9gR24Iaa3V4L-3MC830VVw')"></div>
+<div class="relative z-10 h-full flex flex-col justify-end">
+<div class="font-headline-md text-headline-md text-white">Kenya Safaris</div>
+<div class="text-on-primary-container font-label-sm">Premium Bush Experiences</div>
+</div>
+</div>
+<div class="md:col-span-8 bento-card p-xl rounded-3xl">
+<h2 class="font-headline-lg text-headline-lg mb-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary-fixed">hub</span>
+                            The Solution
+                        </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<div class="space-y-md">
+<p class="text-on-surface-variant font-body-md">
+                                    We architected a unified <span class="text-primary font-bold">Multi-Service Portal</span>. This engine serves as a single source of truth for all Jetwide operations, from Maasai Mara migration tracking to Dubai city tours.
+                                </p>
+<ul class="space-y-sm">
+<li class="flex items-center gap-sm text-label-md text-on-surface">
+<span class="material-symbols-outlined text-secondary-fixed text-sm">check_circle</span>
+                                        Dedicated modules for seasonal offers
+                                    </li>
+<li class="flex items-center gap-sm text-label-md text-on-surface">
+<span class="material-symbols-outlined text-secondary-fixed text-sm">check_circle</span>
+                                        Automated Visa status tracking
+                                    </li>
+<li class="flex items-center gap-sm text-label-md text-on-surface">
+<span class="material-symbols-outlined text-secondary-fixed text-sm">check_circle</span>
+                                        Real-time Car Hire inventory
+                                    </li>
+</ul>
+</div>
+<div class="rounded-xl overflow-hidden shadow-lg border border-white/10">
+<img class="w-full h-full object-cover" data-alt="Close-up of a high-end mobile application UI designed for Jetwide travelers. The interface shows a personalized itinerary with 'Maasai Mara Migration Safari' and 'Dubai City of Gold Tour' options. The design features soft shadows, frosted glass elements, and vibrant call-to-action buttons in electric blue, conveying a sense of luxury and technological ease." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJBz5iT0cQvsJV2QSogd_SPo5UJwnppE5GiDo4IUPgDckgRk9JLDWobF3Kh4ngvPv8-kbZuM6vi5piWRShtDUcuBfg6QKL_ItWXTPqUrHeLN4yZ3r7MPXN0_zXSdtbYZwTS_G5oCyevvK1p1NxWD3DoPLfjPQmNZvVPXXQQS44Abx9DAzjl-PHpgBxoiIA0_rDcILtfzaK3k6TsDwW8eGSsP3v9t3JQ_N-lVYM7H2Kxwrw6Cqn_FaU"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-3xl relative overflow-hidden">
+<div class="max-w-[1440px] mx-auto px-margin-desktop">
+<div class="mb-2xl">
+<h2 class="font-display-lg text-headline-lg mb-md">Quantifiable Success</h2>
+<div class="h-1 w-24 bg-primary rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bento-card p-xl rounded-3xl text-center border-t-4 border-primary">
+<div class="material-symbols-outlined text-primary text-5xl mb-md" style="font-variation-settings: 'FILL' 1;">insights</div>
+<div class="text-display-lg font-display-lg mb-xs">60%</div>
+<p class="text-on-surface-variant font-body-md">Reduction in visa processing overhead via automation</p>
+</div>
+<div class="bento-card p-xl rounded-3xl text-center border-t-4 border-secondary-fixed">
+<div class="material-symbols-outlined text-secondary-fixed text-5xl mb-md" style="font-variation-settings: 'FILL' 1;">cloud_done</div>
+<div class="text-display-lg font-display-lg mb-xs">99.9%</div>
+<p class="text-on-surface-variant font-body-md">System uptime across global service regions</p>
+</div>
+<div class="bento-card p-xl rounded-3xl text-center border-t-4 border-tertiary">
+<div class="material-symbols-outlined text-tertiary text-5xl mb-md" style="font-variation-settings: 'FILL' 1;">groups</div>
+<div class="text-display-lg font-display-lg mb-xs">100%</div>
+<p class="text-on-surface-variant font-body-md">Unified service management for corporate teams</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-3xl bg-surface-container-high relative overflow-hidden">
+
+<div class="max-w-[1440px] mx-auto px-margin-desktop relative z-10">
+<div class="bento-card rounded-[40px] p-2xl flex flex-col md:flex-row items-center justify-between gap-xl gradient-border overflow-hidden">
+<div class="space-y-md">
+<h2 class="font-headline-lg text-headline-lg text-white">Ready to automate your ecosystem?</h2>
+<p class="text-on-surface-variant font-body-lg max-w-lg">
+                            Let's build your unified digital experience and scale your operations with enterprise-grade tech.
+                        </p>
+</div>
+<div class="flex flex-col sm:flex-row gap-lg">
+<a class="bg-primary-container text-on-primary-container px-xl py-md rounded-full font-headline-md hover:shadow-[0_0_20px_rgba(46,91,255,0.6)] transition-all text-center" href="{{ url_for('contact') }}">Start Project</a>
+<a class="bg-transparent border border-secondary-fixed text-secondary-fixed px-xl py-md rounded-full font-headline-md hover:bg-secondary-fixed/10 transition-all text-center" href="{{ url_for('portfolio') }}">View All Work</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.bento-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                card.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-700', 'ease-out');
+                observer.observe(card);
+            });
+        });
+    </script>
+{% endblock %}

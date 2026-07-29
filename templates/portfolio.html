@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+
+{% block title %}Portfolio | Stackwave Digital Agency{% endblock %}
+
+{% block extra_style %}
+<style>
+.glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .featured-gradient-border {
+            position: relative;
+            background: #1E293B;
+            border-radius: 0.75rem;
+        }
+        .featured-gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: 0.8rem;
+            padding: 1px;
+            background: linear-gradient(to right, #b8c3ff, #00f2d1);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        body {
+            background-color: #0F172A;
+            color: #e0e3e5;
+        }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="pt-32 pb-3xl">
+<!-- Hero Section -->
+<section class="max-w-[1440px] mx-auto px-margin-desktop mb-2xl text-center">
+<h1 class="font-display-lg text-display-lg mb-md bg-gradient-to-r from-primary to-secondary-fixed text-transparent bg-clip-text">
+                Proven Results for Ambitious Brands
+            </h1>
+<p class="max-w-2xl mx-auto text-on-surface-variant font-body-lg text-body-lg">
+                Explore our curated selection of digital excellence, where high-performance technology meets disruptive creative strategy.
+            </p>
+</section>
+<!-- Real Client Work -->
+<section class="max-w-[1440px] mx-auto px-margin-desktop mb-2xl">
+<h2 class="font-headline-lg text-headline-lg text-white mb-lg">Client Work</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Jetwide Consortium -->
+<a class="group relative overflow-hidden rounded-xl bg-surface-container-low border border-white/5 transition-all duration-500 hover:-translate-y-2" href="{{ url_for('case_study_jetwide') }}">
+<div class="aspect-video relative overflow-hidden bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl opacity-60">flight_takeoff</span>
+</div>
+<div class="p-lg">
+<span class="bg-secondary-fixed/10 text-secondary-fixed border border-secondary-fixed/20 px-sm py-xs rounded-full font-label-sm text-label-sm mb-sm inline-block">Travel &amp; Safari</span>
+<h3 class="font-headline-md text-headline-md text-white mb-xs">Jetwide Consortium</h3>
+<p class="text-on-surface-variant font-body-md text-sm">Booking site for Kenya safaris, visa processing, car hire, and job placements, with WhatsApp-first support.</p>
+<span class="text-primary font-label-sm mt-sm inline-flex items-center gap-xs">View Case Study <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+</div>
+</a>
+<!-- Spidow -->
+<a class="group relative overflow-hidden rounded-xl bg-surface-container-low border border-white/5 transition-all duration-500 hover:-translate-y-2" href="{{ url_for('case_study_spidow') }}">
+<div class="aspect-video relative overflow-hidden bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl opacity-60">travel_explore</span>
+</div>
+<div class="p-lg">
+<span class="bg-primary/10 text-primary border border-primary/20 px-sm py-xs rounded-full font-label-sm text-label-sm mb-sm inline-block">Travel CRM / SaaS</span>
+<h3 class="font-headline-md text-headline-md text-white mb-xs">Spidow</h3>
+<p class="text-on-surface-variant font-body-md text-sm">CRM and automated quotation engine for Kenyan tour operators, cutting quote turnaround and boosting conversions.</p>
+<span class="text-primary font-label-sm mt-sm inline-flex items-center gap-xs">View Case Study <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+</div>
+</a>
+<!-- Sunbelle Adventures -->
+<a class="group relative overflow-hidden rounded-xl bg-surface-container-low border border-white/5 transition-all duration-500 hover:-translate-y-2" href="https://www.sunbelleadventures.com" target="_blank" rel="noopener">
+<div class="aspect-video relative overflow-hidden bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-fixed text-6xl opacity-60">savannah</span>
+</div>
+<div class="p-lg">
+<span class="bg-primary/10 text-primary border border-primary/20 px-sm py-xs rounded-full font-label-sm text-label-sm mb-sm inline-block">Luxury Safari</span>
+<h3 class="font-headline-md text-headline-md text-white mb-xs">Sunbelle Adventures</h3>
+<p class="text-on-surface-variant font-body-md text-sm">Marketing and booking site for curated, private luxury safaris across Kenya, Uganda, Rwanda &amp; Tanzania.</p>
+<span class="text-primary font-label-sm mt-sm inline-flex items-center gap-xs">sunbelleadventures.com <span class="material-symbols-outlined text-sm">open_in_new</span></span>
+</div>
+</a>
+<!-- Kenya Group Joining Safaris -->
+<a class="group relative overflow-hidden rounded-xl bg-surface-container-low border border-white/5 transition-all duration-500 hover:-translate-y-2" href="{{ url_for('case_study_gjs') }}">
+<div class="aspect-video relative overflow-hidden bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-6xl opacity-60">groups</span>
+</div>
+<div class="p-lg">
+<span class="bg-surface-container-highest text-on-surface-variant px-sm py-xs rounded-full font-label-sm text-label-sm mb-sm inline-block">Budget Travel</span>
+<h3 class="font-headline-md text-headline-md text-white mb-xs">Kenya Group Joining Safaris</h3>
+<p class="text-on-surface-variant font-body-md text-sm">Booking platform that connects solo travelers into cost-shared group safaris to the Mara and beyond.</p>
+<span class="text-primary font-label-sm mt-sm inline-flex items-center gap-xs">View Case Study <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+</div>
+</a>
+<!-- KodiPoa -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-low border border-white/5 transition-all duration-500 hover:-translate-y-2">
+<div class="aspect-video relative overflow-hidden bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-6xl opacity-60">home_work</span>
+</div>
+<div class="p-lg">
+<span class="bg-secondary-container/20 text-secondary-fixed-dim px-sm py-xs rounded-full font-label-sm text-label-sm mb-sm inline-block">Proptech</span>
+<h3 class="font-headline-md text-headline-md text-white mb-xs">KodiPoa</h3>
+<p class="text-on-surface-variant font-body-md text-sm">Rent payment &amp; property management project. Case study details coming soon.</p>
+</div>
+</div>
+<!-- Flavour Fusion -->
+<div class="group relative overflow-hidden rounded-xl bg-surface-container-low border border-white/5 transition-all duration-500 hover:-translate-y-2">
+<div class="aspect-video relative overflow-hidden bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl opacity-60">restaurant_menu</span>
+</div>
+<div class="p-lg">
+<span class="bg-primary/10 text-primary border border-primary/20 px-sm py-xs rounded-full font-label-sm text-label-sm mb-sm inline-block">Food &amp; Recipes</span>
+<h3 class="font-headline-md text-headline-md text-white mb-xs">Flavour Fusion</h3>
+<p class="text-on-surface-variant font-body-md text-sm">Recipe &amp; food discovery project. Case study details coming soon.</p>
+</div>
+</div>
+<!-- Placeholder for more -->
+<div class="group relative overflow-hidden rounded-xl border-2 border-dashed border-white/10 flex flex-col items-center justify-center text-center p-lg min-h-[280px] hover:border-primary/40 transition-all duration-500">
+<span class="material-symbols-outlined text-outline text-5xl mb-md">add_circle</span>
+<h3 class="font-headline-md text-headline-md text-on-surface-variant mb-xs">More Projects Coming Soon</h3>
+<p class="text-on-surface-variant font-body-md text-sm max-w-xs">This spot is reserved for the next client project.</p>
+</div>
+</div>
+</section>
+<!-- Portfolio Grid (Bento/Masonry Hybrid) -->
+<section class="max-w-[1440px] mx-auto px-margin-desktop mb-3xl">
+<div class="mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-white">More Work</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Project Card 1 (Large Feature) -->
+<a class="md:col-span-8 group relative overflow-hidden rounded-xl featured-gradient-border shadow-2xl transition-all duration-500 hover:-translate-y-2" href="{{ url_for('case_study_nexus') }}">
+<div class="aspect-video relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Aether Finance Hub" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB10BHJMQSBqwu4RkvWrDGp92zzObW5TvaTA_n2gTM1gdDzk7dKUBlcBiZfV_JP4oPh3VHpyn7rr1hxEtVlYmHIbFtXsZJiija6SNwcMDWygM0kMShUQis0-Z6gDEeAu6MTcBzaYaC9sTsFUb6YwOQLXX6tBZE7MRs9berKUOoMD5cAmH8oeBxcESzfoRHD_0BjjnhXVQmOLSE4WrDLMUTDDV9uEB8g926qeSbf-q9gW9e5SoaqBqOz"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-80"></div>
+</div>
+<div class="absolute bottom-0 left-0 p-lg w-full">
+<div class="flex flex-wrap gap-sm mb-sm">
+<span class="bg-surface-container-highest text-on-surface-variant px-sm py-xs rounded-full font-label-sm text-label-sm">Web Design</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-sm py-xs rounded-full font-label-sm text-label-sm">Fintech</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-white mb-xs">Aether Finance Hub</h3>
+<p class="text-on-surface-variant font-body-md line-clamp-2">Complete digital ecosystem overhaul for a global assets management firm, focusing on real-time data transparency.</p>
+</div>
+</a>
+<!-- Project Card 2 -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-xl bg-surface-container-low border border-white/5 transition-all duration-500 hover:-translate-y-2">
+<div class="aspect-square relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Vitalis Health" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx5R0Xp63UmwOQzEKyRdEdZkbYIahcQ-Y3DzhqNdp71IiGM3MooBNVM_UbgiKEx4ck9N3T04NXWb_IzELx6L0v-Atyea469d_FoBHS6S55g1UhJHStc1Pi9BW1lXToWs0m4p7fTF7UqAxkekYLkCPSvpC0QqrVed3zfmLj9jznPd3W36hKmVopaIYeg_5fhB_GRu4oopjfKITND1XTqx8WZ2NWPXlaY45Ez5J1uQR-2VvTsvpxTUag"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0F172A] opacity-60"></div>
+</div>
+<div class="absolute bottom-0 left-0 p-lg w-full">
+<span class="bg-secondary-fixed/10 text-secondary-fixed border border-secondary-fixed/20 px-sm py-xs rounded-full font-label-sm text-label-sm mb-sm inline-block">App Development</span>
+<h3 class="font-headline-md text-headline-md text-white">Vitalis Health</h3>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-xl bg-surface-container-low border border-white/5 transition-all duration-500 hover:-translate-y-2">
+<div class="aspect-square relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Lumiere Boutique" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANxsZuCYFoM93mP9oGbPyVaPKtqhA9MjMRtMQ6pzlWHUzf8S4nKWMWOXCo0a_OPo8w9LxIbjgklmoCH5KDpi-yd-AwA4gz1xYaKSght0mcE9HI6YB4ja4CQXxKDAHKI15x2GMNkHfWOChXBYRtGAiUrwRhCiHSZzpJXZr0xTumHxUmBhbmzZ2YNXO3IaRkvdc8To3BgLuNdolQhkdaxJsEXUyDtGFY_f06r3Rg33VlUHOywyaIWoF_"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0F172A] opacity-60"></div>
+</div>
+<div class="absolute bottom-0 left-0 p-lg w-full">
+<span class="bg-surface-container-highest text-on-surface-variant px-sm py-xs rounded-full font-label-sm text-label-sm mb-sm inline-block">E-commerce</span>
+<h3 class="font-headline-md text-headline-md text-white">Lumiere Boutique</h3>
+</div>
+</div>
+<!-- Project Card 4 (Medium Feature) -->
+<div class="md:col-span-8 group relative overflow-hidden rounded-xl bg-surface-container-low border border-white/5 transition-all duration-500 hover:-translate-y-2">
+<div class="h-full relative overflow-hidden flex flex-col">
+<div class="aspect-[21/9] w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Nimbus Cloud Arch" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB59OuZwFFKft3lthPjCJhBbBGHoFlwqoe0f-G-KMnuXvQ2sIQP9o5klT9NPFqFYD174_RzmbHom-uGAn4A7sPcIaSfs8u00KgnN51zyhOqPAjhJgZkjwhWc7Ek6rO9N1RngkyHAC9XrUm4bckB-1VJx8GBUM_YG-LpxUyUnNLPgM7PRRm54FSCDFDnc9RBXmDXmJhLv0kSdHNeao7w5kYHZzSLHROlP2lMqdssRHWSvJ85P5i7z9OP"/>
+</div>
+<div class="p-lg bg-surface-container-low grow">
+<div class="flex justify-between items-start">
+<div>
+<div class="flex gap-sm mb-sm">
+<span class="bg-primary/10 text-primary border border-primary/20 px-sm py-xs rounded-full font-label-sm text-label-sm">Cloud Systems</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-sm py-xs rounded-full font-label-sm text-label-sm">SEO Strategy</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-white">Nimbus Cloud Arch</h3>
+</div>
+<span class="material-symbols-outlined text-primary text-4xl group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Success Stories Section -->
+<section class="bg-surface-container-lowest py-3xl relative overflow-hidden">
+<div class="max-w-[1440px] mx-auto px-margin-desktop relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-end mb-2xl">
+<div class="max-w-xl">
+<h2 class="font-headline-lg text-headline-lg text-white mb-md">Metrics That Matter</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg">
+                            We don't just build beautiful interfaces; we engineer growth. Our case studies are backed by hard data and transformative results.
+                        </p>
+</div>
+<div class="mt-lg md:mt-0">
+<span class="font-label-md text-primary tracking-widest uppercase">The Impact Report</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Case Highlight 1 -->
+<div class="glass-card p-xl rounded-xl">
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-lg">
+<span class="material-symbols-outlined text-primary">trending_up</span>
+</div>
+<div class="text-display-lg-mobile font-display-lg-mobile text-secondary-fixed mb-sm">215%</div>
+<h4 class="font-headline-md text-headline-md text-white mb-sm">Traffic Surge</h4>
+<p class="text-on-surface-variant font-body-md">For GlobalLogistics, we implemented a semantic SEO framework that tripled organic reach within six months.</p>
+</div>
+<!-- Case Highlight 2 -->
+<div class="glass-card p-xl rounded-xl">
+<div class="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center mb-lg">
+<span class="material-symbols-outlined text-secondary">shopping_cart</span>
+</div>
+<div class="text-display-lg-mobile font-display-lg-mobile text-secondary-fixed-dim mb-sm">42%</div>
+<h4 class="font-headline-md text-headline-md text-white mb-sm">Conversion Lift</h4>
+<p class="text-on-surface-variant font-body-md">Redesigning the checkout flow for LuxeRetail reduced cart abandonment by nearly half across all platforms.</p>
+</div>
+<!-- Case Highlight 3 -->
+<div class="glass-card p-xl rounded-xl">
+<div class="w-12 h-12 bg-primary-container/20 rounded-lg flex items-center justify-center mb-lg">
+<span class="material-symbols-outlined text-primary-fixed">speed</span>
+</div>
+<div class="text-display-lg-mobile font-display-lg-mobile text-primary mb-sm">0.8s</div>
+<h4 class="font-headline-md text-headline-md text-white mb-sm">Load Time</h4>
+<p class="text-on-surface-variant font-body-md">By refactoring the backend of TechStream, we achieved sub-second global latency for 2M daily active users.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-[1440px] mx-auto px-margin-desktop py-3xl text-center">
+<div class="glass-card rounded-2xl py-2xl px-xl relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="font-headline-lg text-headline-lg text-white mb-md">Ready to start your next project?</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg mb-2xl max-w-xl mx-auto">
+                        Let's build something extraordinary together. Our team of experts is ready to transform your vision into reality.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-lg justify-center">
+<a class="bg-primary text-on-primary font-label-md px-2xl py-md rounded-lg hover:shadow-[0_0_20px_rgba(184,195,255,0.4)] transition-all" href="{{ url_for('contact') }}">
+                            Start a Project
+                        </a>
+<a class="border border-secondary-fixed text-secondary-fixed font-label-md px-2xl py-md rounded-lg hover:bg-secondary-fixed/10 transition-all" href="{{ url_for('services') }}">
+                            View Services
+                        </a>
+</div>
+</div>
+<!-- Artistic background shape -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-[80px]"></div>
+<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-secondary-fixed/20 rounded-full blur-[80px]"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+        // Micro-interactions for scrolling
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2');
+            }
+        });
+
+        // Simple Fade-in animation on scroll using Intersection Observer
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card, .group').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+{% endblock %}

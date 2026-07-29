@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+
+{% block title %}Stackwave | Project Roadmap{% endblock %}
+
+{% block extra_style %}
+<style>
+.glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .timeline-line {
+            background: linear-gradient(to bottom, #26fedc 0%, #2e5bff 50%, #434656 100%);
+        }
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="pt-32 pb-2xl overflow-hidden relative">
+<!-- Background Ambient Shader -->
+<div class="absolute inset-0 -z-10 opacity-30">
+
+</div>
+<div class="max-w-[1440px] mx-auto px-margin-desktop">
+<!-- Header Section -->
+<header class="mb-2xl text-center max-w-3xl mx-auto">
+<h1 class="font-display-lg text-display-lg mb-md bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Project Roadmap</h1>
+<p class="text-on-surface-variant text-body-lg">Tracking the evolution of your digital vision through strategic phases of development and optimization.</p>
+</header>
+<!-- Vertical Timeline Interface -->
+<div class="relative flex flex-col items-center">
+<!-- Central Line -->
+<div class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 timeline-line opacity-20"></div>
+<!-- Milestone 1: Completed -->
+<div class="relative w-full mb-2xl group">
+<div class="flex flex-col md:flex-row items-center justify-center gap-xl">
+<!-- Left Side: Content -->
+<div class="w-full md:w-5/12 md:text-right order-2 md:order-1">
+<div class="glass-card p-lg rounded-xl hover:border-secondary-fixed/50 transition-all duration-500">
+<div class="inline-block px-3 py-1 bg-secondary-fixed/10 text-secondary-fixed rounded-full text-label-sm mb-sm">COMPLETED</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-md">Phase 1: Discovery &amp; Strategy</h3>
+<ul class="space-y-2 text-on-surface-variant text-body-md">
+<li class="flex items-center md:justify-end gap-2">Client kickoff &amp; goal alignment <span class="material-symbols-outlined text-secondary-fixed text-sm">check_circle</span></li>
+<li class="flex items-center md:justify-end gap-2">Technical audit of existing assets <span class="material-symbols-outlined text-secondary-fixed text-sm">check_circle</span></li>
+<li class="flex items-center md:justify-end gap-2">Competitive market analysis <span class="material-symbols-outlined text-secondary-fixed text-sm">check_circle</span></li>
+</ul>
+</div>
+</div>
+<!-- Center: Icon & Progress -->
+<div class="relative z-10 order-1 md:order-2">
+<div class="w-20 h-20 rounded-full bg-surface flex items-center justify-center shadow-[0_0_20px_rgba(38,254,220,0.2)]">
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container-highest stroke-current" cx="50" cy="50" fill="transparent" r="46" stroke-width="4"></circle>
+<circle class="text-secondary-fixed stroke-current progress-ring__circle" cx="50" cy="50" fill="transparent" r="46" stroke-linecap="round" stroke-width="4" style="stroke-dasharray: 289; stroke-dashoffset: 0;"></circle>
+</svg>
+<span class="material-symbols-outlined text-secondary-fixed text-4xl" data-icon="search">search</span>
+</div>
+</div>
+<!-- Right Side: Spacer -->
+<div class="hidden md:block w-5/12 order-3"></div>
+</div>
+</div>
+<!-- Milestone 2: Completed -->
+<div class="relative w-full mb-2xl group">
+<div class="flex flex-col md:flex-row items-center justify-center gap-xl">
+<!-- Left Side: Spacer -->
+<div class="hidden md:block w-5/12 order-1"></div>
+<!-- Center: Icon & Progress -->
+<div class="relative z-10 order-1 md:order-2">
+<div class="w-20 h-20 rounded-full bg-surface flex items-center justify-center shadow-[0_0_20px_rgba(38,254,220,0.2)]">
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container-highest stroke-current" cx="50" cy="50" fill="transparent" r="46" stroke-width="4"></circle>
+<circle class="text-secondary-fixed stroke-current progress-ring__circle" cx="50" cy="50" fill="transparent" r="46" stroke-linecap="round" stroke-width="4" style="stroke-dasharray: 289; stroke-dashoffset: 0;"></circle>
+</svg>
+<span class="material-symbols-outlined text-secondary-fixed text-4xl" data-icon="brush">brush</span>
+</div>
+</div>
+<!-- Right Side: Content -->
+<div class="w-full md:w-5/12 order-2 md:order-3">
+<div class="glass-card p-lg rounded-xl hover:border-secondary-fixed/50 transition-all duration-500">
+<div class="inline-block px-3 py-1 bg-secondary-fixed/10 text-secondary-fixed rounded-full text-label-sm mb-sm">COMPLETED</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-md">Phase 2: UI/UX Design</h3>
+<ul class="space-y-2 text-on-surface-variant text-body-md">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary-fixed text-sm">check_circle</span> User flow mapping</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary-fixed text-sm">check_circle</span> Wireframe validation</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary-fixed text-sm">check_circle</span> High-fidelity interactive mockups</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Milestone 3: Active -->
+<div class="relative w-full mb-2xl group">
+<div class="flex flex-col md:flex-row items-center justify-center gap-xl">
+<!-- Left Side: Content -->
+<div class="w-full md:w-5/12 md:text-right order-2 md:order-1">
+<div class="glass-card p-lg rounded-xl border-primary/40 shadow-[0_0_30px_rgba(46,91,255,0.1)] transition-all duration-500">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/20 text-primary rounded-full text-label-sm mb-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                    ACTIVE
+                                </div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-md">Phase 3: Web Development</h3>
+<ul class="space-y-2 text-on-surface-variant text-body-md">
+<li class="flex items-center md:justify-end gap-2">Scalable frontend architecture <span class="material-symbols-outlined text-secondary-fixed text-sm">check_circle</span></li>
+<li class="flex items-center md:justify-end gap-2">Core backend infrastructure <span class="material-symbols-outlined text-primary text-sm">hourglass_bottom</span></li>
+<li class="flex items-center md:justify-end gap-2">Third-party API integrations <span class="material-symbols-outlined text-outline text-sm">circle</span></li>
+</ul>
+</div>
+</div>
+<!-- Center: Icon & Progress -->
+<div class="relative z-10 order-1 md:order-2">
+<div class="w-24 h-24 rounded-full bg-surface-container flex items-center justify-center shadow-[0_0_30px_rgba(46,91,255,0.4)] border-2 border-primary/20">
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container-highest stroke-current" cx="50" cy="50" fill="transparent" r="46" stroke-width="4"></circle>
+<circle class="text-primary stroke-current progress-ring__circle" cx="50" cy="50" fill="transparent" r="46" stroke-linecap="round" stroke-width="4" style="stroke-dasharray: 289; stroke-dashoffset: 101.15;"></circle>
+</svg>
+<span class="material-symbols-outlined text-primary text-5xl" data-icon="code">code</span>
+<div class="absolute -bottom-2 bg-primary text-on-primary font-label-sm px-2 py-0.5 rounded-full">65%</div>
+</div>
+</div>
+<!-- Right Side: Spacer -->
+<div class="hidden md:block w-5/12 order-3"></div>
+</div>
+</div>
+<!-- Milestone 4: Upcoming -->
+<div class="relative w-full mb-2xl group">
+<div class="flex flex-col md:flex-row items-center justify-center gap-xl opacity-60 group-hover:opacity-100 transition-opacity">
+<!-- Left Side: Spacer -->
+<div class="hidden md:block w-5/12 order-1"></div>
+<!-- Center: Icon & Progress -->
+<div class="relative z-10 order-1 md:order-2">
+<div class="w-20 h-20 rounded-full bg-surface flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container-highest stroke-current" cx="50" cy="50" fill="transparent" r="46" stroke-width="4"></circle>
+<circle class="text-outline stroke-current progress-ring__circle" cx="50" cy="50" fill="transparent" r="46" stroke-linecap="round" stroke-width="4" style="stroke-dasharray: 289; stroke-dashoffset: 289;"></circle>
+</svg>
+<span class="material-symbols-outlined text-outline text-4xl" data-icon="trending_up">trending_up</span>
+</div>
+</div>
+<!-- Right Side: Content -->
+<div class="w-full md:w-5/12 order-2 md:order-3">
+<div class="glass-card p-lg rounded-xl">
+<div class="inline-block px-3 py-1 bg-surface-container-highest text-outline rounded-full text-label-sm mb-sm">UPCOMING</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-md">Phase 4: SEO Optimization</h3>
+<ul class="space-y-2 text-on-surface-variant text-body-md">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-outline text-sm">circle</span> Advanced keyword research</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-outline text-sm">circle</span> Technical on-page SEO setup</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-outline text-sm">circle</span> Performance &amp; speed optimization</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Milestone 5: Launch -->
+<div class="relative w-full group">
+<div class="flex flex-col md:flex-row items-center justify-center gap-xl opacity-60 group-hover:opacity-100 transition-opacity">
+<!-- Left Side: Content -->
+<div class="w-full md:w-5/12 md:text-right order-2 md:order-1">
+<div class="glass-card p-lg rounded-xl">
+<div class="inline-block px-3 py-1 bg-surface-container-highest text-outline rounded-full text-label-sm mb-sm">UPCOMING</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-md">Phase 5: Launch &amp; Handover</h3>
+<ul class="space-y-2 text-on-surface-variant text-body-md">
+<li class="flex items-center md:justify-end gap-2">Final QA &amp; cross-browser testing <span class="material-symbols-outlined text-outline text-sm">circle</span></li>
+<li class="flex items-center md:justify-end gap-2">Safe production deployment <span class="material-symbols-outlined text-outline text-sm">circle</span></li>
+<li class="flex items-center md:justify-end gap-2">Post-launch client training <span class="material-symbols-outlined text-outline text-sm">circle</span></li>
+</ul>
+</div>
+</div>
+<!-- Center: Icon & Progress -->
+<div class="relative z-10 order-1 md:order-2">
+<div class="w-20 h-20 rounded-full bg-surface flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container-highest stroke-current" cx="50" cy="50" fill="transparent" r="46" stroke-width="4"></circle>
+<circle class="text-outline stroke-current progress-ring__circle" cx="50" cy="50" fill="transparent" r="46" stroke-linecap="round" stroke-width="4" style="stroke-dasharray: 289; stroke-dashoffset: 289;"></circle>
+</svg>
+<span class="material-symbols-outlined text-outline text-4xl" data-icon="rocket_launch">rocket_launch</span>
+</div>
+</div>
+<!-- Right Side: Spacer -->
+<div class="hidden md:block w-5/12 order-3"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+        // Simple micro-interaction for cards on hover
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Entrance animation logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const milestones = document.querySelectorAll('.group');
+            milestones.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 200 * index);
+            });
+        });
+    </script>
+{% endblock %}

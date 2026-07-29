@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% block title %}Case Study: Spidow - Revolutionizing Tour Operations | Stackwave{% endblock %}
+
+{% block extra_style %}
+<style>
+body {
+            background-color: #101415;
+            color: #e0e3e5;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(46, 91, 255, 0.3);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #b8c3ff 0%, #00f2d1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative min-h-[80vh] flex items-center overflow-hidden px-margin-desktop">
+
+<div class="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-2xl items-center relative z-10 w-full">
+<div class="space-y-lg">
+<span class="inline-block px-md py-xs bg-primary/10 text-primary border border-primary/20 rounded-full font-label-sm uppercase tracking-widest">Case Study</span>
+<h1 class="font-display-lg text-display-lg leading-tight">
+                        Revolutionizing <span class="gradient-text">Tour Operations</span> with Spidow
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        How Stackwave transformed Kenya's travel industry by automating manual quotation processes and fragmented booking systems.
+                    </p>
+<div class="flex gap-lg pt-md">
+<div class="flex flex-col">
+<span class="text-secondary font-bold text-headline-lg">140%</span>
+<span class="text-on-surface-variant font-label-sm">Quote Speed Incr.</span>
+</div>
+<div class="w-px h-12 bg-white/10"></div>
+<div class="flex flex-col">
+<span class="text-secondary font-bold text-headline-lg">3.2x</span>
+<span class="text-on-surface-variant font-label-sm">Higher Conversion</span>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full"></div>
+<div class="glass-card p-sm rounded-xl overflow-hidden relative border border-white/10">
+<img alt="Spidow Dashboard" class="w-full h-auto rounded-lg shadow-2xl" src="https://lh3.googleusercontent.com/aida/AP1WRLsUyMkSr57OK-2Dhq3laL-6X5Wv6hOiL_yVyu1Xh_HkOul__vX3-ANjZidT48p5lDiXIVnuev114xeUirDNrm7io6hUdaLbZfcbzXpsPvNDZU7zIERglAEs-SLfwrijJ8IRZLuO_KmEdqYEsKG_n6X2zu1DnIwn6HnC2t2nluHdfxkMroy1bLjiUX_fL9x4jw5Jz6pT3ee2eiWgvceZ_znvMIUn5F4sLYdKeEbP-G_V5NibY9clyvtAr7Q"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Problem & Solution Bento -->
+<section class="py-3xl px-margin-desktop max-w-[1440px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Challenge Card -->
+<div class="md:col-span-5 glass-card p-xl rounded-2xl flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-error mb-md text-3xl">warning</span>
+<h2 class="font-headline-lg text-headline-lg mb-lg">The Challenge</h2>
+<p class="font-body-md text-on-surface-variant">
+                            Tour operators in Kenya were struggling with manual quotation processes and fragmented booking systems. This friction resulted in slow response times, lost leads, and an inability to scale operations efficiently. Data was scattered across spreadsheets and emails, making reporting nearly impossible.
+                        </p>
+</div>
+<div class="mt-2xl flex gap-sm">
+<span class="px-sm py-xs bg-surface-container-highest rounded-lg text-label-sm">Manual Vouchers</span>
+<span class="px-sm py-xs bg-surface-container-highest rounded-lg text-label-sm">Data Silos</span>
+</div>
+</div>
+<!-- Solution Main Card -->
+<div class="md:col-span-7 bg-primary-container text-on-primary-container p-xl rounded-2xl relative overflow-hidden">
+<div class="relative z-10">
+<span class="material-symbols-outlined mb-md text-3xl">auto_awesome</span>
+<h2 class="font-headline-lg text-headline-lg mb-lg">The Solution</h2>
+<p class="font-body-lg mb-xl opacity-90">
+                            Stackwave engineered Spidow: a comprehensive CRM and automated travel utility. We focused on eliminating bottlenecks in the sales funnel, allowing agents to move from inquiry to confirmed booking in record time.
+                        </p>
+<div class="grid grid-cols-2 gap-lg">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined mt-1">check_circle</span>
+<span class="font-label-md">Unified Client CRM</span>
+</div>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined mt-1">check_circle</span>
+<span class="font-label-md">Real-time Data Sync</span>
+</div>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined mt-1">check_circle</span>
+<span class="font-label-md">One-click Generation</span>
+</div>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined mt-1">check_circle</span>
+<span class="font-label-md">Cloud Voucher Storage</span>
+</div>
+</div>
+</div>
+<div class="absolute right-[-10%] bottom-[-10%] opacity-20 transform rotate-12">
+<span class="material-symbols-outlined text-[240px]">travel_explore</span>
+</div>
+</div>
+<!-- Feature: Quote Generator -->
+<div class="md:col-span-4 glass-card p-lg rounded-2xl hover:border-primary/50 transition-colors">
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-sm">Travel Quote Generator</h3>
+<p class="text-on-surface-variant font-body-md">
+                        From a single click, generate accurate quotes with unparalleled speed. Convert inquiries into bookings instantly.
+                    </p>
+</div>
+<!-- Feature: Itinerary -->
+<div class="md:col-span-4 glass-card p-lg rounded-2xl hover:border-primary/50 transition-colors">
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-primary">map</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-sm">Itinerary Builder</h3>
+<p class="text-on-surface-variant font-body-md">
+                        Create day-by-day journeys in minutes. Edit, attach to quotes, and send via Mail or WhatsApp seamlessly.
+                    </p>
+</div>
+<!-- Feature: CRM -->
+<div class="md:col-span-4 glass-card p-lg rounded-2xl hover:border-primary/50 transition-colors">
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-primary">database</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-sm">Client Database</h3>
+<p class="text-on-surface-variant font-body-md">
+                        Data is Gold. Build a marketing-ready vault of client details automatically as you work.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Product Showcase -->
+<section class="py-3xl relative">
+<div class="absolute inset-0 bg-primary/5 -skew-y-3 transform origin-right"></div>
+<div class="max-w-[1440px] mx-auto px-margin-desktop relative z-10 grid md:grid-cols-2 gap-2xl items-center">
+<div class="order-2 md:order-1">
+<div class="relative">
+<div class="absolute -inset-10 bg-secondary/10 blur-3xl"></div>
+<div class="glass-card p-sm rounded-2xl border border-white/5 relative">
+<img class="w-full rounded-xl" data-alt="A futuristic professional UI design for a travel management mobile application shown on a high-end smartphone. The screen displays a colorful interactive world map with glowing booking hotspots across Africa and Europe. Sleek charts showing regional performance and revenue metrics are rendered in vibrant neon cyan and purple. The overall mood is high-tech, professional, and sophisticated, set against a dark, slightly blurred modern office background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeFYtJkJo0vxbkG5TRUohKtk3lmYi-3XCO74W78DnfwUwHu10yAR5pdo2hwdHgbVmWkfYYdyQ0AFwFxpPtwXJ0vfDzsjdJCK2ee82UxW6yneiCAizDlnUf0LOhmDwukVGQv6eZurzYtCy6NICTXDgmYHs8jyw0-43s-qzxyAqcsDPsIeCuYUWeFxdvdztQH2MeZ2aGNI5QGOd52y063ARupQTYRgIk08fJvEU-TtLeAlX0o8TXryKl"/>
+</div>
+</div>
+</div>
+<div class="order-1 md:order-2 space-y-lg">
+<h2 class="font-headline-lg text-headline-lg">Seamless Performance Monitoring</h2>
+<p class="font-body-lg text-on-surface-variant">
+                        Spidow doesn't just manage bookings; it drives business growth. With real-time conversion performance tracking, management can make data-driven decisions that enable rapid company expansion.
+                    </p>
+<ul class="space-y-md">
+<li class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary">trending_up</span>
+<span class="font-body-md">Track DAU/MAU and User Activity</span>
+</li>
+<li class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary">public</span>
+<span class="font-body-md">Regional Sales Distribution Analysis</span>
+</li>
+<li class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary">campaign</span>
+<span class="font-body-md">Top Channel Attribution (Organic vs Paid)</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Final Results CTA -->
+<section class="py-3xl px-margin-desktop text-center">
+<div class="max-w-4xl mx-auto glass-card p-3xl rounded-[32px] border border-primary/20 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
+<h2 class="font-display-lg text-display-lg mb-lg">Ready to Scale?</h2>
+<p class="font-body-lg text-on-surface-variant mb-xl">
+                    Join the digital transformation. Like Spidow, your business can achieve unmatched efficiency and growth with Stackwave's custom software solutions.
+                </p>
+<div class="flex flex-col md:flex-row gap-lg justify-center items-center">
+<a class="bg-primary-container text-on-primary-container px-2xl py-md rounded-full font-headline-md hover:scale-105 transition-transform shadow-[0_0_30px_rgba(46,91,255,0.4)] text-center" href="{{ url_for('contact') }}">
+                        Start Your Case Study
+                    </a>
+<a class="border border-secondary text-secondary px-2xl py-md rounded-full font-headline-md hover:bg-secondary/10 transition-colors text-center" href="{{ url_for('portfolio') }}">
+                        View More Portfolio
+                    </a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+        // Simple reveal on scroll interaction
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(card);
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,272 @@
+{% extends "base.html" %}
+
+{% block title %}Stackwave | Elevating Your Digital Presence{% endblock %}
+
+{% block extra_style %}
+<style>
+body {
+            background-color: #101415;
+            color: #e0e3e5;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .gradient-border {
+            position: relative;
+            background: #1d2022;
+            border-radius: 1rem;
+            z-index: 0;
+        }
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(to right, #b8c3ff, #26fedc);
+            border-radius: 1rem;
+            z-index: -1;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+        .gradient-border:hover::before {
+            opacity: 1;
+        }
+        .mesh-bg {
+            background-color: #101415;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(220, 100%, 15%, 1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(230, 80%, 10%, 1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(170, 70%, 10%, 1) 0, transparent 50%);
+        }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center mesh-bg px-margin-mobile md:px-margin-desktop overflow-hidden">
+
+<div class="relative z-10 max-w-4xl">
+<div class="inline-flex items-center gap-xs px-sm py-xs bg-surface-container-high border border-white/5 rounded-full mb-lg">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span>
+<span class="text-label-sm uppercase tracking-widest text-on-surface-variant">Defining the Next Digital Era</span>
+</div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-md">
+                    Elevating Your <span class="text-primary">Digital Presence</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-xl">
+                    High-performance Web Design, technical SEO, and data-driven Digital Strategy crafted for enterprise-scale growth and boutique-level precision.
+                </p>
+<div class="flex flex-wrap gap-md">
+<button class="bg-primary-container text-on-primary-container px-2xl py-md rounded-full font-headline-md hover:shadow-[0_0_20px_rgba(46,91,255,0.4)] transition-all">
+                        Launch Your Project
+                    </button>
+<a class="border border-secondary-fixed text-secondary-fixed px-2xl py-md rounded-full font-headline-md hover:bg-secondary-fixed/10 transition-all flex items-center gap-sm" href="{{ url_for('portfolio') }}">
+                        View Portfolio <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Abstract Hero Image -->
+<div class="absolute right-[-10%] top-1/2 -translate-y-1/2 hidden lg:block w-[600px] h-[600px] rotate-12">
+<div class="w-full h-full rounded-3xl overflow-hidden glass-card p-4">
+<img class="w-full h-full object-cover rounded-2xl opacity-80" alt="Workstation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxPquA_OyN5Vsmrelopyad3mkrjRVa-0z09l2JUQhH0rwZupNaWDlMsmmEmpYJZI6u2pupEgtWeLu4X3QfIYcFHNWGRsibh5l5ZJSVzWQ-3bGYx0lq-D8NcOOLkOLQsgXk5QloiN0ctFE23Agos8HwsXfKTwSb0UYR60r06n4PYxtiFs0cig-aV3n4Uqpp6bl36oUj279pfxL5jQJbK_UiV6woNHsbhqLf29ZA6gPFtoBOU4C5VO5M"/>
+</div>
+</div>
+</section>
+<!-- Services Section (Bento Grid) -->
+<section class="py-3xl px-margin-mobile md:px-margin-desktop bg-surface">
+<div class="max-w-[1440px] mx-auto">
+<div class="mb-2xl text-center md:text-left">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Integrated Services</h2>
+<p class="text-on-surface-variant font-body-md mt-sm max-w-xl">We build the architecture of your success through a multidisciplinary approach to the modern web.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg h-auto md:h-[600px]">
+<!-- Large Feature: Web Design -->
+<a class="md:col-span-8 group relative overflow-hidden rounded-xl bg-surface-container border border-white/5 p-xl flex flex-col justify-between transition-all hover:bg-surface-container-high" href="{{ url_for('web_development') }}">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-secondary text-5xl mb-md">desktop_windows</span>
+<h3 class="font-headline-lg text-headline-lg mb-md">Web Design &amp; Architecture</h3>
+<p class="text-on-surface-variant max-w-md">Bespoke digital experiences that merge aesthetic brilliance with lightning-fast performance and seamless UX.</p>
+</div>
+<div class="mt-lg flex gap-md flex-wrap relative z-10">
+<span class="px-md py-xs bg-surface-container-highest rounded-full text-label-sm">React / Next.js</span>
+<span class="px-md py-xs bg-surface-container-highest rounded-full text-label-sm">UI/UX Strategy</span>
+<span class="px-md py-xs bg-surface-container-highest rounded-full text-label-sm">Cloud Scaling</span>
+</div>
+<div class="absolute right-0 bottom-0 w-1/2 h-full opacity-20 group-hover:opacity-40 transition-opacity">
+<img class="w-full h-full object-cover" alt="Website layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBd07j6d0Si1xjl9tjmv_Wepw2huPyglJ7wKA5IdwqWhv9k92GufEAjEUOUTl_I5W7S7ze2FDB3btFMrFtUbvWMWkpM6gTzfzVT0QiqV_43Br2BQrdJ5BZgMKnZCYRnhWhSPZNyBI95udAtPMOMSslsbFKQeGFqK0ODwYon9QjlzG_gs_M2-LpUlwwdqp49XQPqWgDF-OIvbRhJmf5nHWuvP-n5gIqAWy0kLQ93R8vvjBfr8EJXRFJ"/>
+</div>
+</a>
+<!-- Small Feature: SEO -->
+<div class="md:col-span-4 gradient-border p-xl flex flex-col justify-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-md">query_stats</span>
+<h3 class="font-headline-md text-headline-md mb-sm">SEO Mastery</h3>
+<p class="text-on-surface-variant text-body-md">Dominating search rankings through technical audits and intent-driven content strategies.</p>
+</div>
+<!-- Small Feature: Digital Marketing -->
+<div class="md:col-span-4 bg-surface-container-low border border-white/5 p-xl rounded-xl flex flex-col justify-center hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-md">campaign</span>
+<h3 class="font-headline-md text-headline-md mb-sm">Digital Strategy</h3>
+<p class="text-on-surface-variant text-body-md">Precision-targeted campaigns that convert visitors into brand advocates across all channels.</p>
+</div>
+<!-- Medium Feature: ROI Focus -->
+<div class="md:col-span-8 bg-surface-container border border-white/5 p-xl rounded-xl flex flex-col md:flex-row items-center gap-xl hover:bg-surface-container-high transition-all">
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md mb-sm text-secondary-fixed">Performance First</h3>
+<p class="text-on-surface-variant">Every line of code and every pixel is optimized for one thing: your return on investment.</p>
+</div>
+<div class="flex-none flex items-center gap-md">
+<div class="text-center">
+<div class="text-display-lg text-primary font-bold">140%</div>
+<div class="text-label-sm uppercase">Avg. Traffic Lift</div>
+</div>
+<div class="w-px h-16 bg-white/10"></div>
+<div class="text-center">
+<div class="text-display-lg text-secondary-fixed font-bold">3.2x</div>
+<div class="text-label-sm uppercase">Conversion Rate</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Choose Us Section -->
+<section class="py-3xl bg-surface-container-lowest relative overflow-hidden">
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-2xl items-center">
+<div class="order-2 lg:order-1">
+<div class="relative rounded-2xl overflow-hidden glass-card p-2 aspect-video">
+<img class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-700" alt="Team collaboration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBoBhbxtXuPuJAhocIUHfMXsinC7Go2NWMBYe3DaC-NfhmnyaYTZqYn-PYnqgajHEyLgCR73jDyYwkbmlaHBJCBzrSQibHKomcmuDJMbxcbY2ZhsGkfOPGSolgj9HPivwAQzxOYpkQAdyAfQjEq43jvZ2d1fO844PEO7GCDSV8UoGYM5kFk-jKf5D4LgRjIygdVw9JchBgL96U6xf2mjF5XB-cTBDtRO6dcawqBbHhxpswOESy7LLJ"/>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<h2 class="font-headline-lg text-headline-lg mb-lg">Why Forward-Thinking Brands Choose <span class="text-primary">Stackwave</span></h2>
+<ul class="space-y-xl">
+<li class="flex gap-md">
+<div class="flex-none w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">speed</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Uncompromising Velocity</h4>
+<p class="text-on-surface-variant">We prioritize speed—not just in project delivery, but in the performance of your final product.</p>
+</div>
+</li>
+<li class="flex gap-md">
+<div class="flex-none w-12 h-12 rounded-lg bg-secondary-fixed/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-fixed">biotech</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Evidence-Based Design</h4>
+<p class="text-on-surface-variant">No guesswork. Every creative decision is backed by user behavior data and conversion analytics.</p>
+</div>
+</li>
+<li class="flex gap-md">
+<div class="flex-none w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">cloud_sync</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Global Scalability</h4>
+<p class="text-on-surface-variant">Infrastructure built to grow. From local startups to global enterprises, we scale as you do.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Latest Projects Section -->
+<section class="py-3xl px-margin-mobile md:px-margin-desktop bg-surface">
+<div class="max-w-[1440px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-2xl gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg">Latest Projects</h2>
+<p class="text-on-surface-variant mt-xs">A selection of our recent digital breakthroughs.</p>
+</div>
+<a class="text-primary font-bold flex items-center gap-xs hover:gap-md transition-all" href="{{ url_for('portfolio') }}">
+                        Full Portfolio <span class="material-symbols-outlined">trending_flat</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Project 1: Jetwide Consortium -->
+<div class="group">
+<div class="relative aspect-[4/5] overflow-hidden rounded-2xl mb-md bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl opacity-60">flight_takeoff</span>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-xl">
+<a class="bg-white text-black px-lg py-sm rounded-full font-label-md" href="{{ url_for('case_study_jetwide') }}">View Case Study</a>
+</div>
+</div>
+<h4 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">Jetwide Consortium</h4>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-widest">Travel &amp; Safari / Booking Platform</p>
+</div>
+<!-- Project 2: Spidow -->
+<div class="group">
+<div class="relative aspect-[4/5] overflow-hidden rounded-2xl mb-md bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl opacity-60">travel_explore</span>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-xl">
+<a class="bg-white text-black px-lg py-sm rounded-full font-label-md" href="{{ url_for('case_study_spidow') }}">View Case Study</a>
+</div>
+</div>
+<h4 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">Spidow</h4>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-widest">Travel CRM / SaaS</p>
+</div>
+<!-- Project 3: Kenya Group Joining Safaris -->
+<div class="group">
+<div class="relative aspect-[4/5] overflow-hidden rounded-2xl mb-md bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-6xl opacity-60">groups</span>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-xl">
+<a class="bg-white text-black px-lg py-sm rounded-full font-label-md" href="{{ url_for('case_study_gjs') }}">View Case Study</a>
+</div>
+</div>
+<h4 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">Kenya Group Joining Safaris</h4>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-widest">Budget Travel / Social Booking</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-3xl px-margin-mobile md:px-margin-desktop bg-surface-container-lowest relative overflow-hidden">
+<div class="absolute top-0 right-0 w-[40%] h-full opacity-10 blur-3xl pointer-events-none">
+<div class="w-full h-full bg-primary-container rounded-full"></div>
+</div>
+<div class="max-w-[1440px] mx-auto text-center relative z-10">
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-lg">Ready to Scale Your Vision?</h2>
+<p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-2xl">Let's discuss how our digital strategies can transform your business into a category leader.</p>
+<div class="inline-flex flex-col md:flex-row gap-lg">
+<a class="bg-primary text-on-primary px-2xl py-md rounded-full font-headline-md hover:shadow-lg transition-all" href="{{ url_for('contact') }}">Schedule a Call</a>
+<button class="border border-white/20 text-on-surface px-2xl py-md rounded-full font-headline-md hover:bg-white/5 transition-all">Download Media Kit</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+        // Micro-interactions and scroll effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            // Adding animation classes to sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('transition-all', 'duration-1000', 'ease-out', 'opacity-0', 'translate-y-10');
+                observer.observe(section);
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block title %}Nexus Case Study | Stackwave Digital Agency{% endblock %}
+
+{% block extra_style %}
+<style>
+body {
+      background-color: #0F172A;
+      color: #e0e3e5;
+      overflow-x: hidden;
+    }
+    .glass-nav {
+      backdrop-filter: blur(20px);
+      background: rgba(30, 41, 59, 0.7);
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    
+    .hero-gradient {
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 1));
+    }
+    
+    .bento-card {
+      background: #1E293B;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="relative w-full h-screen min-h-[700px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Nexus Brand Hero" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxoIwGxwjhOrBti5L5wH2rmDFLYUZ7uJcKXLrRINEJOZfllTZ_pydDPnhBA55wWJA9eHO9K2bG2l2vncFMd6QT93T_DovOij3vLv7Pz9nCy0OW4ctZP1pKhZQFgBE4pA7JAZ2rZWFoOZrxY18gKopjlyv6rFSlKJMVe0xYy2259XWah9og1qIJcLm87x9G3SfLXRFm27JBl04m-cuTHmdIXcLike1R68DOOiX_6uc3b-aXj5AkqWLp"/>
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="relative z-10 max-w-[1440px] mx-auto px-margin-desktop w-full pt-2xl">
+<div class="max-w-4xl reveal stagger-1">
+<span class="inline-block px-md py-base bg-secondary-container/20 text-secondary-fixed-dim rounded-full font-label-sm mb-lg border border-secondary-fixed-dim/30 uppercase tracking-widest">Case Study: E-Commerce</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight mb-xl">
+          Nexus: Redefining Digital Commerce
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+          How Stackwave transformed a legacy retail platform into a high-performance, conversion-focused digital ecosystem for the global market.
+        </p>
+</div>
+</div>
+</header>
+<main>
+<!-- Challenge vs Solution -->
+<section class="py-3xl max-w-[1440px] mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-2xl">
+<!-- Challenge -->
+<div class="reveal stagger-1">
+<div class="flex items-center gap-md mb-lg">
+<span class="material-symbols-outlined text-error text-headline-lg">warning</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">The Challenge</h2>
+</div>
+<div class="space-y-lg text-on-surface-variant font-body-lg leading-relaxed">
+<p>
+              Nexus faced critical scaling bottlenecks during peak shopping seasons. Their legacy infrastructure suffered from high latency, frequent downtime, and a fragmented user experience that resulted in a 45% cart abandonment rate.
+            </p>
+<p>
+              The outdated UI failed to represent their premium brand positioning, leading to a disconnect between product quality and digital perception.
+            </p>
+</div>
+</div>
+<!-- Solution -->
+<div class="reveal stagger-2">
+<div class="flex items-center gap-md mb-lg">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-headline-lg">verified</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">The Solution</h2>
+</div>
+<div class="space-y-lg text-on-surface-variant font-body-lg leading-relaxed">
+<p>
+              Stackwave engineered a headless commerce architecture using modern frameworks to ensure sub-second load times and 99.99% uptime. We unified the design language with a "Digital Depth" aesthetic.
+            </p>
+<ul class="space-y-sm">
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+<span>Custom Next.js Frontend for SEO performance.</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+<span>Edge-computing for global content delivery.</span>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+<span>Optimized multi-step checkout flow.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Mobile Gallery -->
+<section class="py-3xl bg-surface-container-low overflow-hidden">
+<div class="max-w-[1440px] mx-auto px-margin-desktop">
+<div class="mb-2xl reveal stagger-1">
+<h2 class="font-headline-lg text-headline-lg text-on-surface text-center mb-md">High-Fidelity Interaction</h2>
+<p class="font-body-md text-on-surface-variant text-center max-w-2xl mx-auto">
+            A mobile-first approach focused on tactile interactions, glassmorphic UI elements, and seamless transactional flows.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl items-center">
+<!-- Mockup 1 -->
+<div class="reveal stagger-1 flex justify-center">
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<img alt="Nexus Mobile Dashboard" class="relative z-10 w-full max-w-[320px] rounded-[3rem] border-[12px] border-[#1e293b] shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC47e2jrEMU4PuHSVbBqs2ReH9FwmgDP6Y3LEU3D5JA_MUYtkR6eC31s7BwNLfm6gELsxnQadnypJfZza7Fd-8qiFa5cH93clgE94lDskVu_VSHT5fDziIkUXI0uPWgltYfFs3sUE1WugnpelYdg9goal5N0J0-J38YyUdpAx86C9D7OILISWzX_6EWpA9KglIDmHg8ynRalyY9-j4IRTIhD5Hkz0WCtP4viaACxnAUQMWhjc4YeaoB"/>
+</div>
+</div>
+<!-- Mockup 2 -->
+<div class="reveal stagger-2 flex justify-center translate-y-12 md:-translate-y-12">
+<div class="relative group">
+<div class="absolute -inset-4 bg-secondary/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<img alt="Nexus Mobile Analytics" class="relative z-10 w-full max-w-[320px] rounded-[3rem] border-[12px] border-[#1e293b] shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv3rSTrzN_PxyFOFckrdSrZV5Ad2P-Si2sBOOkpbnZlZsIKVbFs8K4cXnaSYC7dprjCqbLaxvNRVfILkdSsf7fIJZwHjIglroroMuM0XHcp-0oISEHbjDJkskNbZM_h8eTZHQr9QjEjCjyHZcWItS0DpFC8aVzyN8hnwLIRBCMJaSdHWG2oBLSWMZrxCnqqxVK3HjXjAZXLEnECg_LP7AHFFX-qhMO__yfmNJrxruGL63FCv7t3WXO"/>
+</div>
+</div>
+<!-- Mockup 3 -->
+<div class="reveal stagger-3 flex justify-center">
+<div class="relative group">
+<div class="absolute -inset-4 bg-tertiary/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<img alt="Nexus Mobile Product Detail" class="relative z-10 w-full max-w-[320px] rounded-[3rem] border-[12px] border-[#1e293b] shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmw2kskzWyurXDyuiUp-I0tnQIA1hATNK4-7zOpUTenBhCJhVzr-8uIxJEOna45bs3UW7x_VwOmmktx7PffJ4wsy-eTqInCQyKSC8U2bzP0_JGBXxbjJN_Ws1vC7U4YYWOO9a5_ZwwVyfcZfdMkhe8xW28mtHMHxzdNvIC1SgLprncKCJ9ZgS5tpmEs71vlCn4tytxaZfpO0R2GGT0wZSA19wTxf15OvOw2jfC5G3sIqQL5sJqBUmg"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Results Section -->
+<section class="py-3xl max-w-[1440px] mx-auto px-margin-desktop border-y border-white/5">
+<div class="text-center mb-2xl reveal stagger-1">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Measurable Impact</h2>
+<div class="w-24 h-1 bg-primary mx-auto mt-md"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-xl">
+<div class="bento-card p-xl rounded-xl text-center reveal stagger-1">
+<div class="font-display-lg text-primary text-headline-lg md:text-display-lg mb-sm">200%</div>
+<div class="font-label-md text-on-surface-variant uppercase tracking-widest">Revenue Growth</div>
+</div>
+<div class="bento-card p-xl rounded-xl text-center reveal stagger-2">
+<div class="font-display-lg text-secondary-fixed-dim text-headline-lg md:text-display-lg mb-sm">0.5s</div>
+<div class="font-label-md text-on-surface-variant uppercase tracking-widest">Load Time</div>
+</div>
+<div class="bento-card p-xl rounded-xl text-center reveal stagger-3">
+<div class="font-display-lg text-tertiary text-headline-lg md:text-display-lg mb-sm">34%</div>
+<div class="font-label-md text-on-surface-variant uppercase tracking-widest">Conv. Rate Inc.</div>
+</div>
+<div class="bento-card p-xl rounded-xl text-center reveal stagger-4">
+<div class="font-display-lg text-on-primary-container text-headline-lg md:text-display-lg mb-sm">99.9%</div>
+<div class="font-label-md text-on-surface-variant uppercase tracking-widest">System Uptime</div>
+</div>
+</div>
+</section>
+<!-- Quote CTA -->
+<section class="py-3xl bg-primary-container/10">
+<div class="max-w-4xl mx-auto px-margin-desktop text-center reveal stagger-1">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-lg">Ready to build your next breakthrough?</h2>
+<p class="font-body-lg text-on-surface-variant mb-xl">
+          Join leading brands and leverage Stackwave's expertise in technical architecture and premium UX design.
+        </p>
+<a class="bg-primary text-on-primary px-2xl py-lg rounded-full font-headline-md hover:shadow-[0_0_40px_rgba(184,195,255,0.4)] transition-all scale-105 active:scale-95 inline-block" href="{{ url_for('contact') }}">
+          Start Your Project
+        </a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Reveal animation on scroll
+    function reveal() {
+      var reveals = document.querySelectorAll(".reveal");
+      for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 150;
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add("active");
+        }
+      }
+    }
+
+    window.addEventListener("scroll", reveal);
+    // Initial check
+    window.addEventListener("load", reveal);
+  </script>
+{% endblock %}

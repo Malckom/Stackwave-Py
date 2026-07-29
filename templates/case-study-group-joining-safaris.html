@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block title %}Case Study: Group Joining Safaris | Stackwave Digital Agency{% endblock %}
+
+{% block extra_style %}
+<style>
+.material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .bento-item {
+            background: #1E293B;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bento-item:hover {
+            border-color: #2e5bff;
+            transform: translateY(-4px);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(184, 195, 255, 0.3);
+        }
+        .mesh-bg {
+            background-color: #0F172A;
+            background-image: radial-gradient(at 0% 0%, rgba(46, 91, 255, 0.15) 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(38, 254, 220, 0.1) 0px, transparent 50%);
+        }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="mesh-bg pt-[72px]">
+<!-- Hero Section -->
+<section class="relative min-h-[85vh] flex items-center overflow-hidden px-margin-desktop">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-40" data-alt="A sweeping, majestic landscape of the Maasai Mara at sunrise, featuring golden grassy plains and a lone acacia tree silhouette against a vibrant orange and purple sky. The cinematic lighting captures the essence of luxury travel in Kenya with deep shadows and high-contrast highlights, reflecting the brand's premium digital agency aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCVqlrIsFO0M9iano1bBXGYLMPXY6x6erbrqBD0zE_5-x694HhgHeIzJypy_r8mFUiHWc7RKJq96u7mlNf30qjQt5zv08K9Q804vwGJDiAVZAE7TKQPRVk5b2GzE4IKj8D0tkdqLHzKdWlJUzbmdPXdd_nxcRFEixqJyOPf2JN-goImUf-XT4QQa00auG72BGCdoFlVsqe1CRZayEydgdz4BvCrYJXAFkiS5maNg7r81UUEUwKokUhv')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-4xl grid lg:grid-cols-2 gap-2xl items-center">
+<div>
+<span class="inline-block px-md py-xs bg-secondary-container/20 text-secondary-fixed rounded-full font-label-sm mb-lg border border-secondary-fixed/30">
+                        FINTECH &amp; TRAVEL CASE STUDY
+                    </span>
+<h1 class="font-display-lg text-display-lg text-glow mb-lg leading-[1.1]">
+                        Group Joining <span class="text-primary">Safaris</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl max-w-xl">
+                        Revolutionizing the Kenyan safari market with a social booking engine that delivers affordable luxury at scale.
+                    </p>
+<div class="flex gap-md">
+<div class="flex items-center gap-xs px-md py-sm glass-card rounded-xl">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span class="font-label-md">215% Traffic Surge</span>
+</div>
+<div class="flex items-center gap-xs px-md py-sm glass-card rounded-xl">
+<span class="material-symbols-outlined text-secondary-fixed" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-label-md">0.8s Load Time</span>
+</div>
+</div>
+<a class="inline-flex items-center gap-xs text-primary font-label-md hover:gap-md transition-all pt-md" href="https://www.groupjoiningsafaris.com" target="_blank" rel="noopener">
+                        Visit Live Site <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+<div class="hidden lg:block relative">
+<div class="relative z-10 glass-card p-4 rounded-[2.5rem] shadow-2xl rotate-3 border-white/20">
+<img class="rounded-[2rem] w-full shadow-inner" src="https://lh3.googleusercontent.com/aida/AP1WRLuXMW1Osr64SCRE5qybMWlogV6_CgqRLkRZvnvn6nbG_TjGZFLN8v1ekL4ud0gxZLJjPiuZNHs4mF3SZe3k5GGLPoZF0QgKeXD8Q45Ekf7PwZCcQvGjg1ZFd_wHmFY8CnEl9q9ehfM_XeJM1T-n9stxJDILa758wtAS6OQP9rXc3RWFuCktYJBEUSNWa4FTvjtOVQu6hGtnf4VgKHde0EYKd4eB4fD61Rsa76fNVyj_BQ90Ruam78k0BcE"/>
+</div>
+<!-- Decorative Element -->
+<div class="absolute -bottom-10 -right-10 w-64 h-64 bg-primary/20 rounded-full blur-[100px]"></div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Content -->
+<section class="max-w-[1440px] mx-auto px-margin-desktop py-3xl">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg auto-rows-[280px]">
+<!-- The Challenge -->
+<div class="md:col-span-8 bento-item rounded-3xl p-xl flex flex-col justify-end relative overflow-hidden group">
+<div class="absolute top-0 left-0 p-xl">
+<span class="material-symbols-outlined text-error text-[48px] mb-md">warning</span>
+<h2 class="font-headline-lg text-headline-lg mb-md">The Challenge</h2>
+<p class="text-on-surface-variant font-body-md max-w-lg">
+                            For years, the majestic landscapes of Nairobi National Park and Maasai Mara were gatekept by high costs. Solo travelers and small groups faced exorbitant private vehicle fees, making the "Magical Kenya" experience inaccessible to a global demographic seeking authentic but affordable adventure.
+                        </p>
+</div>
+<div class="absolute bottom-0 right-0 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[200px]">attach_money</span>
+</div>
+</div>
+<!-- The Solution Summary -->
+<div class="md:col-span-4 bento-item rounded-3xl p-xl bg-primary-container/10 border-primary/20 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary text-[64px] mb-lg">handshake</span>
+<h3 class="font-headline-md text-headline-md mb-sm">Social Booking</h3>
+<p class="text-on-surface-variant font-body-md">
+                        A peer-to-peer sharing ecosystem that connects solo explorers.
+                    </p>
+</div>
+<!-- Results - Organic Traffic -->
+<div class="md:col-span-4 bento-item rounded-3xl p-xl flex flex-col justify-between">
+<h3 class="font-label-md text-primary uppercase tracking-widest">Traffic Results</h3>
+<div>
+<div class="font-display-lg text-5xl mb-xs">+215%</div>
+<p class="text-on-surface-variant font-body-md">Organic Growth surge through SEO-optimized safari itineraries.</p>
+</div>
+</div>
+<!-- Visual Mockup Image -->
+<div class="md:col-span-4 bento-item rounded-3xl overflow-hidden relative group">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700" data-alt="A high-tech digital workspace with a curved ultra-wide monitor displaying complex data visualizations and safari booking code. A professional developer is seated at a minimalist floating wooden desk in a modern architectural office with large glass windows and soft blue ambient lighting, representing the engineering excellence behind the safari platform." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBex2oa7SalPUUR7wTl7Z4RLvf1vmK8Pk2ivC5rZJhSmi1G_OltrzoZfJ3LNeA1algtpOMXJto5O1MPLnQtSTfC1D5nDimQpH1w9-LFr7ZFrD7u0_YI9eP8N53rNe_MPPMSeNI8aD7e83cwz17PJql44BF9xYUOAQhRFxWyCeBdaNRjPwtPl4DOTOM8J8O8s74laWcVK79q8g5wHaxvx7bJWDLO06J5AR2X0K0JIJJX6jZPJr9QywPt')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
+<div class="absolute bottom-lg left-lg">
+<div class="font-label-sm bg-white/10 backdrop-blur-md px-md py-xs rounded-full">Engineering Excellence</div>
+</div>
+</div>
+<!-- Results - Load Times -->
+<div class="md:col-span-4 bento-item rounded-3xl p-xl flex flex-col justify-between border-secondary-fixed/20">
+<h3 class="font-label-md text-secondary-fixed uppercase tracking-widest">Performance</h3>
+<div>
+<div class="font-display-lg text-5xl mb-xs">&lt;0.8s</div>
+<p class="text-on-surface-variant font-body-md">Server response times for complex multi-parameter searches.</p>
+</div>
+</div>
+<!-- Detailed Solution -->
+<div class="md:col-span-12 bento-item rounded-3xl p-xl grid md:grid-cols-2 gap-2xl items-center">
+<div>
+<h2 class="font-headline-lg text-headline-lg mb-lg">The Solution</h2>
+<p class="text-on-surface-variant font-body-lg mb-lg">
+                            Stackwave engineered a social booking platform that automates the matching process for travelers. By pooling demand for specific dates at Nairobi National Park and Maasai Mara, the system dynamically calculates shared costs, ensuring "Guaranteed Departures" without the risk of cancellations.
+                        </p>
+<ul class="space-y-md">
+<li class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary-fixed">check_circle</span>
+<span>Real-time availability for shared 4x4 Land Cruisers</span>
+</li>
+<li class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary-fixed">check_circle</span>
+<span>Automated cost-splitting algorithm</span>
+</li>
+<li class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary-fixed">check_circle</span>
+<span>Integration with regional payment gateways (M-Pesa, Stripe)</span>
+</li>
+</ul>
+</div>
+<div class="glass-card rounded-2xl p-lg grid grid-cols-2 gap-lg">
+<div class="bg-surface-container rounded-xl p-md text-center">
+<div class="text-primary font-bold text-headline-md">42%</div>
+<div class="text-xs font-label-sm text-on-surface-variant">BOOKING LIFT</div>
+</div>
+<div class="bg-surface-container rounded-xl p-md text-center">
+<div class="text-secondary-fixed font-bold text-headline-md">100%</div>
+<div class="text-xs font-label-sm text-on-surface-variant">UPTIME</div>
+</div>
+<div class="bg-surface-container rounded-xl p-md text-center">
+<div class="text-tertiary font-bold text-headline-md">5.0</div>
+<div class="text-xs font-label-sm text-on-surface-variant">RATING</div>
+</div>
+<div class="bg-surface-container rounded-xl p-md text-center">
+<div class="text-primary font-bold text-headline-md">Global</div>
+<div class="text-xs font-label-sm text-on-surface-variant">REACH</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-3xl px-margin-desktop bg-surface-container-low text-center">
+<div class="max-w-3xl mx-auto">
+<h2 class="font-display-lg text-headline-lg mb-lg">Want results like <span class="text-secondary-fixed">Kenya Group Joining Safaris</span>?</h2>
+<p class="font-body-lg text-on-surface-variant mb-xl">
+                    Let's collaborate to build your next-generation digital ecosystem. From complex booking engines to high-performance UX, we deliver scale.
+                </p>
+<div class="flex flex-col sm:flex-row gap-lg justify-center">
+<a class="bg-primary-container text-on-primary-container px-2xl py-md rounded-xl font-headline-md hover:shadow-[0_0_30px_rgba(46,91,255,0.4)] transition-all transform hover:-translate-y-1 text-center" href="{{ url_for('contact') }}">
+                        Start Your Project
+                    </a>
+<a class="border border-secondary-fixed text-secondary-fixed px-2xl py-md rounded-xl font-headline-md hover:bg-secondary-fixed/10 transition-all text-center" href="{{ url_for('portfolio') }}">
+                        View More Work
+                    </a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+        // Micro-interaction: Active nav indicator sync
+        document.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-xl', 'py-2');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.remove('shadow-xl', 'py-2');
+                nav.classList.add('py-4');
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block title %}Web Development | Stackwave Digital Agency{% endblock %}
+
+{% block extra_style %}
+<style>
+.glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: #b8c3ff;
+            box-shadow: 0 0 20px rgba(184, 195, 255, 0.1);
+        }
+        .neon-border-blue {
+            border-left: 4px solid #2e5bff;
+        }
+        .neon-border-mint {
+            border-left: 4px solid #00f2d1;
+        }
+        .tech-gradient {
+            background: linear-gradient(135deg, rgba(46, 91, 255, 0.1) 0%, rgba(0, 242, 209, 0.05) 100%);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative overflow-hidden py-3xl px-margin-mobile md:px-margin-desktop flex flex-col items-center justify-center min-h-[716px] text-center">
+<div class="absolute inset-0 z-0 pointer-events-none opacity-20">
+
+</div>
+<div class="relative z-10 max-w-4xl">
+<span class="inline-block px-md py-1 mb-lg rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md uppercase tracking-widest">
+                    Web Development Excellence
+                </span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-lg">
+                    Engineering the Next Generation of <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary-fixed">Digital Experiences</span>
+</h1>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-xl">
+                    We bridge the gap between complex engineering and visionary design, building high-performance web applications that scale with your ambition.
+                </p>
+<div class="flex flex-col sm:flex-row gap-lg justify-center">
+<a class="bg-primary text-on-primary font-label-md px-xl py-4 rounded-xl shadow-[0_0_20px_rgba(184,195,255,0.3)] hover:scale-105 transition-transform" href="{{ url_for('services') }}">
+                        Explore Our Stack
+                    </a>
+<a class="border border-secondary-fixed text-secondary-fixed font-label-md px-xl py-4 rounded-xl hover:bg-secondary-fixed/10 transition-colors" href="{{ url_for('portfolio') }}">
+                        View Portfolio
+                    </a>
+</div>
+</div>
+</section>
+<!-- Feature Breakdown -->
+<section class="py-3xl px-margin-mobile md:px-margin-desktop bg-surface-container-low">
+<div class="max-w-[1440px] mx-auto">
+<div class="mb-2xl text-center md:text-left">
+<h2 class="font-headline-lg text-headline-lg mb-md">Core Capabilities</h2>
+<p class="text-on-surface-variant font-body-md max-w-xl">Architectural foundations built for speed, security, and seamless user journeys.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg">
+<!-- Card 1 -->
+<div class="glass-card p-lg rounded-xl neon-border-blue flex flex-col gap-md">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/20 rounded-lg text-primary animate-float">
+<span class="material-symbols-outlined text-3xl">storage</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Scalable Infrastructure</h3>
+<p class="text-on-surface-variant font-body-md">Cloud-native architectures that grow dynamically with your traffic demands without compromising uptime.</p>
+</div>
+<!-- Card 2 -->
+<div class="glass-card p-lg rounded-xl neon-border-mint flex flex-col gap-md">
+<div class="w-12 h-12 flex items-center justify-center bg-secondary-fixed/20 rounded-lg text-secondary-fixed animate-float" style="animation-delay: 0.5s">
+<span class="material-symbols-outlined text-3xl">draw</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Bespoke UI/UX</h3>
+<p class="text-on-surface-variant font-body-md">Tailor-made interfaces crafted with pixel-perfection to ensure brand consistency and user engagement.</p>
+</div>
+<!-- Card 3 -->
+<div class="glass-card p-lg rounded-xl neon-border-blue flex flex-col gap-md">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/20 rounded-lg text-primary animate-float" style="animation-delay: 1s">
+<span class="material-symbols-outlined text-3xl">speed</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Performance First</h3>
+<p class="text-on-surface-variant font-body-md">Optimized assets and server-side rendering for lightning-fast load times and perfect Core Web Vitals.</p>
+</div>
+<!-- Card 4 -->
+<div class="glass-card p-lg rounded-xl neon-border-mint flex flex-col gap-md">
+<div class="w-12 h-12 flex items-center justify-center bg-secondary-fixed/20 rounded-lg text-secondary-fixed animate-float" style="animation-delay: 1.5s">
+<span class="material-symbols-outlined text-3xl">gpp_good</span>
+</div>
+<h3 class="font-headline-md text-headline-md">Security by Design</h3>
+<p class="text-on-surface-variant font-body-md">Bank-grade encryption and rigorous penetration testing to keep your data and users safe from day one.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Tech Stack -->
+<section class="py-3xl px-margin-mobile md:px-margin-desktop">
+<div class="max-w-[1440px] mx-auto">
+<div class="text-center mb-2xl">
+<h2 class="font-headline-lg text-headline-lg mb-md">Our Technological Arsenal</h2>
+<p class="text-on-surface-variant font-body-md max-w-2xl mx-auto">We use cutting-edge frameworks and languages to deliver robust, future-proof digital solutions.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-lg">
+<div class="glass-card p-xl rounded-xl flex flex-col items-center justify-center text-center gap-md">
+<div class="w-16 h-16 rounded-full bg-surface-container-high p-4 flex items-center justify-center mb-md">
+<img class="w-12 h-12" alt="React logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR5LHD9UHeswrHsiCOcH9RZzi7xYctIyKhdsgzYpQmmh7hbZZdXINt30KkvxVkZL2TenosXlTwIbYliMh9IREcmEzcFQv9A2d2qnOFS-rC0BLIZLLtl9tjrAYsRB15X0v7LAu0mCMO65FX3IGxrzUiY5xCWnvjb7wTvR_-3nsRDCGfSPkce-PHjFTqP1QfxIpKf6jdQSi6bvvcRHmVwzCJ0IFY5yH0tcBvG6MxZtOUP300dPh33lQB"/>
+</div>
+<span class="font-label-md text-primary">Frontend</span>
+<h4 class="font-headline-md text-on-surface">React.js</h4>
+</div>
+<div class="glass-card p-xl rounded-xl flex flex-col items-center justify-center text-center gap-md">
+<div class="w-16 h-16 rounded-full bg-surface-container-high p-4 flex items-center justify-center mb-md">
+<img class="w-12 h-12" alt="Node.js logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcs5I5uDSYGmGyv5t4hzpSJwBEvTDKdtCEjhJN35t41s6MwWJc7kyXE4Iz311Dff4uXFCQevNESAMQ-6KNY6T6xAY_xO8ME0TxuWedBoJQsBRpnlsEzQYrtCcxT9RNnTW496wsWvWnAIRwOVFETiWo8aPhKHAfV1msGFbkc58PLgT3WVNKwowjtnT2_vl-AWPEmANTCa0lxd95-B1Lsp3XiE07Xq4jwE3YhB3rcb6uYxilaWbrlgky"/>
+</div>
+<span class="font-label-md text-secondary-fixed">Backend</span>
+<h4 class="font-headline-md text-on-surface">Node.js</h4>
+</div>
+<div class="glass-card p-xl rounded-xl flex flex-col items-center justify-center text-center gap-md">
+<div class="w-16 h-16 rounded-full bg-surface-container-high p-4 flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-4xl text-on-surface">deployed_code</span>
+</div>
+<span class="font-label-md text-primary">Framework</span>
+<h4 class="font-headline-md text-on-surface">Next.js</h4>
+</div>
+<div class="glass-card p-xl rounded-xl flex flex-col items-center justify-center text-center gap-md">
+<div class="w-16 h-16 rounded-full bg-surface-container-high p-4 flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-4xl text-secondary-fixed">view_in_ar</span>
+</div>
+<span class="font-label-md text-secondary-fixed">Graphics</span>
+<h4 class="font-headline-md text-on-surface">WebGL</h4>
+</div>
+</div>
+</div>
+</section>
+<!-- Performance Metrics -->
+<section class="py-3xl px-margin-mobile md:px-margin-desktop bg-surface-container-low">
+<div class="max-w-[1440px] mx-auto">
+<div class="mb-2xl text-center">
+<h2 class="font-headline-lg text-headline-lg mb-md">Success-Metric Gallery</h2>
+<p class="text-on-surface-variant font-body-md max-w-xl mx-auto">Real data from recent transformation projects showcasing measurable growth.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+<!-- Metric 1: Speed -->
+<div class="glass-card p-xl rounded-2xl relative overflow-hidden">
+<div class="flex justify-between items-start mb-lg">
+<h4 class="font-headline-md text-on-surface">Loading Speed</h4>
+<span class="text-secondary-fixed font-bold">+85%</span>
+</div>
+<div class="h-40 flex items-end gap-sm">
+<div class="w-full bg-surface-variant h-1/4 rounded-t-lg transition-all duration-1000"></div>
+<div class="w-full bg-surface-variant h-2/5 rounded-t-lg transition-all duration-1000"></div>
+<div class="w-full bg-primary h-4/5 rounded-t-lg transition-all duration-1000"></div>
+<div class="w-full bg-secondary-fixed h-full rounded-t-lg transition-all duration-1000"></div>
+</div>
+<p class="mt-lg text-on-surface-variant text-label-md">Average reduction in time-to-interactive for e-commerce partners.</p>
+</div>
+<!-- Metric 2: SEO -->
+<div class="glass-card p-xl rounded-2xl">
+<div class="flex justify-between items-start mb-lg">
+<h4 class="font-headline-md text-on-surface">SEO Visibility</h4>
+<span class="text-primary font-bold">+120%</span>
+</div>
+<div class="relative h-40 flex items-center justify-center">
+<svg class="w-full h-full" viewbox="0 0 100 40">
+<path d="M0,35 Q20,30 40,20 T80,5 T100,2" fill="none" stroke="#b8c3ff" stroke-width="2"></path>
+<circle cx="40" cy="20" fill="#b8c3ff" r="2"></circle>
+<circle cx="80" cy="5" fill="#b8c3ff" r="2"></circle>
+</svg>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent"></div>
+</div>
+<p class="mt-lg text-on-surface-variant text-label-md">Increase in organic search traffic following core architectural updates.</p>
+</div>
+<!-- Metric 3: Conversion -->
+<div class="glass-card p-xl rounded-2xl">
+<div class="flex justify-between items-start mb-lg">
+<h4 class="font-headline-md text-on-surface">Conversion Rate</h4>
+<span class="text-secondary-fixed font-bold">+42%</span>
+</div>
+<div class="flex items-center justify-center h-40">
+<div class="relative w-32 h-32">
+<svg class="w-full h-full transform -rotate-90">
+<circle cx="64" cy="64" fill="none" r="56" stroke="rgba(255,255,255,0.05)" stroke-width="8"></circle>
+<circle cx="64" cy="64" fill="none" r="56" stroke="#00f2d1" stroke-dasharray="351.85" stroke-dashoffset="100" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-display-lg text-headline-lg">72%</div>
+</div>
+</div>
+<p class="mt-lg text-on-surface-variant text-label-md">Optimized UX funnels leading to higher customer retention and checkout completion.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-3xl px-margin-mobile md:px-margin-desktop text-center relative">
+<div class="absolute inset-0 z-0 opacity-10">
+
+</div>
+<div class="max-w-4xl mx-auto relative z-10">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-lg">Ready to build the future?</h2>
+<p class="font-body-lg text-on-surface-variant mb-xl max-w-2xl mx-auto">Our engineers are standing by to discuss your project requirements and architectural challenges.</p>
+<div class="flex flex-col sm:flex-row gap-lg justify-center items-center">
+<a class="bg-primary-container text-on-primary-container px-2xl py-lg rounded-xl font-headline-md hover:scale-105 transition-transform flex items-center gap-md" href="{{ url_for('contact') }}">
+                        Start Your Project
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<span class="text-on-surface-variant font-label-md">or call us at +1 (555) 000-0000</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+        // Simple intersection observer for reveal animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700');
+            observer.observe(card);
+        });
+    </script>
+{% endblock %}
