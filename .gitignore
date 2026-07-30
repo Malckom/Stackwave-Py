@@ -6,3 +6,5 @@ stackwave.db
 uploads/*
 !uploads/.gitkeep
 .env
+node_modules/
+npm-debug.log*

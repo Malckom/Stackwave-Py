@@ -5,8 +5,6 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>{% block title %}Stackwave Developers{% endblock %}</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -53,9 +51,7 @@
   {% endwith %}
 
   <!-- ================= MAIN CONTENT ================= -->
-  <main>
-    {% block content %}{% endblock %}
-  </main>
+  {% block content %}{% endblock %}
 
   <!-- ================= FOOTER ================= -->
 <footer class="bg-[#080b11] border-t border-white/5 mt-auto">
