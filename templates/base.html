@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   {% block extra_style %}{% endblock %}
 </head>
-<body class="font-body-md text-body-md">
+<body class="{% block body_class %}font-body-md text-body-md{% endblock %}">
 
   <!-- ================= HEADER / NAV ================= -->
   <nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-white/10">
