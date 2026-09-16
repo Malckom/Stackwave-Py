@@ -33,6 +33,11 @@ def web_development():
     return render_template("web-development.html", current_page="services")
 
 
+@app.route("/pricing")
+def pricing():
+    return render_template("pricing.html", current_page="pricing")
+
+
 @app.route("/portfolio")
 def portfolio():
     return render_template("portfolio.html", current_page="portfolio")
