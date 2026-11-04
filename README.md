@@ -78,3 +78,27 @@ want form submissions to persist long-term, ask me to swap in a hosted Postgres 
 - The contact form and onboarding flow now actually store what people submit, instead of
   only simulating success in JavaScript.
 - Routes use clean paths (e.g. `/case-studies/jetwide`) instead of `.html` filenames.
+
+## Editing site content (no code needed)
+
+Most of the site is driven by JSON files in `content/`. Edit, save, and the live site picks the change up
+automatically (no restart needed; a typo in the JSON keeps the last good version live and logs the error).
+
+| File | What it controls |
+| --- | --- |
+| `content/site.json` | Email, phone, WhatsApp number, TikTok/Instagram links, office address, business reg. no., legal "last updated" date |
+| `content/pricing.json` | Packages, tiers, add-ons and pricing notes (pricing page, contact form pre-selection, media kit) |
+| `content/projects.json` | Portfolio cards, homepage "Latest Projects" (`featured_home`), and generated case studies |
+| `content/services.json` | The SEO Mastery, Digital Strategy and Performance First service pages |
+
+- **Social links:** TikTok and Instagram icons only appear once `tiktok_url` / `instagram_url` are filled in `site.json`.
+- **Case studies:** add a `case_study` block to a project in `projects.json` and its page `/case-studies/<slug>` is created and linked automatically. Add real numbers under `results` (`[{"value": "...", "label": "..."}]`) when you have them; the section appears only if there are results.
+- **Real screenshots:** drop `static/assets/screens/<project-slug>.webp` (or .jpg/.png) and that project's browser-frame thumbnail uses it instead of the logo.
+- **Media kit:** after changing pricing/projects, run `pip install reportlab && python scripts/build_media_kit.py` to regenerate `static/downloads/Stackwave-Developers-Media-Kit.pdf`.
+
+## Deployment notes
+
+- Set a `SECRET_KEY` environment variable in production (the app logs a warning if it is missing). It signs sessions and form tokens.
+- Set `SESSION_COOKIE_SECURE=1` in production so the session cookie is only sent over HTTPS.
+- `static/css/styles.css` is compiled Tailwind and its config is not in this repo, so new styles go in `static/css/site.css`.
+- The `contact_submissions` table gained `package`, `addons` and `ip_hash` columns. They are added automatically on startup; existing rows are untouched.

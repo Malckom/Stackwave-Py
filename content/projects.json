@@ -1,0 +1,303 @@
+[
+  {
+    "slug": "jetwide",
+    "name": "Jetwide Consortium",
+    "category": "Travel & Safari",
+    "chip": "mint",
+    "status": "live",
+    "url": "https://www.jetwide.org/",
+    "summary": "Booking site for Kenya safaris, visa processing, car hire, and job placements, with WhatsApp-first support.",
+    "logo": "assets/logos/jetwide.webp",
+    "logo_w": 175,
+    "frame": "light",
+    "legacy_endpoint": "case_study_jetwide"
+  },
+  {
+    "slug": "spidow",
+    "name": "Spidow",
+    "category": "Travel CRM / SaaS",
+    "chip": "primary",
+    "status": "live",
+    "url": null,
+    "summary": "CRM and automated quotation engine for Kenyan tour operators, cutting quote turnaround and boosting conversions.",
+    "logo": "assets/logos/spidow.png",
+    "logo_w": 1200,
+    "frame": "light",
+    "legacy_endpoint": "case_study_spidow"
+  },
+  {
+    "slug": "sunbelle-adventures",
+    "name": "Sunbelle Adventures",
+    "category": "Luxury Safari",
+    "chip": "primary",
+    "status": "live",
+    "url": "https://www.sunbelleadventures.com",
+    "summary": "Marketing and booking site for curated, private luxury safaris across Kenya, Uganda, Rwanda & Tanzania.",
+    "logo": "assets/logos/sunbelle.webp",
+    "logo_w": 650,
+    "frame": "light",
+    "case_study": {
+      "headline_pre": "A premium safari brand,",
+      "headline_highlight": "built to start conversations",
+      "intro": "A marketing and booking site for a luxury safari company running curated, private trips across Kenya, Uganda, Rwanda and Tanzania.",
+      "challenge": "Sunbelle sells curated, private safaris at the premium end of the market. The website had to feel as considered as the trips themselves, present four countries without overwhelming visitors, and make it easy for a serious buyer to start a conversation.",
+      "challenge_tags": [
+        "Premium positioning",
+        "Four destinations"
+      ],
+      "solution": "We built a custom-coded marketing and booking site that leads with itineraries and imagery, organizes trips by destination, and routes every inquiry straight to the Sunbelle team.",
+      "solution_points": [
+        "Itinerary pages with day-by-day detail",
+        "Destination pages for four countries",
+        "Photo galleries for each trip",
+        "Inquiry and booking-request forms"
+      ],
+      "features": [
+        {
+          "icon": "map",
+          "title": "Itinerary pages",
+          "text": "Each trip is laid out day by day so a buyer can picture the journey before they enquire."
+        },
+        {
+          "icon": "public",
+          "title": "Destination structure",
+          "text": "Kenya, Uganda, Rwanda and Tanzania each have a clear home, so visitors find the right trips quickly."
+        },
+        {
+          "icon": "forward_to_inbox",
+          "title": "Direct inquiry path",
+          "text": "Booking-request forms put serious buyers in touch with the team without extra steps."
+        }
+      ],
+      "outcomes": [
+        "A site that matches the premium feel of the brand",
+        "A clear structure across four destinations",
+        "A direct route from itinerary to inquiry",
+        "Custom-coded and mobile-friendly, with no template"
+      ],
+      "results": []
+    }
+  },
+  {
+    "slug": "group-joining-safaris",
+    "name": "Kenya Group Joining Safaris",
+    "category": "Budget Travel",
+    "chip": "muted",
+    "status": "live",
+    "url": "https://www.groupjoiningsafaris.com",
+    "summary": "Booking platform that connects solo travelers into cost-shared group safaris to the Mara and beyond.",
+    "logo": "assets/logos/group-joining.png",
+    "logo_w": 650,
+    "frame": "light",
+    "legacy_endpoint": "case_study_gjs"
+  },
+  {
+    "slug": "pembe-beyond-plains",
+    "name": "Pembe Beyond Plains",
+    "category": "Tour & Travel",
+    "chip": "primary",
+    "status": "live",
+    "url": "https://pembebeyondplains.com/",
+    "featured_home": true,
+    "summary": "Booking site for a Nairobi safari outfitter, with destination guides, package pages, and a get-a-quote flow across Kenya, Tanzania, Uganda & Rwanda.",
+    "logo": "assets/logos/pembe.webp",
+    "logo_w": 448,
+    "frame": "light",
+    "case_study": {
+      "headline_pre": "From destination guide",
+      "headline_highlight": "to quote request",
+      "intro": "A booking site for a Nairobi safari outfitter, with destination guides, package pages and a get-a-quote flow across Kenya, Tanzania, Uganda and Rwanda.",
+      "challenge": "Safari buyers research destinations first and compare operators second. Pembe Beyond Plains needed a site that helps people explore four countries, understand each package, and ask for a quote without friction.",
+      "challenge_tags": [
+        "Multi-country offer",
+        "Quote-led sales"
+      ],
+      "solution": "We built a booking site around the way buyers decide: destination guides for inspiration, package pages for detail, and a get-a-quote flow that is available from every page.",
+      "solution_points": [
+        "Destination guides for Kenya, Tanzania, Uganda and Rwanda",
+        "Package pages with clear itineraries",
+        "A get-a-quote flow from any page",
+        "Custom-coded, mobile-friendly layouts"
+      ],
+      "features": [
+        {
+          "icon": "explore",
+          "title": "Destination guides",
+          "text": "Each country gets its own guide, so visitors can explore before they commit to a trip."
+        },
+        {
+          "icon": "inventory_2",
+          "title": "Package pages",
+          "text": "Every package has its own page with the detail a buyer needs to compare options."
+        },
+        {
+          "icon": "request_quote",
+          "title": "Get-a-quote flow",
+          "text": "A short quote request keeps the step from interest to enquiry as small as possible."
+        }
+      ],
+      "outcomes": [
+        "Four destinations organized into clear guides",
+        "Package pages that are easy to compare",
+        "A quote request reachable from every page",
+        "Custom-coded and mobile-friendly, with no template"
+      ],
+      "results": []
+    }
+  },
+  {
+    "slug": "sizwe-africa-safaris",
+    "name": "Sizwe Africa Safaris",
+    "category": "Refurbishing",
+    "chip": "muted",
+    "status": "refurbishing",
+    "url": "https://sizweafricasafaris.com/",
+    "featured_home": true,
+    "summary": "Safari packages and destination site for a Nakuru-based tour operator. Currently refurbishing this site (pictured is the current live version).",
+    "logo": "assets/logos/sizwe.png",
+    "logo_w": 294,
+    "frame": "light",
+    "case_study": {
+      "headline_pre": "Refreshing a Nakuru safari operator's",
+      "headline_highlight": "online presence",
+      "intro": "Safari packages and destinations for a Nakuru-based tour operator. This site is currently being refurbished, and the version online today is the previous one.",
+      "banner": "Refurbishment in progress. The live site is the previous version while the new one is built.",
+      "challenge": "Sizwe Africa Safaris already has a site with its packages and destinations. The goal of the refurbishment is a refreshed design and a clearer route from browsing safari packages to making an enquiry.",
+      "challenge_tags": [
+        "Refurbishment",
+        "Existing audience"
+      ],
+      "solution": "We are rebuilding the site in custom code, keeping the content that works and reorganizing it around packages and destinations so visitors can find a trip and enquire quickly.",
+      "solution_points": [
+        "A refreshed design that fits the brand",
+        "Packages and destinations clearly organized",
+        "A short path from package to enquiry",
+        "Custom-coded and mobile-friendly"
+      ],
+      "features": [
+        {
+          "icon": "palette",
+          "title": "Refreshed design",
+          "text": "A cleaner visual style that carries the warmth of the Sizwe brand."
+        },
+        {
+          "icon": "inventory_2",
+          "title": "Clearer packages",
+          "text": "Safari packages grouped so visitors can compare trips without hunting."
+        },
+        {
+          "icon": "forward_to_inbox",
+          "title": "Easier enquiries",
+          "text": "A short route from browsing to getting in touch with the team."
+        }
+      ],
+      "outcomes": [
+        "Refurbishment under way",
+        "Packages and destinations being reorganized",
+        "Full case study to follow once the new site is live"
+      ],
+      "results": []
+    },
+    "type": "Tour & Travel"
+  },
+  {
+    "slug": "sunbird-outdoors",
+    "name": "Sunbird Outdoors",
+    "category": "Under Production",
+    "chip": "muted",
+    "status": "in-build",
+    "url": "https://sunbirdoutdoors.com/",
+    "featured_home": true,
+    "summary": "Outdoor & adventure brand site, currently in build.",
+    "logo": "assets/logos/sunbird.png",
+    "logo_w": 800,
+    "frame": "dark",
+    "type": "Outdoor & Adventure"
+  },
+  {
+    "slug": "mindrift-ai-trainers",
+    "name": "Mindrift AI Trainers",
+    "category": "AI / Job Board",
+    "chip": "teal",
+    "status": "live",
+    "url": "https://mindriftaitrainors.co.ke/",
+    "featured_home": true,
+    "summary": "Job board connecting careful readers and editors with paid, remote AI-training review roles — free skills-check screening, hourly pay, no portfolio required.",
+    "logo": null,
+    "frame": "brand",
+    "case_study": {
+      "headline_pre": "A job board that screens",
+      "headline_highlight": "candidates automatically",
+      "intro": "A job board connecting careful readers and editors with paid, remote AI-training review roles. Applicants take a free skills check, are paid by the hour, and need no portfolio.",
+      "challenge": "Review work depends on attention to detail, and marking every applicant's test by hand does not scale. The site needed a free skills check that grades itself, listings people can trust, and payments that work for Kenyan users.",
+      "challenge_tags": [
+        "Automated screening",
+        "Kenyan payments"
+      ],
+      "solution": "We built the site in Node.js and Express with server-rendered pages, paired it with a separate Python and Flask service that grades the skills check, and integrated M-Pesa Daraja and Paystack for payments.",
+      "solution_points": [
+        "Free skills-check screening, graded automatically",
+        "Listings for remote, hourly-paid roles",
+        "M-Pesa Daraja and Paystack payments",
+        "A dedicated Flask grading service"
+      ],
+      "features": [
+        {
+          "icon": "fact_check",
+          "title": "Skills-check screening",
+          "text": "Applicants complete a free check that a Flask service grades without manual marking."
+        },
+        {
+          "icon": "work",
+          "title": "Role listings",
+          "text": "Remote, hourly-paid review roles presented clearly, with no portfolio needed to apply."
+        },
+        {
+          "icon": "payments",
+          "title": "Local payments",
+          "text": "M-Pesa Daraja and Paystack are both integrated, so users can pay the way they prefer."
+        }
+      ],
+      "outcomes": [
+        "Automated grading in a dedicated Python service",
+        "M-Pesa Daraja and Paystack integrated",
+        "Built and deployed end to end on Kenyan hosting",
+        "Server-rendered pages that load quickly"
+      ],
+      "results": [],
+      "stack": [
+        "Node.js",
+        "Express",
+        "EJS",
+        "Python / Flask",
+        "MySQL",
+        "M-Pesa Daraja",
+        "Paystack"
+      ]
+    }
+  },
+  {
+    "slug": "kodipoa",
+    "name": "KodiPoa",
+    "category": "Proptech",
+    "chip": "teal",
+    "status": "coming-soon",
+    "url": null,
+    "summary": "Rent payment & property management project. Case study details coming soon.",
+    "logo": null,
+    "frame": "brand",
+    "icon": "home_work"
+  },
+  {
+    "slug": "flavour-fusion",
+    "name": "Flavour Fusion",
+    "category": "Food & Recipes",
+    "chip": "primary",
+    "status": "coming-soon",
+    "url": null,
+    "summary": "Recipe & food discovery project. Case study details coming soon.",
+    "logo": null,
+    "frame": "brand",
+    "icon": "restaurant_menu"
+  }
+]

@@ -1,0 +1,155 @@
+[
+  {
+    "slug": "seo-mastery",
+    "nav_label": "SEO Mastery",
+    "card_title": "SEO Mastery",
+    "card_text": "Dominating search rankings through technical audits and intent-driven content strategies.",
+    "icon": "query_stats",
+    "accent": "primary",
+    "title": "SEO Mastery | Stackwave Developers",
+    "meta_description": "Technical SEO, on-page optimization and Google Business Profile setup for Kenyan businesses and tour operators, from Stackwave Developers.",
+    "eyebrow": "SEO Mastery",
+    "headline_pre": "Be the result people find when they",
+    "headline_highlight": "search for what you sell",
+    "intro": "Technical audits, a clean site structure and content built around what your customers actually type into Google. For Kenyan businesses and tour operators who want to be found without paying for every click.",
+    "capabilities_heading": "What we fix and build",
+    "capabilities_intro": "Search visibility comes from three things working together: a site search engines can read, pages that answer real questions, and a trustworthy local presence.",
+    "capabilities": [
+      {"icon": "troubleshoot", "title": "Technical audits", "text": "Crawl errors, slow templates, broken redirects and indexing gaps found and fixed at the source."},
+      {"icon": "edit_note", "title": "On-page optimization", "text": "Titles, headings, internal links and copy matched to the questions your customers ask."},
+      {"icon": "location_on", "title": "Local & Google Business Profile", "text": "Listings, categories and reviews set up so you appear in map and near-me results."},
+      {"icon": "data_object", "title": "Structured data", "text": "Schema markup so search engines understand your packages, itineraries, products and FAQs."}
+    ],
+    "process_heading": "How an SEO engagement runs",
+    "process": [
+      {"title": "Audit", "text": "We crawl your site, check indexing and speed, and look at what your competitors rank for."},
+      {"title": "Plan", "text": "You get a prioritized list: quick wins first, bigger structural fixes second."},
+      {"title": "Implement", "text": "We make the technical and on-page changes directly in your site's code and content."},
+      {"title": "Measure", "text": "Search Console and analytics show which pages are gaining ground and which need more work."}
+    ],
+    "deliverables_heading": "What you get",
+    "deliverables": [
+      "Technical SEO audit with a prioritized fix list",
+      "Keyword and page-intent map",
+      "Rewritten titles, meta descriptions and headings",
+      "Schema markup for your key pages",
+      "Google Business Profile setup or clean-up",
+      "Search Console and analytics set up",
+      "Monthly performance notes (on the monthly plan)"
+    ],
+    "callout_title": "Running a tour company?",
+    "callout_text": "Our Tour & Travel website package builds itinerary pages in a search-friendly structure from day one, so you are not retrofitting SEO later.",
+    "related_addon": "monthly-seo",
+    "price_label": "Monthly SEO optimization",
+    "contact_service": "SEO Optimization",
+    "cta_label": "Request an SEO audit",
+    "faqs": [
+      {"q": "How long until I see results?", "a": "Technical fixes can improve crawling and speed within weeks, but ranking gains usually build over several months. Anyone who guarantees a number one position is guessing, so we report on what is actually moving instead."},
+      {"q": "Do I need a new website for SEO?", "a": "Usually not. Most gains come from fixing structure, speed and content on the site you already have. If the platform itself is blocking progress, we will say so and show you the options."},
+      {"q": "Can you work on a site you did not build?", "a": "Yes. We start with an audit of the live site, then agree what to change."},
+      {"q": "What does it cost?", "a": "Basic on-page SEO is included in our website packages. Ongoing monthly optimization is priced on the right and depends on the size of your site and how competitive your market is."}
+    ]
+  },
+  {
+    "slug": "digital-strategy",
+    "nav_label": "Digital Strategy",
+    "card_title": "Digital Strategy",
+    "card_text": "Precision-targeted campaigns that convert visitors into brand advocates across all channels.",
+    "icon": "campaign",
+    "accent": "tertiary",
+    "title": "Digital Strategy | Stackwave Developers",
+    "meta_description": "Positioning, conversion paths and channel planning for Kenyan businesses, so your website, WhatsApp and search work together. Stackwave Developers.",
+    "eyebrow": "Digital Strategy",
+    "headline_pre": "A plan for how your website, search and WhatsApp",
+    "headline_highlight": "turn visitors into customers",
+    "intro": "A plan before the build: who you are talking to, what you want them to do, and how your site, WhatsApp, search and social work together to get them there.",
+    "capabilities_heading": "What the strategy covers",
+    "capabilities_intro": "We focus on the few decisions that shape every page and campaign that follows.",
+    "capabilities": [
+      {"icon": "target", "title": "Positioning & audience", "text": "Who you serve, why you are the obvious choice, and how to say it in one clear message."},
+      {"icon": "alt_route", "title": "Conversion paths", "text": "Inquiry forms, WhatsApp click-to-chat and M-Pesa deposits wired so interested visitors can act in a tap or two."},
+      {"icon": "hub", "title": "Channel planning", "text": "Search, social and email: which are worth your time at your stage, and how each feeds the site."},
+      {"icon": "monitoring", "title": "Measurement", "text": "Goals and tracking set up before launch, so you know which channel produces enquiries and not just visits."}
+    ],
+    "process_heading": "How a strategy engagement runs",
+    "process": [
+      {"title": "Discover", "text": "A short call, plus a review of your site, your competitors and your best existing customers."},
+      {"title": "Define", "text": "Audience, offer, channels, and the one action each page should drive."},
+      {"title": "Launch", "text": "Pages, tracking and campaigns go live together so results are measurable from day one."},
+      {"title": "Refine", "text": "A regular review of what is producing enquiries, with the plan adjusted to match."}
+    ],
+    "deliverables_heading": "What you get",
+    "deliverables": [
+      "Positioning and messaging summary",
+      "Site structure with a conversion goal for each page",
+      "Channel plan with clear priorities",
+      "A landing page for each campaign",
+      "Analytics and goal tracking set up",
+      "A 90-day action plan"
+    ],
+    "callout_title": "Built for tour operators too",
+    "callout_text": "Safari buyers compare itineraries, check reviews and then message on WhatsApp. We plan the journey around that, from itinerary page to deposit.",
+    "related_addon": null,
+    "price_label": "Pricing",
+    "price_text": "Scoped after a short call",
+    "contact_service": "Growth Marketing",
+    "cta_label": "Plan my strategy",
+    "faqs": [
+      {"q": "Is this only for new websites?", "a": "No. It works for an existing site as well. We review what you have, then decide what to change and what to keep."},
+      {"q": "Do you run my ads?", "a": "We plan campaigns and build the landing pages and tracking they need. Running ad accounts day to day is scoped separately, and ad spend is always paid directly to the platform."},
+      {"q": "How is it priced?", "a": "Strategy work depends on your business and goals, so we scope it after a short call. Tell us what you are trying to achieve and we will send a quote."},
+      {"q": "Can the strategy include building the site?", "a": "Yes. Many clients start with strategy and move straight into one of our website packages, with the plan shaping the build."}
+    ]
+  },
+  {
+    "slug": "performance-first",
+    "nav_label": "Performance First",
+    "card_title": "Performance First",
+    "card_text": "Every line of code and every pixel is optimized for one thing: your return on investment.",
+    "icon": "speed",
+    "accent": "secondary",
+    "title": "Performance First | Stackwave Developers",
+    "meta_description": "Fast, lean websites built for mobile connections in Kenya. Core Web Vitals, image optimization and caching from Stackwave Developers.",
+    "eyebrow": "Performance First",
+    "headline_pre": "Fast pages keep visitors, rank better and",
+    "headline_highlight": "cost less to run",
+    "intro": "We build and tune for the connections your customers actually use, not just the office wifi. Every Stackwave site is hand-coded, which keeps it lean from the first page.",
+    "capabilities_heading": "Where speed comes from",
+    "capabilities_intro": "Most slow sites share the same handful of causes. We measure first, then fix the biggest ones.",
+    "capabilities": [
+      {"icon": "speed", "title": "Core Web Vitals", "text": "Loading, responsiveness and layout stability measured on real pages and fixed at the cause."},
+      {"icon": "deployed_code", "title": "Lean front end", "text": "Compressed images, minimal JavaScript and compiled CSS instead of heavy page builders and plugin stacks."},
+      {"icon": "phone_android", "title": "Mobile first", "text": "Layouts and file sizes designed for mid-range phones on mobile data, where a large share of your visitors will be."},
+      {"icon": "dns", "title": "Hosting & caching", "text": "Caching, compression and hosting set-up matched to your traffic so pages stay quick on busy days."}
+    ],
+    "process_heading": "How a performance engagement runs",
+    "process": [
+      {"title": "Measure", "text": "We test your key pages on a throttled mobile connection and record the starting numbers."},
+      {"title": "Find the cause", "text": "Oversized images, blocking scripts, slow server responses: we trace each delay to its source."},
+      {"title": "Fix", "text": "We make the changes in your code, assets and hosting configuration, biggest wins first."},
+      {"title": "Verify", "text": "We re-test and show you the before and after, plus what to avoid so it stays fast."}
+    ],
+    "deliverables_heading": "What you get",
+    "deliverables": [
+      "Before-and-after speed report (PageSpeed Insights and Lighthouse)",
+      "Image and asset optimization",
+      "Caching and compression configuration",
+      "Core Web Vitals fixes",
+      "Mobile layout review",
+      "A plain-language summary of what changed and why"
+    ],
+    "callout_title": "Already included in every build",
+    "callout_text": "Our sites are custom-coded rather than assembled from templates, so these practices are part of the package price and not an extra.",
+    "related_addon": null,
+    "price_label": "Pricing",
+    "price_text": "Included in website packages; audits of existing sites are scoped individually",
+    "contact_service": "Web Development",
+    "cta_label": "Request a speed audit",
+    "faqs": [
+      {"q": "What is a good speed score?", "a": "Scores are a guide, not the goal. We aim for pages that feel instant on a mid-range phone, then check Core Web Vitals in Google Search Console to see how real visitors experience the site."},
+      {"q": "Can you speed up a site you did not build?", "a": "Often, yes. We measure first, then fix the biggest causes. If the platform itself is the bottleneck, we will explain the options."},
+      {"q": "Does speed really affect enquiries?", "a": "Slow pages lose visitors before they read anything, and speed is one of the signals search engines consider. It will not fix a weak offer, but it removes a common reason people leave."},
+      {"q": "Is there a fixed price?", "a": "Sites we build include these practices in the package price. For an existing site we scope the work after a quick audit."}
+    ]
+  }
+]

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Page not found | Stackwave Developers{% endblock %}
+{% block body_class %}bg-background text-on-background font-body-md{% endblock %}
+{% block content %}
+<main id="main" class="min-h-screen flex items-center justify-center px-margin-mobile text-center" style="padding-top: 6rem; padding-bottom: 4rem;">
+  <div>
+    <p class="nf-code">404</p>
+    <h1 class="font-headline-lg text-headline-lg text-on-surface mb-md">We can't find that page</h1>
+    <p class="text-on-surface-variant text-body-lg max-w-md mx-auto mb-xl">The link may be out of date, or the page may have moved. Try one of these instead.</p>
+    <div class="flex flex-col sm:flex-row gap-md justify-center">
+      <a class="btn btn-primary" href="{{ url_for('home') }}">Back to home</a>
+      <a class="btn btn-ghost" href="{{ url_for('portfolio') }}">See our work</a>
+    </div>
+  </div>
+</main>
+{% endblock %}

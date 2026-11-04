@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{# Shared layout for Terms and Privacy. Children fill: legal_title, legal_intro, legal_toc, legal_body. #}
+{% block body_class %}bg-background text-on-background font-body-md selection:bg-primary-container selection:text-white{% endblock %}
+{% block extra_style %}
+<style>
+  .mesh-bg { background-color: #101415; background-image: radial-gradient(at 0% 0%, rgba(18, 74, 240, 0.15) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(38, 254, 220, 0.08) 0px, transparent 50%); }
+</style>
+{% endblock %}
+{% block content %}
+<main id="main" class="mesh-bg">
+  <header class="w-legal mx-auto px-margin-mobile md:px-margin-desktop page-top pb-xl">
+    <p class="text-secondary font-label-sm uppercase tracking-widest mb-sm">Legal</p>
+    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-md">{% block legal_title %}{% endblock %}</h1>
+    <p class="text-on-surface-variant text-body-lg max-w-2xl mb-sm">{% block legal_intro %}{% endblock %}</p>
+    <p class="text-on-surface-variant font-label-sm">Last updated: {{ site.legal_last_updated }}</p>
+  </header>
+  <div class="legal-layout pb-3xl">
+    <nav class="legal-toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>{% block legal_toc %}{% endblock %}</ol>
+    </nav>
+    <article class="prose-legal">{% block legal_body %}{% endblock %}</article>
+  </div>
+</main>
+{% endblock %}

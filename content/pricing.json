@@ -1,0 +1,120 @@
+{
+  "currency_note": "All prices in Kenyan Shillings (KSh)",
+  "packages": [
+    {
+      "slug": "starter",
+      "name": "Starter Website",
+      "icon": "web",
+      "summary": "For individuals, consultants, and small businesses that need a clean, professional presence online.",
+      "price": "KSh 25,000–40,000",
+      "tiers": [],
+      "features": [
+        "Up to 5 pages (Home, About, Services, Gallery, Contact)",
+        "Custom mobile-responsive design — no templates",
+        "Working contact form",
+        "Basic on-page SEO setup",
+        "Domain & hosting setup assistance",
+        "1 round of revisions"
+      ],
+      "timeline": "1–2 weeks",
+      "service": "Web Development",
+      "featured": false
+    },
+    {
+      "slug": "business",
+      "name": "Business Website",
+      "icon": "business_center",
+      "summary": "For established businesses that need a fuller site to support marketing, hiring, and daily operations.",
+      "price": "KSh 55,000–100,000",
+      "tiers": [],
+      "features": [
+        "Up to 10 pages, custom-coded in React",
+        "Blog / news section with simple content management",
+        "WhatsApp click-to-chat button",
+        "Social media integration",
+        "On-page SEO + Google Business Profile setup",
+        "2 rounds of revisions"
+      ],
+      "timeline": "2–4 weeks",
+      "service": "Web Development",
+      "featured": false
+    },
+    {
+      "slug": "tour-travel",
+      "name": "Tour & Travel / Safari Website",
+      "icon": "travel_explore",
+      "summary": "Purpose-built for tour operators and DMCs — the kind of site a Sunbelle Adventures or Kudu Safaris runs on.",
+      "price": "KSh 80,000–160,000",
+      "tiers": [],
+      "features": [
+        "Custom itinerary/package pages with day-by-day breakdowns",
+        "Photo & video galleries per package",
+        "Inquiry & booking-request forms routed to email/WhatsApp",
+        "SEO-friendly itinerary structure and copy",
+        "Ready to plug into SafariBookings / TripAdvisor listings",
+        "Optional M-Pesa deposit collection",
+        "2 rounds of revisions"
+      ],
+      "timeline": "3–5 weeks",
+      "service": "Web Development",
+      "featured": true,
+      "badge": "Our Specialty"
+    },
+    {
+      "slug": "ecommerce",
+      "name": "E-Commerce Website",
+      "icon": "shopping_cart",
+      "summary": "A full online store with Kenyan payment methods built in from day one.",
+      "price": "",
+      "tiers": [
+        {"label": "Basic — up to 30 products", "price": "KSh 65,000–95,000"},
+        {"label": "Standard — up to 100 products", "price": "KSh 100,000–160,000"},
+        {"label": "Advanced — 100+ / multi-vendor", "price": "KSh 180,000+"}
+      ],
+      "features": [
+        "Product catalog & inventory management",
+        "Cart & checkout flow",
+        "M-Pesa Daraja + Paystack payment integration",
+        "Order-management admin dashboard",
+        "Basic SEO"
+      ],
+      "timeline": "4–6 weeks (by tier)",
+      "service": "Web Development",
+      "featured": false
+    },
+    {
+      "slug": "custom-platform",
+      "name": "Custom Web Application / Platform",
+      "icon": "hub",
+      "summary": "Bespoke systems — booking engines, internal dashboards, or SaaS-style platforms — built around your workflow.",
+      "price": "From KSh 250,000",
+      "tiers": [],
+      "features": [
+        "Custom backend (Node.js/Express or Python/Flask)",
+        "React frontend",
+        "Third-party & payment API integrations",
+        "Multiple user roles and admin dashboards",
+        "Scoped individually after a short discovery call"
+      ],
+      "timeline": "6–12+ weeks",
+      "service": "SaaS Development",
+      "featured": false
+    }
+  ],
+  "addons": [
+    {"slug": "domain-hosting", "name": "Domain & hosting setup", "detail": "Assistance only", "price": "KSh 5,000"},
+    {"slug": "payments", "name": "M-Pesa Daraja / Paystack integration", "detail": "Add-on to an existing site", "price": "KSh 20,000–45,000"},
+    {"slug": "email-setup", "name": "Email setup & troubleshooting", "detail": "Google Workspace, Truehost, etc.", "price": "KSh 3,000–8,000"},
+    {"slug": "monthly-maintenance", "name": "Monthly maintenance & support", "detail": "Updates, fixes and a point of contact", "price": "KSh 6,000–15,000/mo"},
+    {"slug": "monthly-seo", "name": "Monthly SEO optimization", "detail": "Ongoing technical and on-page work", "price": "KSh 10,000–25,000/mo"},
+    {"slug": "extra-page", "name": "Extra page", "detail": "Added to an existing package or site", "price": "KSh 5,000–10,000"},
+    {"slug": "copywriting", "name": "Content / copywriting", "detail": "Per page or itinerary", "price": "KSh 3,000–8,000"}
+  ],
+  "notes": [
+    "All prices are starting points — final quotes depend on page count, features, content readiness, and integrations.",
+    "A deposit (commonly 50%) is typically requested to begin work, with the balance due on delivery.",
+    "Domain and hosting are billed separately at cost unless bundled into the package.",
+    "Revisions beyond the included rounds are billed at an agreed hourly or per-change rate.",
+    "Prices exclude third-party costs (premium plugins, stock photography, paid ad accounts) unless stated otherwise."
+  ]
+}

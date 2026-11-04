@@ -1,0 +1,49 @@
+{% from "_icons.html" import brand_icon %}
+
+{# Social links: only platforms with a value in content/site.json are shown. #}
+{% macro social_links(site, whatsapp_url, size="footer") -%}
+<ul class="social-links social-links--{{ size }}" aria-label="Stackwave on social media">
+  {%- if site.tiktok_url %}
+  <li><a href="{{ site.tiktok_url }}" target="_blank" rel="noopener noreferrer" aria-label="Stackwave on TikTok" title="TikTok">{{ brand_icon('tiktok') }}</a></li>
+  {%- endif %}
+  {%- if site.instagram_url %}
+  <li><a href="{{ site.instagram_url }}" target="_blank" rel="noopener noreferrer" aria-label="Stackwave on Instagram" title="Instagram">{{ brand_icon('instagram') }}</a></li>
+  {%- endif %}
+  {%- if whatsapp_url %}
+  <li><a href="{{ whatsapp_url }}" target="_blank" rel="noopener noreferrer" aria-label="Message Stackwave on WhatsApp Business" title="WhatsApp Business">{{ brand_icon('whatsapp') }}</a></li>
+  {%- endif %}
+  {%- if site.email %}
+  <li><a href="mailto:{{ site.email }}" aria-label="Email Stackwave" title="Email">{{ brand_icon('email') }}</a></li>
+  {%- endif %}
+</ul>
+{%- endmacro %}
+
+{# Browser-window thumbnail for a project: screenshot if you've added one, else logo, else wordmark. #}
+{% macro project_frame(p, ratio="16-10") -%}
+<div class="browser-frame browser-frame--{{ ratio }}">
+  <div class="browser-bar" aria-hidden="true">
+    <span class="browser-dots"><i></i><i></i><i></i></span>
+    <span class="browser-url">{{ p.domain or (p.name|lower|replace(' ', '') ~ '.co.ke') }}</span>
+  </div>
+  {%- if p.screenshot %}
+  <div class="browser-body browser-body--shot">
+    <img src="{{ url_for('static', filename=p.screenshot) }}" alt="{{ p.name }} website preview" loading="lazy">
+  </div>
+  {%- elif p.logo %}
+  <div class="browser-body browser-body--{{ p.frame or 'light' }}">
+    <img class="browser-logo" src="{{ url_for('static', filename=p.logo) }}" alt="{{ p.name }} logo" loading="lazy"
+         style="max-width: min(72%, {{ p.logo_w or 320 }}px);">
+  </div>
+  {%- else %}
+  <div class="browser-body browser-body--brand">
+    {%- if p.icon %}<span class="material-symbols-outlined wordmark-icon" aria-hidden="true">{{ p.icon }}</span>{% endif %}
+    <span class="wordmark">{{ p.name }}</span>
+    <span class="wordmark-sub">{{ p.category }}</span>
+  </div>
+  {%- endif %}
+</div>
+{%- endmacro %}
+
+{% macro chip(text, style="primary") -%}
+<span class="chip chip--{{ style }}">{{ text }}</span>
+{%- endmacro %}

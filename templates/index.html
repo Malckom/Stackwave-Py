@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% from "_macros.html" import project_frame, chip %}
 
 {% block title %}Stackwave | Elevating Your Digital Presence{% endblock %}
+{% block meta_description %}Stackwave Developers designs and builds fast, custom-coded websites, technical SEO and digital strategy for Kenyan businesses and tour operators.{% endblock %}
 
 {% block extra_style %}
 <style>
@@ -49,36 +51,21 @@ body {
 {% endblock %}
 
 {% block content %}
-<main class="pt-24">
+<main id="main">
 <!-- Hero Section -->
-<section class="relative min-h-[921px] flex items-center mesh-bg px-margin-mobile md:px-margin-desktop overflow-hidden">
-
-<div class="relative z-10 max-w-4xl">
-<div class="inline-flex items-center gap-xs px-sm py-xs bg-surface-container-high border border-white/5 rounded-full mb-lg">
-<span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span>
-<span class="text-label-sm uppercase tracking-widest text-on-surface-variant">Defining the Next Digital Era</span>
-</div>
-<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-md">
-                    Elevating Your <span class="text-primary">Digital Presence</span>
-</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-xl">
-                    High-performance Web Design, technical SEO, and data-driven Digital Strategy crafted for enterprise-scale growth and boutique-level precision.
-                </p>
-<div class="flex flex-wrap gap-md">
-<button class="bg-primary-container text-on-primary-container px-2xl py-md rounded-full font-headline-md hover:shadow-[0_0_20px_rgba(46,91,255,0.4)] transition-all">
-                        Launch Your Project
-                    </button>
-<a class="border border-secondary-fixed text-secondary-fixed px-2xl py-md rounded-full font-headline-md hover:bg-secondary-fixed/10 transition-all flex items-center gap-sm" href="{{ url_for('portfolio') }}">
-                        View Portfolio <span class="material-symbols-outlined">arrow_forward</span>
-</a>
-</div>
-</div>
-<!-- Abstract Hero Image -->
-<div class="absolute right-[-10%] top-1/2 -translate-y-1/2 hidden lg:block w-[600px] h-[600px] rotate-12">
-<div class="w-full h-full rounded-3xl overflow-hidden glass-card p-4">
-<img class="w-full h-full object-cover rounded-2xl opacity-80" alt="Workstation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxPquA_OyN5Vsmrelopyad3mkrjRVa-0z09l2JUQhH0rwZupNaWDlMsmmEmpYJZI6u2pupEgtWeLu4X3QfIYcFHNWGRsibh5l5ZJSVzWQ-3bGYx0lq-D8NcOOLkOLQsgXk5QloiN0ctFE23Agos8HwsXfKTwSb0UYR60r06n4PYxtiFs0cig-aV3n4Uqpp6bl36oUj279pfxL5jQJbK_UiV6woNHsbhqLf29ZA6gPFtoBOU4C5VO5M"/>
-</div>
-</div>
+<section class="hero mesh-bg">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><i></i><span>Defining the Next Digital Era</span></div>
+      <h1 class="hero-title">Elevating Your <span>Digital Presence</span></h1>
+      <p class="hero-lede">High-performance Web Design, technical SEO, and data-driven Digital Strategy crafted for enterprise-scale growth and boutique-level precision.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="{{ url_for('contact', _anchor='inquiry-form') }}">Launch Your Project</a>
+        <a class="btn btn-ghost" href="{{ url_for('portfolio') }}">View Portfolio <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
+      </div>
+    </div>
+    <div class="hero-visual">{% include "_hero_visual.html" %}</div>
+  </div>
 </section>
 <!-- Services Section (Bento Grid) -->
 <section class="py-3xl px-margin-mobile md:px-margin-desktop bg-surface">
@@ -89,7 +76,7 @@ body {
 </div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-lg h-auto md:h-[600px]">
 <!-- Large Feature: Web Design -->
-<a class="md:col-span-8 group relative overflow-hidden rounded-xl bg-surface-container border border-white/5 p-xl flex flex-col justify-between transition-all hover:bg-surface-container-high" href="{{ url_for('web_development') }}">
+<a class="md:col-span-8 group relative overflow-hidden rounded-xl bg-surface-container border border-white/5 p-xl flex flex-col justify-between bento-card hover:bg-surface-container-high" href="{{ url_for('web_development') }}">
 <div class="relative z-10">
 <span class="material-symbols-outlined text-secondary text-5xl mb-md">desktop_windows</span>
 <h3 class="font-headline-lg text-headline-lg mb-md">Web Design &amp; Architecture</h3>
@@ -105,19 +92,19 @@ body {
 </div>
 </a>
 <!-- Small Feature: SEO -->
-<div class="md:col-span-4 gradient-border p-xl flex flex-col justify-center">
+<a class="md:col-span-4 gradient-border bento-card p-xl flex flex-col justify-center" href="{{ url_for('service_detail', slug='seo-mastery') }}">
 <span class="material-symbols-outlined text-primary text-4xl mb-md">query_stats</span>
 <h3 class="font-headline-md text-headline-md mb-sm">SEO Mastery</h3>
 <p class="text-on-surface-variant text-body-md">Dominating search rankings through technical audits and intent-driven content strategies.</p>
-</div>
+</a>
 <!-- Small Feature: Digital Marketing -->
-<div class="md:col-span-4 bg-surface-container-low border border-white/5 p-xl rounded-xl flex flex-col justify-center hover:bg-surface-container-high transition-all">
+<a class="md:col-span-4 bento-card bg-surface-container-low border border-white/5 p-xl rounded-xl flex flex-col justify-center hover:bg-surface-container-high" href="{{ url_for('service_detail', slug='digital-strategy') }}">
 <span class="material-symbols-outlined text-tertiary text-4xl mb-md">campaign</span>
 <h3 class="font-headline-md text-headline-md mb-sm">Digital Strategy</h3>
 <p class="text-on-surface-variant text-body-md">Precision-targeted campaigns that convert visitors into brand advocates across all channels.</p>
-</div>
+</a>
 <!-- Medium Feature: ROI Focus -->
-<div class="md:col-span-8 bg-surface-container border border-white/5 p-xl rounded-xl flex flex-col md:flex-row items-center gap-xl hover:bg-surface-container-high transition-all">
+<a class="md:col-span-8 bento-card bento-perf bg-surface-container border border-white/5 p-xl rounded-xl flex flex-col md:flex-row items-center gap-xl hover:bg-surface-container-high" href="{{ url_for('service_detail', slug='performance-first') }}">
 <div class="flex-1">
 <h3 class="font-headline-md text-headline-md mb-sm text-secondary-fixed">Performance First</h3>
 <p class="text-on-surface-variant">Every line of code and every pixel is optimized for one thing: your return on investment.</p>
@@ -133,11 +120,12 @@ body {
 <div class="text-label-sm uppercase">Conversion Rate</div>
 </div>
 </div>
+</a>
 </div>
 </div>
 </section>
 <!-- Why Choose Us Section -->
-<section class="py-3xl bg-surface-container-lowest relative overflow-hidden">
+<section id="about" class="py-3xl bg-surface-container-lowest relative overflow-hidden">
 <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-2xl items-center">
 <div class="order-2 lg:order-1">
 <div class="relative rounded-2xl overflow-hidden glass-card p-2 aspect-video">
@@ -190,51 +178,14 @@ body {
                         Full Portfolio <span class="material-symbols-outlined">trending_flat</span>
 </a>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg">
-<!-- Project 1: Pembe Beyond Plains -->
-<div class="group">
-<div class="relative aspect-[4/5] overflow-hidden rounded-2xl mb-md bg-white flex items-center justify-center p-xl">
-<img class="max-h-full max-w-full object-contain" src="{{ url_for('static', filename='assets/logos/pembe.webp') }}" alt="Pembe Beyond Plains logo"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-xl">
-<a class="bg-white text-black px-lg py-sm rounded-full font-label-md" href="https://pembebeyondplains.com/" target="_blank" rel="noopener">Visit Site</a>
-</div>
-</div>
-<h4 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">Pembe Beyond Plains</h4>
-<p class="text-label-sm text-on-surface-variant uppercase tracking-widest">Tour &amp; Travel</p>
-</div>
-<!-- Project 2: Sizwe Africa Safaris -->
-<div class="group">
-<div class="relative aspect-[4/5] overflow-hidden rounded-2xl mb-md bg-white flex items-center justify-center p-xl">
-<img class="max-h-full max-w-full object-contain" src="{{ url_for('static', filename='assets/logos/sizwe.png') }}" alt="Sizwe Africa Safaris logo"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-xl">
-<a class="bg-white text-black px-lg py-sm rounded-full font-label-md" href="https://sizweafricasafaris.com/" target="_blank" rel="noopener">Visit Site</a>
-</div>
-</div>
-<h4 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">Sizwe Africa Safaris</h4>
-<p class="text-label-sm text-on-surface-variant uppercase tracking-widest">Refurbishing</p>
-</div>
-<!-- Project 3: Sunbird Outdoors -->
-<div class="group">
-<div class="relative aspect-[4/5] overflow-hidden rounded-2xl mb-md bg-[#101415] flex items-center justify-center p-xl">
-<img class="max-h-full max-w-full object-contain" src="{{ url_for('static', filename='assets/logos/sunbird.png') }}" alt="Sunbird Outdoors logo"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-xl">
-<a class="bg-white text-black px-lg py-sm rounded-full font-label-md" href="https://sunbirdoutdoors.com/" target="_blank" rel="noopener">Visit Site</a>
-</div>
-</div>
-<h4 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">Sunbird Outdoors</h4>
-<p class="text-label-sm text-on-surface-variant uppercase tracking-widest">Under Production</p>
-</div>
-<!-- Project 4: Mindrift AI Trainers -->
-<div class="group">
-<div class="relative aspect-[4/5] overflow-hidden rounded-2xl mb-md bg-surface-container-high flex items-center justify-center">
-<span class="material-symbols-outlined text-primary text-6xl opacity-60">psychology</span>
-<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-xl">
-<a class="bg-white text-black px-lg py-sm rounded-full font-label-md" href="https://mindriftaitrainors.co.ke/" target="_blank" rel="noopener">Visit Site</a>
-</div>
-</div>
-<h4 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">Mindrift AI Trainers</h4>
-<p class="text-label-sm text-on-surface-variant uppercase tracking-widest">AI / Job Board</p>
-</div>
+<div class="project-grid project-grid--4">
+{% for p in featured_projects %}
+<a class="project-tile" href="{{ p.case_study_url or p.url }}" {% if not p.case_study_url %}target="_blank" rel="noopener"{% endif %}>
+  {{ project_frame(p, '4-3') }}
+  <h3 class="project-card-title-sm">{{ p.name }}</h3>
+  <p class="project-tile-meta">{{ p.category }}</p>
+</a>
+{% endfor %}
 </div>
 </div>
 </section>
@@ -246,14 +197,13 @@ body {
 <div class="max-w-[1440px] mx-auto text-center relative z-10">
 <h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-lg">Ready to Scale Your Vision?</h2>
 <p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-2xl">Let's discuss how our digital strategies can transform your business into a category leader.</p>
-<div class="inline-flex flex-col md:flex-row gap-lg">
-<a class="bg-primary text-on-primary px-2xl py-md rounded-full font-headline-md hover:shadow-lg transition-all" href="{{ url_for('contact') }}">Schedule a Call</a>
-<button class="border border-white/20 text-on-surface px-2xl py-md rounded-full font-headline-md hover:bg-white/5 transition-all">Download Media Kit</button>
+<div class="flex flex-col md:flex-row justify-center gap-4">
+<a class="btn btn-primary" href="{{ url_for('contact', _anchor='inquiry-form') }}">Schedule a Call</a>
+<a class="btn btn-outline" href="{{ url_for('media_kit') }}" download><span class="material-symbols-outlined" aria-hidden="true">download</span>Download Media Kit</a>
 </div>
 </div>
 </section>
 </main>
-<!-- Footer (Shared Component) -->
 {% endblock %}
 
 {% block scripts %}
@@ -274,7 +224,7 @@ body {
             }, observerOptions);
 
             // Adding animation classes to sections
-            document.querySelectorAll('section').forEach(section => {
+            document.querySelectorAll('section:not(.hero)').forEach(section => {
                 section.classList.add('transition-all', 'duration-1000', 'ease-out', 'opacity-0', 'translate-y-10');
                 observer.observe(section);
             });

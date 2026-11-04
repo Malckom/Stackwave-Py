@@ -1,53 +1,84 @@
+{% from "_macros.html" import social_links %}
+{% from "_icons.html" import brand_icon %}
 <!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>{% block title %}Stackwave Developers{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Stackwave Developers builds fast, custom-coded websites and web applications for Kenyan businesses and tour operators.{% endblock %}"/>
 
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/favicon.png') }}">
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='assets/favicon.svg') }}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='assets/favicon-96x96.png') }}">
   <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}">
-  <link rel="apple-touch-icon" href="{{ url_for('static', filename='assets/favicon.png') }}">
-  
-  <!-- Stylesheet -->
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='assets/apple-touch-icon.png') }}">
+  <link rel="manifest" href="{{ url_for('static', filename='assets/site.webmanifest') }}">
+
+  <!-- Stylesheets: compiled Tailwind, then hand-written components -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
   {% block extra_style %}{% endblock %}
 </head>
 <body class="{% block body_class %}font-body-md text-body-md{% endblock %}">
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ================= HEADER / NAV ================= -->
-  <nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-white/10">
+  <nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-white/10" aria-label="Main">
     <div class="flex justify-between items-center max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-4">
-      
-      <!-- Logo -->
-      <a class="flex items-center gap-sm text-headline-md font-headline-md font-bold text-primary" href="{{ url_for('home') }}">
+
+      <a class="flex items-center gap-sm text-headline-md font-headline-md font-bold text-primary" href="{{ url_for('home') }}" aria-label="Stackwave Developers home">
         <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Stackwave Developers logo" class="h-8 w-auto object-contain"/>
       </a>
-      
-      <!-- Desktop Navigation Links -->
-      <div class="hidden md:flex items-center gap-xl">
-        <a class="{{ 'text-primary font-bold border-b-2 border-primary pb-1' if current_page == 'home' else 'text-on-surface-variant hover:text-primary transition-colors duration-300' }} font-body-md" href="{{ url_for('home') }}">Home</a>
-        <a class="{{ 'text-primary font-bold border-b-2 border-primary pb-1' if current_page == 'services' else 'text-on-surface-variant hover:text-primary transition-colors duration-300' }} font-body-md" href="{{ url_for('services') }}">Services</a>
-        <a class="{{ 'text-primary font-bold border-b-2 border-primary pb-1' if current_page == 'pricing' else 'text-on-surface-variant hover:text-primary transition-colors duration-300' }} font-body-md" href="{{ url_for('pricing') }}">Pricing</a>
-        <a class="{{ 'text-primary font-bold border-b-2 border-primary pb-1' if current_page == 'portfolio' else 'text-on-surface-variant hover:text-primary transition-colors duration-300' }} font-body-md" href="{{ url_for('portfolio') }}">Portfolio</a>
-        <a class="{{ 'text-primary font-bold border-b-2 border-primary pb-1' if current_page == 'contact' else 'text-on-surface-variant hover:text-primary transition-colors duration-300' }} font-body-md" href="{{ url_for('contact') }}">Contact</a>
+
+      <div class="nav-links items-center gap-xl">
+        {% set links = [('home','Home',url_for('home')),('services','Services',url_for('services')),('pricing','Pricing',url_for('pricing')),('portfolio','Portfolio',url_for('portfolio')),('contact','Contact',url_for('contact'))] %}
+        {% for key, label, href in links %}
+        <a class="{{ 'text-primary font-bold border-b-2 border-primary pb-1' if current_page == key else 'text-on-surface-variant hover:text-primary transition-colors duration-300' }} font-body-md" href="{{ href }}" {% if current_page == key %}aria-current="page"{% endif %}>{{ label }}</a>
+        {% endfor %}
       </div>
-      
-      <!-- CTA Button -->
-      <button class="bg-primary-container text-on-primary-container px-lg py-sm rounded-full font-label-md scale-95 active:scale-90 transition-transform" href="{{ url_for('contact') }}">Get a Quote</button>
+
+      <div class="nav-actions">
+        <a class="btn-quote" href="{{ url_for('contact', _anchor='inquiry-form') }}">Get a Quote</a>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <span class="material-symbols-outlined icon-open" aria-hidden="true">menu</span>
+          <span class="material-symbols-outlined icon-close" aria-hidden="true">close</span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      {% for key, label, href in links %}
+      <a href="{{ href }}" {% if current_page == key %}aria-current="page"{% endif %}>{{ label }}<span class="material-symbols-outlined" aria-hidden="true">chevron_right</span></a>
+      {% endfor %}
     </div>
   </nav>
 
-  <!-- ================= FLASH MESSAGES ================= -->
+  <!-- ================= TOAST NOTIFICATIONS ================= -->
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-    <div class="fixed top-24 left-1/2 -translate-x-1/2 z-[60] flex flex-col gap-sm w-full max-w-md px-md">
+    <div class="toast-region" aria-live="polite">
       {% for category, message in messages %}
-      <div class="glass-card rounded-xl px-lg py-md text-center font-label-md {{ 'text-secondary-fixed border border-secondary-fixed/40' if category == 'success' else 'text-error border border-error/40' }}">
-        {{ message }}
+      {% set is_error = category == 'error' %}
+      <div class="toast {{ 'toast--error' if is_error }}" role="{{ 'alert' if is_error else 'status' }}" style="--toast-ms: {{ '9000ms' if is_error else '7000ms' }}">
+        <span class="toast-icon" aria-hidden="true">
+          {% if is_error %}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 7v6"/><path d="M12 17h.01"/></svg>
+          {% else %}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path class="toast-check" d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+          {% endif %}
+        </span>
+        <div class="toast-text">
+          {% if message is mapping %}
+          <div class="toast-title">{{ message.title }}</div>
+          <div class="toast-body">{{ message.body }}</div>
+          {% else %}
+          <div class="toast-title">{{ message }}</div>
+          {% endif %}
+        </div>
+        <button class="toast-close" type="button" aria-label="Dismiss notification"><span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">close</span></button>
+        <span class="toast-progress" aria-hidden="true"></span>
       </div>
       {% endfor %}
     </div>
@@ -58,81 +89,62 @@
   {% block content %}{% endblock %}
 
   <!-- ================= FOOTER ================= -->
-<footer class="bg-[#080b11] border-t border-white/5 mt-auto">
-  <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
-    
-    <!-- Col 1: Brand & Bio -->
-    <div class="space-y-4">
-      <a class="flex items-center gap-3 text-xl font-bold text-white" href="{{ url_for('home') }}">
-        <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Stackwave logo" class="h-8 w-auto max-h-8 object-contain"/>
-        <span>Stackwave</span>
-      </a>
-      <p class="text-gray-400 text-sm leading-relaxed max-w-xs">
-        Premium digital agency specializing in high-performance web solutions and ROI-driven marketing.
-      </p>
-    </div>
+  <footer class="bg-[#080b11] border-t border-white/5 mt-auto">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 
-    <!-- Col 2: Services Links -->
-    <div class="space-y-4">
-      <h4 class="text-white font-semibold text-sm">Services</h4>
-      <ul class="space-y-3 text-gray-400 text-sm">
-        <li><a class="hover:text-white transition-colors" href="{{ url_for('web_development') }}">Web Design</a></li>
-        <li><a class="hover:text-white transition-colors" href="{{ url_for('services') }}">Technical SEO</a></li>
-        <li><a class="hover:text-white transition-colors" href="{{ url_for('services') }}">Digital Marketing</a></li>
-        <li><a class="hover:text-white transition-colors" href="{{ url_for('services') }}">App Development</a></li>
-      </ul>
-    </div>
-
-    <!-- Col 3: Agency Links -->
-    <div class="space-y-4">
-      <h4 class="text-white font-semibold text-sm">Agency</h4>
-      <ul class="space-y-3 text-gray-400 text-sm">
-        <li><a class="hover:text-white transition-colors" href="{{ url_for('pricing') }}">Pricing</a></li>
-        <li><a class="hover:text-white transition-colors" href="{{ url_for('portfolio') }}">Portfolio</a></li>
-        <li><a class="hover:text-white transition-colors" href="{{ url_for('home') }}">About Us</a></li>
-        <li><a class="hover:text-white transition-colors" href="#">Our Process</a></li>
-        <li><a class="hover:text-white transition-colors" href="{{ url_for('contact') }}">Contact</a></li>
-      </ul>
-    </div>
-
-    <!-- Col 4: Stay Connected & Contact -->
-    <div class="space-y-4">
-      <h4 class="text-white font-semibold text-sm">Stay Connected</h4>
-      <div class="flex items-center gap-3">
-        <a class="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-gray-300 hover:text-white transition-all" href="#" aria-label="Website">
-          <span class="material-symbols-outlined text-lg">public</span>
+      <div class="space-y-4">
+        <a class="flex items-center gap-3 text-xl font-bold text-white" href="{{ url_for('home') }}">
+          <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="" class="h-8 w-auto max-h-8 object-contain"/>
+          <span>Stackwave</span>
         </a>
-        <a class="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-gray-300 hover:text-white transition-all" href="#" aria-label="Share">
-          <span class="material-symbols-outlined text-lg">share</span>
-        </a>
-        <a class="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-gray-300 hover:text-white transition-all" href="mailto:info@stackwavedevs.co.ke" aria-label="Email">
-          <span class="material-symbols-outlined text-lg">alternate_email</span>
-        </a>
+        <p class="text-gray-400 text-sm leading-relaxed max-w-xs">{{ site.tagline }}</p>
       </div>
-      <div class="space-y-2 text-sm text-gray-400 pt-2">
-        <p class="hover:text-white transition-colors">
-          <a href="mailto:info@stackwavedevs.co.ke">info@stackwavedevs.co.ke</a>
-        </p>
-        <p class="hover:text-white transition-colors">
-          <a href="tel:+254104610755">+254 104 610 755</a>
-        </p>
+
+      <div class="space-y-4">
+        <h4 class="text-white font-semibold text-sm">Services</h4>
+        <ul class="space-y-3 text-gray-400 text-sm">
+          <li><a class="hover:text-white transition-colors" href="{{ url_for('web_development') }}">Web Design</a></li>
+          {% for s in nav_services %}
+          <li><a class="hover:text-white transition-colors" href="{{ url_for('service_detail', slug=s.slug) }}">{{ s.nav_label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="space-y-4">
+        <h4 class="text-white font-semibold text-sm">Agency</h4>
+        <ul class="space-y-3 text-gray-400 text-sm">
+          <li><a class="hover:text-white transition-colors" href="{{ url_for('pricing') }}">Pricing</a></li>
+          <li><a class="hover:text-white transition-colors" href="{{ url_for('portfolio') }}">Portfolio</a></li>
+          <li><a class="hover:text-white transition-colors" href="{{ url_for('home', _anchor='about') }}">About Us</a></li>
+          <li><a class="hover:text-white transition-colors" href="{{ url_for('roadmap') }}">Our Process</a></li>
+          <li><a class="hover:text-white transition-colors" href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="space-y-md">
+        <h4 class="text-white font-semibold text-sm">Stay Connected</h4>
+        {{ social_links(site, whatsapp_url, 'footer') }}
+        <ul class="contact-block" aria-label="Contact details">
+          <li><span class="ic">{{ brand_icon('email', 18) }}</span><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+          <li><span class="ic">{{ brand_icon('phone', 18) }}</span><a href="tel:{{ site.phone_tel }}">{{ site.phone_display }}</a></li>
+          {% if whatsapp_url %}<li><span class="ic">{{ brand_icon('whatsapp', 18) }}</span><a href="{{ whatsapp_url }}" target="_blank" rel="noopener noreferrer">WhatsApp Business</a></li>{% endif %}
+          <li><span class="ic">{{ brand_icon('pin', 18) }}</span><span>{{ site.office_lines[0] }}, {{ site.office_lines[1] }}</span></li>
+        </ul>
       </div>
     </div>
 
-  </div>
-
-  <!-- Sub-footer Bar -->
-  <div class="border-t border-white/5">
-    <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-      <span>© 2026 Stackwave Developers. All rights reserved.</span>
-      <div class="flex items-center gap-8">
-        <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
-        <a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+    <div class="border-t border-white/5">
+      <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+        <span>© {{ current_year }} Stackwave Developers. All rights reserved.</span>
+        <div class="footer-legal">
+          <a class="hover:text-white transition-colors" href="{{ url_for('privacy') }}">Privacy Policy</a>
+          <a class="hover:text-white transition-colors" href="{{ url_for('terms') }}">Terms &amp; Conditions</a>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
+  <script src="{{ url_for('static', filename='js/site.js') }}" defer></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

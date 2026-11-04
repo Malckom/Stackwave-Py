@@ -46,7 +46,7 @@
 
 {% block content %}
 <!-- Main Content -->
-<main class="mesh-bg pt-3xl">
+<main id="main" class="mesh-bg pt-3xl">
 <!-- Hero Section -->
 <header class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop pt-2xl pb-xl text-center">
 <div class="inline-block px-md py-xs rounded-full bg-surface-container-high border border-outline-variant mb-md">
@@ -73,16 +73,16 @@
                             We build future-ready websites that prioritize user experience and lightning-fast performance. From complex enterprise systems to elegant e-commerce platforms.
                         </p>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-xl">
-<div class="p-md bg-surface-container-low rounded-xl service-gradient-border">
+<div class="p-md bg-surface-container-low rounded-xl hover-lift service-gradient-border">
 <h3 class="font-headline-md text-headline-md mb-xs text-primary">Custom Sites</h3>
 <p class="text-label-md text-on-surface-variant">Bespoke architectures tailored specifically to your unique business logic and goals.</p>
 </div>
-<div class="p-md bg-surface-container-low rounded-xl service-gradient-border">
+<div class="p-md bg-surface-container-low rounded-xl hover-lift service-gradient-border">
 <h3 class="font-headline-md text-headline-md mb-xs text-secondary">E-commerce</h3>
 <p class="text-label-md text-on-surface-variant">Scalable stores built on Shopify, headless platforms, or custom-coded engines.</p>
 </div>
-<div class="p-md bg-surface-container-low rounded-xl service-gradient-border md:col-span-2">
-<h3 class="font-headline-md text-headline-md mb-xs text-tertiary">Performance Optimization</h3>
+<div class="p-md bg-surface-container-low rounded-xl hover-lift service-gradient-border md:col-span-2">
+<h3 class="font-headline-md text-headline-md mb-xs text-tertiary"><a class="link-arrow" href="{{ url_for('service_detail', slug='performance-first') }}">Performance Optimization <span class="material-symbols-outlined" style="font-size:20px" aria-hidden="true">arrow_forward</span></a></h3>
 <p class="text-label-md text-on-surface-variant">Zero-lag experiences, Core Web Vitals mastery, and global CDN distribution.</p>
 </div>
 </div>
@@ -134,7 +134,7 @@
 </div>
 </div>
 </div>
-<a class="inline-flex items-center gap-xs text-secondary font-bold hover:gap-md transition-all" href="services.html#seo">
+<a class="inline-flex items-center gap-xs text-secondary font-bold hover:gap-md transition-all" href="{{ url_for('service_detail', slug='seo-mastery') }}">
                             Learn More About SEO <span class="material-symbols-outlined">arrow_forward</span>
 </a>
 </div>
@@ -155,18 +155,19 @@
                             We don't just build tools; we evolve business models. Our consulting and strategy services bridge the gap between legacy processes and modern digital excellence.
                         </p>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-lg w-full mb-2xl">
-<div class="text-left p-xl glass-card rounded-2xl">
+<div class="text-left p-xl glass-card hover-lift rounded-2xl">
 <h3 class="font-headline-md text-headline-md text-primary mb-sm">Strategic Consulting</h3>
 <p class="text-body-md text-on-surface-variant">Navigating the complex landscape of SaaS integration, cloud migration, and workflow automation.</p>
 </div>
-<div class="text-left p-xl glass-card rounded-2xl">
+<div class="text-left p-xl glass-card hover-lift rounded-2xl">
 <h3 class="font-headline-md text-headline-md text-secondary mb-sm">Future-Proofing</h3>
 <p class="text-body-md text-on-surface-variant">Identifying emerging tech trends (AI, Web3) to ensure your business stays ahead of the curve.</p>
 </div>
 </div>
-<a class="bg-secondary text-on-secondary px-2xl py-md rounded-full font-headline-md hover:shadow-[0_0_25px_rgba(38,254,220,0.5)] transition-all transform hover:-translate-y-1" href="{{ url_for('contact') }}">
+<a class="bg-secondary text-on-secondary px-2xl py-md rounded-full font-headline-md hover:shadow-[0_0_25px_rgba(38,254,220,0.5)] transition-all transform hover:-translate-y-1" href="{{ url_for('contact', _anchor='inquiry-form') }}">
                             Start Your Transformation
                         </a>
+<a class="inline-flex items-center gap-xs text-primary font-bold link-arrow mt-lg" href="{{ url_for('service_detail', slug='digital-strategy') }}">Explore Digital Strategy <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
 </div>
 </div>
 </section>
@@ -179,7 +180,7 @@
                     Our team of engineers and strategists is standing by to turn your digital challenges into competitive advantages.
                 </p>
 <div class="flex flex-col md:flex-row gap-md">
-<a class="bg-on-primary-container text-primary-container px-2xl py-md rounded-full font-bold hover:scale-105 transition-transform" href="{{ url_for('contact') }}">
+<a class="bg-on-primary-container text-primary-container px-2xl py-md rounded-full font-bold hover:scale-105 transition-transform" href="{{ url_for('contact', _anchor='inquiry-form') }}">
                         Schedule a Call
                     </a>
 <a class="border border-on-primary-container text-on-primary-container px-2xl py-md rounded-full font-bold hover:bg-on-primary-container/10 transition-all" href="{{ url_for('portfolio') }}">
