@@ -467,3 +467,38 @@ a.project-card:hover .project-card-link .material-symbols-outlined { transform: 
   .btn:hover, .plan:hover, a.project-card:hover, .project-tile:hover .browser-frame, .bento-card:hover, .hover-lift:hover, .step:hover,
   .service-link-card:hover, .addon-box:hover, .social-links a:hover, .btn-quote:hover { transform: none; }
 }
+
+/* ---------- Admin (inquiry viewer) ---------- */
+.admin-wrap { max-width: 1200px; margin: 0 auto; padding: 8rem 20px 4rem; }
+@media (min-width: 768px) { .admin-wrap { padding-left: 48px; padding-right: 48px; } }
+.admin-wrap--narrow { max-width: 460px; }
+.admin-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.admin-actions { display: flex; gap: 12px; align-items: center; }
+.admin-actions form { margin: 0; }
+.admin-title { margin: 0 0 4px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 2rem; color: var(--sw-text); }
+.admin-sub { margin: 0 0 20px; font-size: 14px; color: var(--sw-muted); }
+.admin-head .admin-sub { margin-bottom: 0; }
+.admin-h2 { margin: 32px 0 12px; font-family: Montserrat, sans-serif; font-weight: 600; font-size: 20px; color: var(--sw-text); }
+.admin-card { padding: 24px; border-radius: 16px; background: var(--sw-glass); border: 1px solid rgba(255, 255, 255, 0.06); }
+.admin-card .admin-h2 { margin-top: 0; }
+.admin-card--flush { padding: 0; }
+.admin-label { display: block; margin: 0 0 6px 2px; font-size: 14px; font-weight: 500; color: var(--sw-muted); }
+.admin-input { width: 100%; padding: 14px 16px; border-radius: 12px; background: var(--sw-bg-lowest); border: 1px solid var(--sw-outline-variant); color: var(--sw-text); font-size: 16px; }
+.admin-input:focus { outline: none; border-color: var(--sw-primary); box-shadow: 0 0 0 1px var(--sw-primary); }
+.admin-input.is-invalid { border-color: var(--sw-error); }
+.admin-status { display: grid; gap: 14px 32px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin: 0; }
+.admin-status dt { font-size: 12px; font-weight: 600; color: var(--sw-outline); }
+.admin-status dd { margin: 3px 0 0; font-size: 14px; color: var(--sw-text); overflow-wrap: anywhere; }
+.pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.pill--ok { background: rgba(38, 254, 220, 0.12); color: var(--sw-mint); }
+.pill--bad { background: rgba(255, 180, 171, 0.14); color: var(--sw-error); }
+.admin-table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 14px; }
+.admin-table th { padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: var(--sw-outline); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.admin-table td { padding: 14px 16px; vertical-align: top; color: var(--sw-muted); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+.admin-table tbody tr:hover { background: rgba(255, 255, 255, 0.03); }
+.admin-table strong { color: var(--sw-text); }
+.admin-table a { color: var(--sw-primary); text-decoration: underline; text-underline-offset: 3px; }
+.admin-table .msg { min-width: 260px; max-width: 520px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.admin-table .nowrap { white-space: nowrap; }
+.admin-table .muted { color: var(--sw-outline); font-size: 13px; }
+.admin-empty { padding: 20px; border-radius: 12px; background: rgba(255, 255, 255, 0.03); color: var(--sw-muted); font-size: 14px; }

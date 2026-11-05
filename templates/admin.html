@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Inquiries | Stackwave Admin{% endblock %}
+{% block extra_style %}<meta name="robots" content="noindex, nofollow">{% endblock %}
+{% block body_class %}bg-background text-on-background font-body-md{% endblock %}
+{% block content %}
+<main id="main" class="admin-wrap">
+  <div class="admin-head">
+    <div>
+      <h1 class="admin-title">Inquiries</h1>
+      <p class="admin-sub">Times are shown in Nairobi time (EAT).</p>
+    </div>
+    <div class="admin-actions">
+      <a class="btn btn-outline btn-sm" href="{{ url_for('admin_export') }}">Download CSV</a>
+      <form method="POST" action="{{ url_for('admin_logout') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button class="btn btn-ghost btn-sm" type="submit">Sign out</button>
+      </form>
+    </div>
+  </div>
+
+  <section class="admin-card" aria-labelledby="db-status">
+    <h2 class="admin-h2" id="db-status">Database status</h2>
+    <dl class="admin-status">
+      <div><dt>File</dt><dd>{{ status.path }}</dd></div>
+      <div><dt>Exists</dt><dd><span class="pill {{ 'pill--ok' if status.exists else 'pill--bad' }}">{{ 'Yes, ' ~ status.size_kb ~ ' KB' if status.exists else 'No' }}</span></dd></div>
+      <div><dt>Folder writable</dt><dd><span class="pill {{ 'pill--ok' if status.folder_writable else 'pill--bad' }}">{{ 'Yes' if status.folder_writable else 'No' }}</span></dd></div>
+      <div><dt>Contact messages</dt><dd>{{ status.contacts if status.contacts is not none else 'n/a' }}</dd></div>
+      <div><dt>Project inquiries</dt><dd>{{ status.projects if status.projects is not none else 'n/a' }}</dd></div>
+    </dl>
+    {% if status.error %}<p class="field-error" role="alert">Database error: {{ status.error }}</p>{% endif %}
+  </section>
+
+  <section aria-labelledby="contacts-h">
+    <h2 class="admin-h2" id="contacts-h">Contact messages ({{ contacts|length }})</h2>
+    {% if contacts %}
+    <div class="table-scroll admin-card admin-card--flush">
+      <table class="admin-table">
+        <thead><tr><th>Received</th><th>From</th><th>Interested in</th><th>Message</th></tr></thead>
+        <tbody>
+          {% for c in contacts %}
+          <tr>
+            <td class="nowrap">{{ c.created_at|nairobi_time }}</td>
+            <td><strong>{{ c.name }}</strong><br><a href="mailto:{{ c.email }}?subject={{ ('Re: your Stackwave inquiry')|urlencode }}">{{ c.email }}</a></td>
+            <td>{{ c.service }}{% if c.package %}<br><span class="muted">Package: {{ c.package }}</span>{% endif %}{% if c.addons %}<br><span class="muted">Add-ons: {{ c.addons }}</span>{% endif %}</td>
+            <td class="msg">{{ c.message }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="admin-empty">No contact messages yet. Send a test from the contact page and refresh this page.</p>
+    {% endif %}
+  </section>
+
+  <section aria-labelledby="projects-h">
+    <h2 class="admin-h2" id="projects-h">Project inquiries ({{ projects|length }})</h2>
+    {% if projects %}
+    <div class="table-scroll admin-card admin-card--flush">
+      <table class="admin-table">
+        <thead><tr><th>Received</th><th>Company</th><th>Website</th><th>Goal</th><th>Notes</th><th>Files</th></tr></thead>
+        <tbody>
+          {% for p in projects %}
+          <tr>
+            <td class="nowrap">{{ p.created_at|nairobi_time }}</td>
+            <td><strong>{{ p.company_name }}</strong></td>
+            <td>{{ p.website_url }}</td>
+            <td>{{ p.primary_goal }}</td>
+            <td class="msg">{{ p.notes }}</td>
+            <td>{{ p.uploaded_files }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="admin-empty">No project inquiries yet.</p>
+    {% endif %}
+  </section>
+</main>
+{% endblock %}

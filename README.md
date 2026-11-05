@@ -102,3 +102,12 @@ automatically (no restart needed; a typo in the JSON keeps the last good version
 - Set `SESSION_COOKIE_SECURE=1` in production so the session cookie is only sent over HTTPS.
 - `static/css/styles.css` is compiled Tailwind and its config is not in this repo, so new styles go in `static/css/site.css`.
 - The `contact_submissions` table gained `package`, `addons` and `ip_hash` columns. They are added automatically on startup; existing rows are untouched.
+
+## Viewing inquiries (admin page)
+
+Set an `ADMIN_PASSWORD` environment variable on the server, restart the app, then open `/admin`.
+Without that variable the page does not exist (it returns 404). The page lists contact messages and
+project inquiries, offers a CSV download, and shows the database file's location and status.
+
+- Wrong passwords are limited to 5 attempts per 15 minutes.
+- If the app folder is not writable on your host, set `DATABASE_PATH` to a writable location (for example `/home/<user>/stackwave-data/stackwave.db`; the folder must already exist).

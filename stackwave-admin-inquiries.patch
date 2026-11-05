@@ -1,0 +1,382 @@
+From a6a1673573bb575eda9eacc563e93bcf611c38d3 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Thu, 5 Nov 2026 11:15:28 +0000
+Subject: [PATCH] Add password-protected admin page to view inquiries, DB
+ status panel, CSV export, DATABASE_PATH override
+
+---
+ README.md                  |   9 ++++
+ app.py                     | 100 ++++++++++++++++++++++++++++++++++++-
+ db.py                      |  40 ++++++++++++++-
+ static/css/site.css        |  35 +++++++++++++
+ templates/admin-login.html |  19 +++++++
+ templates/admin.html       |  81 ++++++++++++++++++++++++++++++
+ 6 files changed, 282 insertions(+), 2 deletions(-)
+ create mode 100644 templates/admin-login.html
+ create mode 100644 templates/admin.html
+
+diff --git a/README.md b/README.md
+index f17571c..f89d046 100644
+--- a/README.md
++++ b/README.md
+@@ -102,3 +102,12 @@ automatically (no restart needed; a typo in the JSON keeps the last good version
+ - Set `SESSION_COOKIE_SECURE=1` in production so the session cookie is only sent over HTTPS.
+ - `static/css/styles.css` is compiled Tailwind and its config is not in this repo, so new styles go in `static/css/site.css`.
+ - The `contact_submissions` table gained `package`, `addons` and `ip_hash` columns. They are added automatically on startup; existing rows are untouched.
++
++## Viewing inquiries (admin page)
++
++Set an `ADMIN_PASSWORD` environment variable on the server, restart the app, then open `/admin`.
++Without that variable the page does not exist (it returns 404). The page lists contact messages and
++project inquiries, offers a CSV download, and shows the database file's location and status.
++
++- Wrong passwords are limited to 5 attempts per 15 minutes.
++- If the app folder is not writable on your host, set `DATABASE_PATH` to a writable location (for example `/home/<user>/stackwave-data/stackwave.db`; the folder must already exist).
+diff --git a/app.py b/app.py
+index 28526d1..7a8af26 100644
+--- a/app.py
++++ b/app.py
+@@ -1,15 +1,19 @@
++import csv
+ import datetime
++import functools
+ import hashlib
+ import hmac
++import io
+ import json
+ import logging
+ import os
+ import re
+ import secrets
++import time
+ from urllib.parse import quote, urlparse
+ 
+ from flask import (
+-    Flask, abort, flash, redirect, render_template, request,
++    Flask, Response, abort, flash, redirect, render_template, request,
+     send_from_directory, session, url_for,
+ )
+ from werkzeug.utils import secure_filename
+@@ -136,8 +140,21 @@ def inject_globals():
+     }
+ 
+ 
++@app.template_filter("nairobi_time")
++def nairobi_time(value):
++    """created_at is stored in UTC; show it in East Africa Time (UTC+3)."""
++    try:
++        dt = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=3)
++        return dt.strftime("%d %b %Y, %H:%M")
++    except (TypeError, ValueError):
++        return value or ""
++
++
+ @app.after_request
+ def security_headers(resp):
++    if request.path.startswith("/admin"):
++        resp.headers["X-Robots-Tag"] = "noindex, nofollow"
++        resp.headers["Cache-Control"] = "no-store"
+     resp.headers.setdefault("X-Content-Type-Options", "nosniff")
+     resp.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
+     resp.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+@@ -376,6 +393,87 @@ def onboarding_review():
+     return render_template("onboarding-review.html", current_page=None, onboarding_data=onboarding_data)
+ 
+ 
++
++# ---------- Admin: view inquiries (enabled only when ADMIN_PASSWORD is set) ----------
++
++_admin_failures = {}  # ip fingerprint -> timestamps of recent failed logins (per process)
++ADMIN_MAX_FAILURES = 5
++ADMIN_LOCKOUT_SECONDS = 15 * 60
++
++
++def admin_enabled():
++    return bool(os.environ.get("ADMIN_PASSWORD"))
++
++
++def admin_required(view):
++    @functools.wraps(view)
++    def wrapper(*args, **kwargs):
++        if not admin_enabled():
++            abort(404)  # the page simply does not exist until a password is configured
++        if not session.get("is_admin"):
++            return redirect(url_for("admin_login"))
++        return view(*args, **kwargs)
++    return wrapper
++
++
++@app.route("/admin/login", methods=["GET", "POST"])
++def admin_login():
++    if not admin_enabled():
++        abort(404)
++    error = None
++    if request.method == "POST":
++        key, now = ip_fingerprint(), time.time()
++        recent = [t for t in _admin_failures.get(key, []) if now - t < ADMIN_LOCKOUT_SECONDS]
++        if len(recent) >= ADMIN_MAX_FAILURES:
++            error = "Too many failed attempts. Try again in 15 minutes."
++        elif not csrf_is_valid():
++            error = "Your session expired. Please try again."
++        elif hmac.compare_digest(request.form.get("password", "").encode(),
++                                 os.environ["ADMIN_PASSWORD"].encode()):
++            _admin_failures.pop(key, None)
++            session.clear()  # fresh session on login
++            session["is_admin"] = True
++            return redirect(url_for("admin"))
++        else:
++            recent.append(now)
++            error = "Incorrect password."
++        _admin_failures[key] = recent
++    return render_template("admin-login.html", current_page=None, error=error)
++
++
++@app.route("/admin/logout", methods=["POST"])
++def admin_logout():
++    if csrf_is_valid():
++        session.pop("is_admin", None)
++    return redirect(url_for("admin_login") if admin_enabled() else url_for("home"))
++
++
++@app.route("/admin")
++@admin_required
++def admin():
++    return render_template("admin.html", current_page=None, status=db.db_status(),
++                           contacts=db.list_contact_submissions(), projects=db.list_project_inquiries())
++
++
++def _csv_safe(value):
++    """Stop spreadsheet apps from running a cell as a formula (CSV injection)."""
++    text = "" if value is None else str(value)
++    return "'" + text if text[:1] in ("=", "+", "-", "@", "\t", "\r") else text
++
++
++@app.route("/admin/export.csv")
++@admin_required
++def admin_export():
++    buf = io.StringIO()
++    writer = csv.writer(buf)
++    writer.writerow(["id", "received (UTC)", "name", "email", "service", "package", "add-ons", "message"])
++    for r in db.list_contact_submissions(limit=100000):
++        writer.writerow([_csv_safe(x) for x in (r["id"], r["created_at"], r["name"], r["email"], r["service"],
++                                                r["package"], r["addons"], r["message"])])
++    return Response(buf.getvalue(), mimetype="text/csv",
++                    headers={"Content-Disposition": "attachment; filename=stackwave-inquiries.csv"})
++
++
+ # ---------- Errors ----------
+ 
+ @app.errorhandler(404)
+diff --git a/db.py b/db.py
+index 9fd462b..2c2019b 100644
+--- a/db.py
++++ b/db.py
+@@ -2,7 +2,8 @@ import os
+ import sqlite3
+ from contextlib import closing
+ 
+-DB_PATH = os.path.join(os.path.dirname(__file__), "stackwave.db")
++# Override with the DATABASE_PATH environment variable if the app folder is not writable on your host.
++DB_PATH = os.environ.get("DATABASE_PATH") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "stackwave.db")
+ 
+ 
+ def get_connection():
+@@ -85,3 +86,40 @@ def save_project_inquiry(company_name, website_url, primary_goal, notes, uploade
+             (company_name, website_url, primary_goal, notes, uploaded_files),
+         )
+         conn.commit()
++
++
++# ---------- Read helpers for the admin page ----------
++
++def list_contact_submissions(limit=500):
++    with closing(get_connection()) as conn:
++        return [dict(r) for r in conn.execute(
++            "SELECT id, name, email, service, package, addons, message, created_at "
++            "FROM contact_submissions ORDER BY id DESC LIMIT ?", (limit,))]
++
++
++def list_project_inquiries(limit=200):
++    with closing(get_connection()) as conn:
++        return [dict(r) for r in conn.execute(
++            "SELECT id, company_name, website_url, primary_goal, notes, uploaded_files, created_at "
++            "FROM project_inquiries ORDER BY id DESC LIMIT ?", (limit,))]
++
++
++def db_status():
++    """Where the database lives and whether it is usable. Shown on the admin page for troubleshooting."""
++    folder = os.path.dirname(DB_PATH)
++    exists = os.path.isfile(DB_PATH)
++    status = {
++        "path": DB_PATH,
++        "exists": exists,
++        "size_kb": round(os.path.getsize(DB_PATH) / 1024, 1) if exists else 0,
++        "folder_writable": os.access(folder, os.W_OK),
++        "contacts": None,
++        "projects": None,
++    }
++    try:
++        with closing(get_connection()) as conn:
++            status["contacts"] = conn.execute("SELECT COUNT(*) FROM contact_submissions").fetchone()[0]
++            status["projects"] = conn.execute("SELECT COUNT(*) FROM project_inquiries").fetchone()[0]
++    except sqlite3.Error as exc:
++        status["error"] = str(exc)
++    return status
+diff --git a/static/css/site.css b/static/css/site.css
+index 89a3c89..c8ee500 100644
+--- a/static/css/site.css
++++ b/static/css/site.css
+@@ -467,3 +467,38 @@ a.project-card:hover .project-card-link .material-symbols-outlined { transform:
+   .btn:hover, .plan:hover, a.project-card:hover, .project-tile:hover .browser-frame, .bento-card:hover, .hover-lift:hover, .step:hover,
+   .service-link-card:hover, .addon-box:hover, .social-links a:hover, .btn-quote:hover { transform: none; }
+ }
++
++/* ---------- Admin (inquiry viewer) ---------- */
++.admin-wrap { max-width: 1200px; margin: 0 auto; padding: 8rem 20px 4rem; }
++@media (min-width: 768px) { .admin-wrap { padding-left: 48px; padding-right: 48px; } }
++.admin-wrap--narrow { max-width: 460px; }
++.admin-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
++.admin-actions { display: flex; gap: 12px; align-items: center; }
++.admin-actions form { margin: 0; }
++.admin-title { margin: 0 0 4px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 2rem; color: var(--sw-text); }
++.admin-sub { margin: 0 0 20px; font-size: 14px; color: var(--sw-muted); }
++.admin-head .admin-sub { margin-bottom: 0; }
++.admin-h2 { margin: 32px 0 12px; font-family: Montserrat, sans-serif; font-weight: 600; font-size: 20px; color: var(--sw-text); }
++.admin-card { padding: 24px; border-radius: 16px; background: var(--sw-glass); border: 1px solid rgba(255, 255, 255, 0.06); }
++.admin-card .admin-h2 { margin-top: 0; }
++.admin-card--flush { padding: 0; }
++.admin-label { display: block; margin: 0 0 6px 2px; font-size: 14px; font-weight: 500; color: var(--sw-muted); }
++.admin-input { width: 100%; padding: 14px 16px; border-radius: 12px; background: var(--sw-bg-lowest); border: 1px solid var(--sw-outline-variant); color: var(--sw-text); font-size: 16px; }
++.admin-input:focus { outline: none; border-color: var(--sw-primary); box-shadow: 0 0 0 1px var(--sw-primary); }
++.admin-input.is-invalid { border-color: var(--sw-error); }
++.admin-status { display: grid; gap: 14px 32px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin: 0; }
++.admin-status dt { font-size: 12px; font-weight: 600; color: var(--sw-outline); }
++.admin-status dd { margin: 3px 0 0; font-size: 14px; color: var(--sw-text); overflow-wrap: anywhere; }
++.pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
++.pill--ok { background: rgba(38, 254, 220, 0.12); color: var(--sw-mint); }
++.pill--bad { background: rgba(255, 180, 171, 0.14); color: var(--sw-error); }
++.admin-table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 14px; }
++.admin-table th { padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: var(--sw-outline); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
++.admin-table td { padding: 14px 16px; vertical-align: top; color: var(--sw-muted); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
++.admin-table tbody tr:hover { background: rgba(255, 255, 255, 0.03); }
++.admin-table strong { color: var(--sw-text); }
++.admin-table a { color: var(--sw-primary); text-decoration: underline; text-underline-offset: 3px; }
++.admin-table .msg { min-width: 260px; max-width: 520px; white-space: pre-wrap; overflow-wrap: anywhere; }
++.admin-table .nowrap { white-space: nowrap; }
++.admin-table .muted { color: var(--sw-outline); font-size: 13px; }
++.admin-empty { padding: 20px; border-radius: 12px; background: rgba(255, 255, 255, 0.03); color: var(--sw-muted); font-size: 14px; }
+diff --git a/templates/admin-login.html b/templates/admin-login.html
+new file mode 100644
+index 0000000..cc865c6
+--- /dev/null
++++ b/templates/admin-login.html
+@@ -0,0 +1,19 @@
++{% extends "base.html" %}
++{% block title %}Admin sign in | Stackwave Developers{% endblock %}
++{% block extra_style %}<meta name="robots" content="noindex, nofollow">{% endblock %}
++{% block body_class %}bg-background text-on-background font-body-md{% endblock %}
++{% block content %}
++<main id="main" class="admin-wrap admin-wrap--narrow">
++  <div class="admin-card">
++    <h1 class="admin-title">Admin sign in</h1>
++    <p class="admin-sub">Enter the admin password to view website inquiries.</p>
++    <form method="POST" action="{{ url_for('admin_login') }}">
++      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
++      <label class="admin-label" for="password">Password</label>
++      <input class="admin-input {{ 'is-invalid' if error }}" id="password" name="password" type="password" autocomplete="current-password" required autofocus {% if error %}aria-invalid="true" aria-describedby="login-error"{% endif %}>
++      {% if error %}<p class="field-error" id="login-error" role="alert">{{ error }}</p>{% endif %}
++      <button class="btn btn-primary" type="submit" style="margin-top:20px;width:100%">Sign in</button>
++    </form>
++  </div>
++</main>
++{% endblock %}
+diff --git a/templates/admin.html b/templates/admin.html
+new file mode 100644
+index 0000000..77da6d4
+--- /dev/null
++++ b/templates/admin.html
+@@ -0,0 +1,81 @@
++{% extends "base.html" %}
++{% block title %}Inquiries | Stackwave Admin{% endblock %}
++{% block extra_style %}<meta name="robots" content="noindex, nofollow">{% endblock %}
++{% block body_class %}bg-background text-on-background font-body-md{% endblock %}
++{% block content %}
++<main id="main" class="admin-wrap">
++  <div class="admin-head">
++    <div>
++      <h1 class="admin-title">Inquiries</h1>
++      <p class="admin-sub">Times are shown in Nairobi time (EAT).</p>
++    </div>
++    <div class="admin-actions">
++      <a class="btn btn-outline btn-sm" href="{{ url_for('admin_export') }}">Download CSV</a>
++      <form method="POST" action="{{ url_for('admin_logout') }}">
++        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
++        <button class="btn btn-ghost btn-sm" type="submit">Sign out</button>
++      </form>
++    </div>
++  </div>
++
++  <section class="admin-card" aria-labelledby="db-status">
++    <h2 class="admin-h2" id="db-status">Database status</h2>
++    <dl class="admin-status">
++      <div><dt>File</dt><dd>{{ status.path }}</dd></div>
++      <div><dt>Exists</dt><dd><span class="pill {{ 'pill--ok' if status.exists else 'pill--bad' }}">{{ 'Yes, ' ~ status.size_kb ~ ' KB' if status.exists else 'No' }}</span></dd></div>
++      <div><dt>Folder writable</dt><dd><span class="pill {{ 'pill--ok' if status.folder_writable else 'pill--bad' }}">{{ 'Yes' if status.folder_writable else 'No' }}</span></dd></div>
++      <div><dt>Contact messages</dt><dd>{{ status.contacts if status.contacts is not none else 'n/a' }}</dd></div>
++      <div><dt>Project inquiries</dt><dd>{{ status.projects if status.projects is not none else 'n/a' }}</dd></div>
++    </dl>
++    {% if status.error %}<p class="field-error" role="alert">Database error: {{ status.error }}</p>{% endif %}
++  </section>
++
++  <section aria-labelledby="contacts-h">
++    <h2 class="admin-h2" id="contacts-h">Contact messages ({{ contacts|length }})</h2>
++    {% if contacts %}
++    <div class="table-scroll admin-card admin-card--flush">
++      <table class="admin-table">
++        <thead><tr><th>Received</th><th>From</th><th>Interested in</th><th>Message</th></tr></thead>
++        <tbody>
++          {% for c in contacts %}
++          <tr>
++            <td class="nowrap">{{ c.created_at|nairobi_time }}</td>
++            <td><strong>{{ c.name }}</strong><br><a href="mailto:{{ c.email }}?subject={{ ('Re: your Stackwave inquiry')|urlencode }}">{{ c.email }}</a></td>
++            <td>{{ c.service }}{% if c.package %}<br><span class="muted">Package: {{ c.package }}</span>{% endif %}{% if c.addons %}<br><span class="muted">Add-ons: {{ c.addons }}</span>{% endif %}</td>
++            <td class="msg">{{ c.message }}</td>
++          </tr>
++          {% endfor %}
++        </tbody>
++      </table>
++    </div>
++    {% else %}
++    <p class="admin-empty">No contact messages yet. Send a test from the contact page and refresh this page.</p>
++    {% endif %}
++  </section>
++
++  <section aria-labelledby="projects-h">
++    <h2 class="admin-h2" id="projects-h">Project inquiries ({{ projects|length }})</h2>
++    {% if projects %}
++    <div class="table-scroll admin-card admin-card--flush">
++      <table class="admin-table">
++        <thead><tr><th>Received</th><th>Company</th><th>Website</th><th>Goal</th><th>Notes</th><th>Files</th></tr></thead>
++        <tbody>
++          {% for p in projects %}
++          <tr>
++            <td class="nowrap">{{ p.created_at|nairobi_time }}</td>
++            <td><strong>{{ p.company_name }}</strong></td>
++            <td>{{ p.website_url }}</td>
++            <td>{{ p.primary_goal }}</td>
++            <td class="msg">{{ p.notes }}</td>
++            <td>{{ p.uploaded_files }}</td>
++          </tr>
++          {% endfor %}
++        </tbody>
++      </table>
++    </div>
++    {% else %}
++    <p class="admin-empty">No project inquiries yet.</p>
++    {% endif %}
++  </section>
++</main>
++{% endblock %}
+-- 
+2.43.0
+

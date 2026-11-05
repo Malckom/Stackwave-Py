@@ -2,7 +2,8 @@ import os
 import sqlite3
 from contextlib import closing
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "stackwave.db")
+# Override with the DATABASE_PATH environment variable if the app folder is not writable on your host.
+DB_PATH = os.environ.get("DATABASE_PATH") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "stackwave.db")
 
 
 def get_connection():
@@ -85,3 +86,40 @@ def save_project_inquiry(company_name, website_url, primary_goal, notes, uploade
             (company_name, website_url, primary_goal, notes, uploaded_files),
         )
         conn.commit()
+
+
+# ---------- Read helpers for the admin page ----------
+
+def list_contact_submissions(limit=500):
+    with closing(get_connection()) as conn:
+        return [dict(r) for r in conn.execute(
+            "SELECT id, name, email, service, package, addons, message, created_at "
+            "FROM contact_submissions ORDER BY id DESC LIMIT ?", (limit,))]
+
+
+def list_project_inquiries(limit=200):
+    with closing(get_connection()) as conn:
+        return [dict(r) for r in conn.execute(
+            "SELECT id, company_name, website_url, primary_goal, notes, uploaded_files, created_at "
+            "FROM project_inquiries ORDER BY id DESC LIMIT ?", (limit,))]
+
+
+def db_status():
+    """Where the database lives and whether it is usable. Shown on the admin page for troubleshooting."""
+    folder = os.path.dirname(DB_PATH)
+    exists = os.path.isfile(DB_PATH)
+    status = {
+        "path": DB_PATH,
+        "exists": exists,
+        "size_kb": round(os.path.getsize(DB_PATH) / 1024, 1) if exists else 0,
+        "folder_writable": os.access(folder, os.W_OK),
+        "contacts": None,
+        "projects": None,
+    }
+    try:
+        with closing(get_connection()) as conn:
+            status["contacts"] = conn.execute("SELECT COUNT(*) FROM contact_submissions").fetchone()[0]
+            status["projects"] = conn.execute("SELECT COUNT(*) FROM project_inquiries").fetchone()[0]
+    except sqlite3.Error as exc:
+        status["error"] = str(exc)
+    return status

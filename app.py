@@ -1,15 +1,19 @@
+import csv
 import datetime
+import functools
 import hashlib
 import hmac
+import io
 import json
 import logging
 import os
 import re
 import secrets
+import time
 from urllib.parse import quote, urlparse
 
 from flask import (
-    Flask, abort, flash, redirect, render_template, request,
+    Flask, Response, abort, flash, redirect, render_template, request,
     send_from_directory, session, url_for,
 )
 from werkzeug.utils import secure_filename
@@ -136,8 +140,21 @@ def inject_globals():
     }
 
 
+@app.template_filter("nairobi_time")
+def nairobi_time(value):
+    """created_at is stored in UTC; show it in East Africa Time (UTC+3)."""
+    try:
+        dt = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S") + datetime.timedelta(hours=3)
+        return dt.strftime("%d %b %Y, %H:%M")
+    except (TypeError, ValueError):
+        return value or ""
+
+
 @app.after_request
 def security_headers(resp):
+    if request.path.startswith("/admin"):
+        resp.headers["X-Robots-Tag"] = "noindex, nofollow"
+        resp.headers["Cache-Control"] = "no-store"
     resp.headers.setdefault("X-Content-Type-Options", "nosniff")
     resp.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
     resp.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
@@ -374,6 +391,87 @@ def onboarding_review():
         return redirect(url_for("home"))
 
     return render_template("onboarding-review.html", current_page=None, onboarding_data=onboarding_data)
+
+
+
+# ---------- Admin: view inquiries (enabled only when ADMIN_PASSWORD is set) ----------
+
+_admin_failures = {}  # ip fingerprint -> timestamps of recent failed logins (per process)
+ADMIN_MAX_FAILURES = 5
+ADMIN_LOCKOUT_SECONDS = 15 * 60
+
+
+def admin_enabled():
+    return bool(os.environ.get("ADMIN_PASSWORD"))
+
+
+def admin_required(view):
+    @functools.wraps(view)
+    def wrapper(*args, **kwargs):
+        if not admin_enabled():
+            abort(404)  # the page simply does not exist until a password is configured
+        if not session.get("is_admin"):
+            return redirect(url_for("admin_login"))
+        return view(*args, **kwargs)
+    return wrapper
+
+
+@app.route("/admin/login", methods=["GET", "POST"])
+def admin_login():
+    if not admin_enabled():
+        abort(404)
+    error = None
+    if request.method == "POST":
+        key, now = ip_fingerprint(), time.time()
+        recent = [t for t in _admin_failures.get(key, []) if now - t < ADMIN_LOCKOUT_SECONDS]
+        if len(recent) >= ADMIN_MAX_FAILURES:
+            error = "Too many failed attempts. Try again in 15 minutes."
+        elif not csrf_is_valid():
+            error = "Your session expired. Please try again."
+        elif hmac.compare_digest(request.form.get("password", "").encode(),
+                                 os.environ["ADMIN_PASSWORD"].encode()):
+            _admin_failures.pop(key, None)
+            session.clear()  # fresh session on login
+            session["is_admin"] = True
+            return redirect(url_for("admin"))
+        else:
+            recent.append(now)
+            error = "Incorrect password."
+        _admin_failures[key] = recent
+    return render_template("admin-login.html", current_page=None, error=error)
+
+
+@app.route("/admin/logout", methods=["POST"])
+def admin_logout():
+    if csrf_is_valid():
+        session.pop("is_admin", None)
+    return redirect(url_for("admin_login") if admin_enabled() else url_for("home"))
+
+
+@app.route("/admin")
+@admin_required
+def admin():
+    return render_template("admin.html", current_page=None, status=db.db_status(),
+                           contacts=db.list_contact_submissions(), projects=db.list_project_inquiries())
+
+
+def _csv_safe(value):
+    """Stop spreadsheet apps from running a cell as a formula (CSV injection)."""
+    text = "" if value is None else str(value)
+    return "'" + text if text[:1] in ("=", "+", "-", "@", "\t", "\r") else text
+
+
+@app.route("/admin/export.csv")
+@admin_required
+def admin_export():
+    buf = io.StringIO()
+    writer = csv.writer(buf)
+    writer.writerow(["id", "received (UTC)", "name", "email", "service", "package", "add-ons", "message"])
+    for r in db.list_contact_submissions(limit=100000):
+        writer.writerow([_csv_safe(x) for x in (r["id"], r["created_at"], r["name"], r["email"], r["service"],
+                                                r["package"], r["addons"], r["message"])])
+    return Response(buf.getvalue(), mimetype="text/csv",
+                    headers={"Content-Disposition": "attachment; filename=stackwave-inquiries.csv"})
 
 
 # ---------- Errors ----------
