@@ -111,3 +111,19 @@ project inquiries, offers a CSV download, and shows the database file's location
 
 - Wrong passwords are limited to 5 attempts per 15 minutes.
 - If the app folder is not writable on your host, set `DATABASE_PATH` to a writable location (for example `/home/<user>/stackwave-data/stackwave.db`; the folder must already exist).
+
+
+## Email alerts for new inquiries
+
+Every new contact message and project inquiry is emailed to `bookings@stackwavedevs.co.ke` (the reply-to is the visitor, so
+you can answer straight from your inbox). Emails are sent in the background, so a mail problem never stops a visitor's form from
+working, and the inquiry is always saved first. Set these in cPanel > Setup Python App > Environment variables, then Save and Restart:
+
+| Variable | Value |
+| --- | --- |
+| `MAIL_PASSWORD` | Password of the `bookings@stackwavedevs.co.ke` mailbox (this switches emails on) |
+| `MAIL_SERVER` | Optional. Default `mail.stackwavedevs.co.ke`. Use the outgoing server shown under cPanel > Email Accounts > Connect Devices if different |
+| `MAIL_PORT` / `MAIL_SECURITY` | Optional. Default `465` / `ssl`. Use `587` / `starttls` if 465 is blocked |
+| `MAIL_USERNAME`, `MAIL_FROM`, `MAIL_TO` | Optional. Default to `bookings@stackwavedevs.co.ke` |
+
+After saving, open `/admin` and press **Send a test email**: the page shows whether it worked and the exact error if not.

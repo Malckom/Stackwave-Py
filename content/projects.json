@@ -10,7 +10,13 @@
     "logo": "assets/logos/jetwide.webp",
     "logo_w": 175,
     "frame": "light",
-    "legacy_endpoint": "case_study_jetwide"
+    "legacy_endpoint": "case_study_jetwide",
+    "highlight": {
+      "icon": "description",
+      "value": "60%",
+      "label": "Less visa overhead",
+      "text": "Automation cut the effort of visa processing for Jetwide Consortium."
+    }
   },
   {
     "slug": "spidow",
@@ -18,12 +24,18 @@
     "category": "Travel CRM / SaaS",
     "chip": "primary",
     "status": "live",
-    "url": null,
+    "url": "https://www.spidow.com",
     "summary": "CRM and automated quotation engine for Kenyan tour operators, cutting quote turnaround and boosting conversions.",
     "logo": "assets/logos/spidow.png",
     "logo_w": 1200,
     "frame": "light",
-    "legacy_endpoint": "case_study_spidow"
+    "legacy_endpoint": "case_study_spidow",
+    "highlight": {
+      "icon": "bolt",
+      "value": "140%",
+      "label": "Faster quoting",
+      "text": "Spidow's automated quotation engine increased quote speed for Kenyan tour operators."
+    }
   },
   {
     "slug": "sunbelle-adventures",
@@ -89,7 +101,13 @@
     "logo": "assets/logos/group-joining.png",
     "logo_w": 650,
     "frame": "light",
-    "legacy_endpoint": "case_study_gjs"
+    "legacy_endpoint": "case_study_gjs",
+    "highlight": {
+      "icon": "trending_up",
+      "value": "215%",
+      "label": "Traffic surge",
+      "text": "Organic growth for Kenya Group Joining Safaris, driven by SEO-optimized safari itineraries."
+    }
   },
   {
     "slug": "pembe-beyond-plains",
@@ -148,26 +166,25 @@
   {
     "slug": "sizwe-africa-safaris",
     "name": "Sizwe Africa Safaris",
-    "category": "Refurbishing",
-    "chip": "muted",
-    "status": "refurbishing",
+    "category": "Tour & Travel",
+    "chip": "primary",
+    "status": "live",
     "url": "https://sizweafricasafaris.com/",
     "featured_home": true,
-    "summary": "Safari packages and destination site for a Nakuru-based tour operator. Currently refurbishing this site (pictured is the current live version).",
+    "summary": "Safari packages and destination site for a Nakuru-based tour operator.",
     "logo": "assets/logos/sizwe.png",
     "logo_w": 294,
     "frame": "light",
     "case_study": {
-      "headline_pre": "Refreshing a Nakuru safari operator's",
-      "headline_highlight": "online presence",
-      "intro": "Safari packages and destinations for a Nakuru-based tour operator. This site is currently being refurbished, and the version online today is the previous one.",
-      "banner": "Refurbishment in progress. The live site is the previous version while the new one is built.",
-      "challenge": "Sizwe Africa Safaris already has a site with its packages and destinations. The goal of the refurbishment is a refreshed design and a clearer route from browsing safari packages to making an enquiry.",
+      "headline_pre": "A refreshed online presence for a Nakuru safari operator,",
+      "headline_highlight": "built around its packages",
+      "intro": "Safari packages and destinations for a Nakuru-based tour operator, rebuilt in custom code with a refreshed design and a clearer route to enquiry.",
+      "challenge": "Sizwe Africa Safaris already had a site with its packages and destinations. The goal was a refreshed design and a clearer route from browsing safari packages to making an enquiry.",
       "challenge_tags": [
         "Refurbishment",
         "Existing audience"
       ],
-      "solution": "We are rebuilding the site in custom code, keeping the content that works and reorganizing it around packages and destinations so visitors can find a trip and enquire quickly.",
+      "solution": "We rebuilt the site in custom code, kept the content that worked, and reorganized it around packages and destinations so visitors can find a trip and enquire quickly.",
       "solution_points": [
         "A refreshed design that fits the brand",
         "Packages and destinations clearly organized",
@@ -192,27 +209,26 @@
         }
       ],
       "outcomes": [
-        "Refurbishment under way",
-        "Packages and destinations being reorganized",
-        "Full case study to follow once the new site is live"
+        "A refreshed design that fits the brand",
+        "Packages and destinations clearly organized",
+        "A short route from browsing to enquiry",
+        "Custom-coded and mobile-friendly"
       ],
       "results": []
-    },
-    "type": "Tour & Travel"
+    }
   },
   {
     "slug": "sunbird-outdoors",
     "name": "Sunbird Outdoors",
-    "category": "Under Production",
-    "chip": "muted",
-    "status": "in-build",
+    "category": "Outdoor & Adventure",
+    "chip": "mint",
+    "status": "live",
     "url": "https://sunbirdoutdoors.com/",
     "featured_home": true,
-    "summary": "Outdoor & adventure brand site, currently in build.",
+    "summary": "Outdoor & adventure brand site.",
     "logo": "assets/logos/sunbird.png",
     "logo_w": 800,
-    "frame": "dark",
-    "type": "Outdoor & Adventure"
+    "frame": "dark"
   },
   {
     "slug": "mindrift-ai-trainers",
@@ -273,6 +289,70 @@
         "MySQL",
         "M-Pesa Daraja",
         "Paystack"
+      ]
+    }
+  },
+  {
+    "slug": "redline-auto-spa",
+    "name": "Redline Auto Spa",
+    "category": "Car Care",
+    "type": "Automotive Services",
+    "chip": "primary",
+    "status": "in-build",
+    "url": null,
+    "summary": "Booking site and staff dashboard for a hand-finished car care business in Nairobi.",
+    "logo": "assets/logos/redline.jpg",
+    "logo_w": 640,
+    "frame": "black",
+    "case_study": {
+      "headline_pre": "Booking and job tracking for a",
+      "headline_highlight": "hand-finished car care business",
+      "intro": "A booking site and staff dashboard for Redline Auto Spa, a Nairobi car care business where every vehicle is cleaned, waxed and finished by hand.",
+      "banner": "Under production. This case study describes the system as it is being built.",
+      "outcomes_heading": "What's in place",
+      "challenge": "Redline's work is done by hand, one vehicle at a time. Customers needed a way to book and see an estimated price without a phone call, and staff needed to follow every job from request to handover.",
+      "challenge_tags": [
+        "Hand-finished service",
+        "Online and walk-in bookings"
+      ],
+      "solution": "We built a React booking site and a separate staff dashboard, backed by an Express API and a SQLite database. Customers choose services and a vehicle type and see an estimated total straight away. Staff move each job through five stages.",
+      "solution_points": [
+        "Booking request with an instant estimated total",
+        "Staff dashboard with a five-stage job pipeline",
+        "Job assignment and a workload view for each team member",
+        "Walk-in bookings added by staff alongside online ones"
+      ],
+      "features": [
+        {
+          "icon": "calculate",
+          "title": "Instant estimates",
+          "text": "Four services are priced by vehicle type, so a customer sees an estimated total before they send the request."
+        },
+        {
+          "icon": "dashboard",
+          "title": "Staff dashboard",
+          "text": "A password-protected dashboard shows every booking, who it is assigned to, and which stage the job has reached."
+        },
+        {
+          "icon": "group",
+          "title": "Customer records",
+          "text": "Customers are saved after their first booking, so repeat clients are easy to find."
+        }
+      ],
+      "outcomes": [
+        "Booking site and staff dashboard built as one system",
+        "Instant price estimates by service and vehicle type",
+        "Job tracking from request through quality check to completion",
+        "Staff workload view and walk-in bookings"
+      ],
+      "results": [],
+      "stack": [
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Node.js",
+        "Express",
+        "SQLite"
       ]
     }
   },

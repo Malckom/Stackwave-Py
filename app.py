@@ -20,6 +20,7 @@ from werkzeug.utils import secure_filename
 
 import content
 import db
+import mail
 
 DEFAULT_SECRET = "dev-secret-key-change-in-production"
 
@@ -88,6 +89,10 @@ def screenshot_for(slug):
     return None
 
 
+STATUS_LABELS = {"live": "Live", "refurbishing": "Being refurbished",
+                 "in-build": "Under production", "coming-soon": "Details coming soon"}
+
+
 def get_projects():
     projects = []
     for p in content.load("projects"):
@@ -100,6 +105,7 @@ def get_projects():
             p["case_study_url"] = None
         p["domain"] = urlparse(p["url"]).netloc.removeprefix("www.") if p.get("url") else None
         p["screenshot"] = screenshot_for(p["slug"])
+        p["status_label"] = STATUS_LABELS.get(p.get("status"), p.get("status", ""))
         projects.append(p)
     return projects
 
@@ -212,11 +218,6 @@ def roadmap():
 
 
 # Case studies with their own hand-built pages
-@app.route("/case-studies/nexus")
-def case_study_nexus():
-    return render_template("case-study-nexus.html", current_page="portfolio")
-
-
 @app.route("/case-studies/jetwide")
 def case_study_jetwide():
     return render_template("case-study-jetwide.html", current_page="portfolio")
@@ -229,7 +230,7 @@ def case_study_gjs():
 
 @app.route("/case-studies/spidow")
 def case_study_spidow():
-    return render_template("case-study-spidow.html", current_page="portfolio")
+    return render_template("case-study-spidow.html", current_page="portfolio", project=get_project("spidow"))
 
 
 # Every other case study is generated from content/projects.json
@@ -271,6 +272,46 @@ def media_kit():
         os.path.join(app.static_folder, "downloads"), MEDIA_KIT_FILE,
         as_attachment=True, download_name=MEDIA_KIT_FILE, mimetype="application/pdf",
     )
+
+
+# ---------- Email alerts ----------
+
+def eat_now():
+    return (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=3)).strftime("%d %b %Y, %H:%M EAT")
+
+
+def admin_link():
+    return url_for("admin", _external=True) if admin_enabled() else ""
+
+
+def alert_contact(form, package, addons):
+    lines = [
+        "New website inquiry", "",
+        f"Name:           {form['name']}",
+        f"Email:          {form['email']}",
+        f"Interested in:  {form['service']}",
+    ]
+    if package:
+        lines.append(f"Package:        {package['name']}")
+    if addons:
+        lines.append(f"Add-ons:        {', '.join(a['name'] for a in addons)}")
+    lines += [f"Received:       {eat_now()}", "", "Message:", form["message"], "",
+              f"Reply to this email to answer {form['name']} directly."]
+    if admin_link():
+        lines.append(f"All inquiries: {admin_link()}")
+    mail.notify(f"New inquiry: {form['service']} from {form['name']}", "\n".join(lines), reply_to=form["email"])
+
+
+def alert_project(data, notes, files):
+    lines = ["New project inquiry (onboarding form)", "",
+             f"Company:   {data.get('company_name') or '-'}",
+             f"Website:   {data.get('website_url') or '-'}",
+             f"Goal:      {data.get('primary_goal') or '-'}",
+             f"Files:     {files or 'none'}",
+             f"Received:  {eat_now()}", "", "Notes:", notes or "-"]
+    if admin_link():
+        lines += ["", f"All inquiries: {admin_link()}"]
+    mail.notify(f"New project inquiry: {data.get('company_name') or 'unnamed company'}", "\n".join(lines))
 
 
 # ---------- Contact (validated, CSRF-protected, saved to SQLite) ----------
@@ -337,6 +378,7 @@ def contact():
                 addons=", ".join(a["name"] for a in addons),
                 ip_hash=ip_fingerprint(),
             )
+            alert_contact(form, package, addons)
             first_name = form["name"].split()[0]
             flash({"title": "Message sent",
                    "body": f"Thanks, {first_name}. We've received your inquiry and will reply by email."}, "success")
@@ -385,6 +427,7 @@ def onboarding_review():
             notes=notes,
             uploaded_files=", ".join(uploaded_names),
         )
+        alert_project(onboarding_data, notes, ", ".join(uploaded_names))
         session.pop("onboarding_data", None)
         flash({"title": "Project inquiry sent",
                "body": "We've received your details and will be in touch shortly."}, "success")
@@ -451,8 +494,26 @@ def admin_logout():
 @app.route("/admin")
 @admin_required
 def admin():
-    return render_template("admin.html", current_page=None, status=db.db_status(),
+    return render_template("admin.html", current_page=None, status=db.db_status(), mail_status=mail.status(),
                            contacts=db.list_contact_submissions(), projects=db.list_project_inquiries())
+
+
+@app.route("/admin/test-email", methods=["POST"])
+@admin_required
+def admin_test_email():
+    if not csrf_is_valid():
+        abort(400)
+    if not mail.is_configured():
+        flash({"title": "Email is not set up yet",
+               "body": "Add MAIL_PASSWORD in the app's environment variables, restart, and try again."}, "error")
+    else:
+        ok, err = mail.send_now("Test email from the Stackwave website",
+                                f"If you can read this, new-inquiry alerts will reach this inbox.\n\nSent {eat_now()}.")
+        if ok:
+            flash({"title": "Test email sent", "body": f"Check the inbox for {mail.status()['to']}."}, "success")
+        else:
+            flash({"title": "Test email failed", "body": err}, "error")
+    return redirect(url_for("admin"))
 
 
 def _csv_safe(value):

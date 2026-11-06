@@ -60,7 +60,7 @@
 {% endif %}
   {{ project_frame(p) }}
   <div class="project-card-body">
-    <div>{{ chip(p.category, p.chip) }}</div>
+    <div class="flex flex-wrap gap-xs">{{ chip(p.category, p.chip) }}{% if p.status in ('in-build', 'refurbishing') %}{{ chip(p.status_label, 'warn') }}{% endif %}</div>
     <h3>{{ p.name }}</h3>
     <p>{{ p.summary }}</p>
     {% if p.case_study_url %}<span class="project-card-link">View Case Study <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></span>
@@ -91,33 +91,18 @@
 </div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
-<!-- Case Highlight 1 -->
-<div class="glass-card p-xl rounded-xl">
+{% set accents = ['text-secondary-fixed', 'text-secondary-fixed-dim', 'text-primary'] %}
+{% for p in projects if p.highlight %}
+<a class="glass-card hover-lift p-xl rounded-xl block" href="{{ p.case_study_url }}">
 <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-lg">
-<span class="material-symbols-outlined text-primary">trending_up</span>
+<span class="material-symbols-outlined text-primary" aria-hidden="true">{{ p.highlight.icon }}</span>
 </div>
-<div class="text-display-lg-mobile font-display-lg-mobile text-secondary-fixed mb-sm">215%</div>
-<h4 class="font-headline-md text-headline-md text-white mb-sm">Traffic Surge</h4>
-<p class="text-on-surface-variant font-body-md">For GlobalLogistics, we implemented a semantic SEO framework that tripled organic reach within six months.</p>
-</div>
-<!-- Case Highlight 2 -->
-<div class="glass-card p-xl rounded-xl">
-<div class="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center mb-lg">
-<span class="material-symbols-outlined text-secondary">shopping_cart</span>
-</div>
-<div class="text-display-lg-mobile font-display-lg-mobile text-secondary-fixed-dim mb-sm">42%</div>
-<h4 class="font-headline-md text-headline-md text-white mb-sm">Conversion Lift</h4>
-<p class="text-on-surface-variant font-body-md">Redesigning the checkout flow for LuxeRetail reduced cart abandonment by nearly half across all platforms.</p>
-</div>
-<!-- Case Highlight 3 -->
-<div class="glass-card p-xl rounded-xl">
-<div class="w-12 h-12 bg-primary-container/20 rounded-lg flex items-center justify-center mb-lg">
-<span class="material-symbols-outlined text-primary-fixed">speed</span>
-</div>
-<div class="text-display-lg-mobile font-display-lg-mobile text-primary mb-sm">0.8s</div>
-<h4 class="font-headline-md text-headline-md text-white mb-sm">Load Time</h4>
-<p class="text-on-surface-variant font-body-md">By refactoring the backend of TechStream, we achieved sub-second global latency for 2M daily active users.</p>
-</div>
+<div class="text-display-lg-mobile font-display-lg-mobile {{ accents[loop.index0 % 3] }} mb-sm">{{ p.highlight.value }}</div>
+<h3 class="font-headline-md text-headline-md text-white mb-sm">{{ p.highlight.label }}</h3>
+<p class="text-on-surface-variant font-body-md mb-md">{{ p.highlight.text }}</p>
+<span class="project-card-link">{{ p.name }} case study <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></span>
+</a>
+{% endfor %}
 </div>
 </div>
 </section>

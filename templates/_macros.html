@@ -23,7 +23,7 @@
 <div class="browser-frame browser-frame--{{ ratio }}">
   <div class="browser-bar" aria-hidden="true">
     <span class="browser-dots"><i></i><i></i><i></i></span>
-    <span class="browser-url">{{ p.domain or (p.name|lower|replace(' ', '') ~ '.co.ke') }}</span>
+    <span class="browser-url">{{ p.domain or p.status_label }}</span>
   </div>
   {%- if p.screenshot %}
   <div class="browser-body browser-body--shot">

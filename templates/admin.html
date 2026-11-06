@@ -30,6 +30,24 @@
     {% if status.error %}<p class="field-error" role="alert">Database error: {{ status.error }}</p>{% endif %}
   </section>
 
+  <section class="admin-card" aria-labelledby="mail-status" style="margin-top:20px">
+    <h2 class="admin-h2" id="mail-status">Email alerts</h2>
+    <dl class="admin-status">
+      <div><dt>Status</dt><dd><span class="pill {{ 'pill--ok' if mail_status.configured else 'pill--bad' }}">{{ 'On' if mail_status.configured else 'Off: MAIL_PASSWORD not set' }}</span></dd></div>
+      <div><dt>Alerts go to</dt><dd>{{ mail_status.to }}</dd></div>
+      <div><dt>Mail server</dt><dd>{{ mail_status.host }}:{{ mail_status.port }} ({{ mail_status.security }})</dd></div>
+      <div><dt>Last send since restart</dt><dd>
+        {% if mail_status.last.ok is none %}None yet
+        {% elif mail_status.last.ok %}<span class="pill pill--ok">Sent</span> {{ mail_status.last.when|nairobi_time }}
+        {% else %}<span class="pill pill--bad">Failed</span> {{ mail_status.last.when|nairobi_time }}<br><span class="muted">{{ mail_status.last.error }}</span>{% endif %}
+      </dd></div>
+    </dl>
+    <form method="POST" action="{{ url_for('admin_test_email') }}" style="margin-top:18px">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button class="btn btn-outline btn-sm" type="submit">Send a test email</button>
+    </form>
+  </section>
+
   <section aria-labelledby="contacts-h">
     <h2 class="admin-h2" id="contacts-h">Contact messages ({{ contacts|length }})</h2>
     {% if contacts %}

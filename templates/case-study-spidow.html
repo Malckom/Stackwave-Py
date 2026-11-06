@@ -55,6 +55,7 @@ body {
 <span class="text-on-surface-variant font-label-sm">Higher Conversion</span>
 </div>
 </div>
+{% if project and project.url %}<div class="pt-md"><a class="btn btn-ghost" href="{{ project.url }}" target="_blank" rel="noopener">Visit {{ project.domain }} <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span></a></div>{% endif %}
 </div>
 <div class="relative">
 <div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full"></div>

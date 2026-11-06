@@ -133,7 +133,7 @@ def build():
 
     # Work
     s += [p("SELECTED WORK", EYEBROW), p("Sites and platforms we've built", H1)]
-    status = {"live": "Live", "refurbishing": "Being refurbished", "in-build": "In build", "coming-soon": "Details coming soon"}
+    status = {"live": "Live", "refurbishing": "Being refurbished", "in-build": "Under production", "coming-soon": "Details coming soon"}
     rows = [[p("Project", CELLB), p("Type", CELLB), p("Status", CELLB), p("Website", CELLB)]]
     for pr in projects:
         url = (pr["url"] or "").replace("https://", "").replace("http://", "").rstrip("/")
