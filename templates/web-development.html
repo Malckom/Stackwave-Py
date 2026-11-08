@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% from "_icons.html" import brand_icon %}
 
 {% block title %}Web Development | Stackwave Digital Agency{% endblock %}
+{% block meta_description %}Custom-coded websites and web platforms built with React, Node.js and Flask for Kenyan businesses and tour operators. Stackwave Developers, Nairobi.{% endblock %}
 
 {% block body_class %}bg-background text-on-background selection:bg-primary/30 font-body-md{% endblock %}
 
@@ -119,14 +121,14 @@
 <div class="grid grid-cols-2 md:grid-cols-4 gap-lg">
 <div class="glass-card p-xl rounded-xl flex flex-col items-center justify-center text-center gap-md">
 <div class="w-16 h-16 rounded-full bg-surface-container-high p-4 flex items-center justify-center mb-md">
-<img class="w-12 h-12" alt="React logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR5LHD9UHeswrHsiCOcH9RZzi7xYctIyKhdsgzYpQmmh7hbZZdXINt30KkvxVkZL2TenosXlTwIbYliMh9IREcmEzcFQv9A2d2qnOFS-rC0BLIZLLtl9tjrAYsRB15X0v7LAu0mCMO65FX3IGxrzUiY5xCWnvjb7wTvR_-3nsRDCGfSPkce-PHjFTqP1QfxIpKf6jdQSi6bvvcRHmVwzCJ0IFY5yH0tcBvG6MxZtOUP300dPh33lQB"/>
+{{ brand_icon('react', 48) }}
 </div>
 <span class="font-label-md text-primary">Frontend</span>
 <h4 class="font-headline-md text-on-surface">React.js</h4>
 </div>
 <div class="glass-card p-xl rounded-xl flex flex-col items-center justify-center text-center gap-md">
 <div class="w-16 h-16 rounded-full bg-surface-container-high p-4 flex items-center justify-center mb-md">
-<img class="w-12 h-12" alt="Node.js logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcs5I5uDSYGmGyv5t4hzpSJwBEvTDKdtCEjhJN35t41s6MwWJc7kyXE4Iz311Dff4uXFCQevNESAMQ-6KNY6T6xAY_xO8ME0TxuWedBoJQsBRpnlsEzQYrtCcxT9RNnTW496wsWvWnAIRwOVFETiWo8aPhKHAfV1msGFbkc58PLgT3WVNKwowjtnT2_vl-AWPEmANTCa0lxd95-B1Lsp3XiE07Xq4jwE3YhB3rcb6uYxilaWbrlgky"/>
+{{ brand_icon('nodejs', 48) }}
 </div>
 <span class="font-label-md text-secondary-fixed">Backend</span>
 <h4 class="font-headline-md text-on-surface">Node.js</h4>

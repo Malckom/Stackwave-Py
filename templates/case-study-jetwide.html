@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% from "_art.html" import art, shot_or_art with context %}
 
 {% block title %}Jetwide Consortium Case Study | Stackwave{% endblock %}
+{% block meta_description %}How Stackwave built the Jetwide Consortium booking site for Kenya safaris, visa processing, car hire and job placements, with WhatsApp-first support.{% endblock %}
 
 {% block body_class %}bg-surface text-on-surface selection:bg-primary/30 selection:text-primary{% endblock %}
 
@@ -79,7 +81,7 @@
 <div class="relative group">
 <div class="absolute -inset-4 bg-primary/20 blur-3xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
 <div class="rounded-2xl overflow-hidden aspect-video shadow-2xl relative gradient-border">
-<img class="w-full h-full object-cover" data-alt="A futuristic wide-angle shot of a digital travel dashboard displaying global maps, real-time safari vehicle tracking in the Maasai Mara, and visa processing status charts. The interface glows with electric blue and cyber mint accents against a deep slate background, reflecting a high-tech corporate studio aesthetic. Cinematic lighting emphasizes the technical precision and global reach of the travel ecosystem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkjd-pnGBuelCLok0YTg4FdwDrQkDRn5QYACKU29qZ26vwKwwENqGShPL2dz0scFuXUau6HTihWQ9TGH8pkTwhF8x5i72MvynTXc2JQDhGxFdYP6-wWeqIYpVoNfRL62cS-OoAbzDnQpRcKpRysLLcKKET_7iX7Gj_nJKeVlzyEWeJIMN6yqOD-IqGi3hiP7tTR0_8tmwVti_OCnWuwu6XC6HqhkKWX2qMHSFcVedCw0NyRQkZHO8N"/>
+{{ shot_or_art('jetwide', 'dashboard', 'Jetwide website preview') }}
 </div>
 </div>
 </div>
@@ -120,7 +122,7 @@
 </div>
 </div>
 <div class="md:col-span-4 bento-card p-xl rounded-3xl overflow-hidden relative group">
-<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40" data-alt="A cinematic overhead shot of a safari vehicle crossing the golden plains of the Maasai Mara at sunset, with Mount Kilimanjaro visible in the hazy distance. The image is color-graded with cool deep blues and warm amber highlights to match the digital agency's premium brand aesthetic. Soft focus on the surrounding wilderness emphasizes the vastness and majesty of the Kenyan landscape." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYtC0VAkmGQJfKaJnRkoJAl1Mdyyk770xesczoK1HbPjO4qMhw5BVQ-DPWzS5kBlgov9EbGIBTPLi6Ae7KZ6PBOn4bvyg7X2ocIICTAwAOxtj4YDyI54tklMzAo6Ve1KOtNKGbOoQvj87qc0aRtKjgCfwxfyv5EKLju7XpMek9BfJoLCe1PyNzp1k07R4YNFWovVytRWWvq36pg5iwYYqzcP0_b_Vh5s9gR24Iaa3V4L-3MC830VVw')"></div>
+<div class="absolute inset-0  transition-transform duration-700 group-hover:scale-110 opacity-40">{{ art('savanna') }}</div>
 <div class="relative z-10 h-full flex flex-col justify-end">
 <div class="font-headline-md text-headline-md text-white">Kenya Safaris</div>
 <div class="text-on-primary-container font-label-sm">Premium Bush Experiences</div>
@@ -152,7 +154,7 @@
 </ul>
 </div>
 <div class="rounded-xl overflow-hidden shadow-lg border border-white/10">
-<img class="w-full h-full object-cover" data-alt="Close-up of a high-end mobile application UI designed for Jetwide travelers. The interface shows a personalized itinerary with 'Maasai Mara Migration Safari' and 'Dubai City of Gold Tour' options. The design features soft shadows, frosted glass elements, and vibrant call-to-action buttons in electric blue, conveying a sense of luxury and technological ease." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJBz5iT0cQvsJV2QSogd_SPo5UJwnppE5GiDo4IUPgDckgRk9JLDWobF3Kh4ngvPv8-kbZuM6vi5piWRShtDUcuBfg6QKL_ItWXTPqUrHeLN4yZ3r7MPXN0_zXSdtbYZwTS_G5oCyevvK1p1NxWD3DoPLfjPQmNZvVPXXQQS44Abx9DAzjl-PHpgBxoiIA0_rDcILtfzaK3k6TsDwW8eGSsP3v9t3JQ_N-lVYM7H2Kxwrw6Cqn_FaU"/>
+{{ art('mobile') }}
 </div>
 </div>
 </div>

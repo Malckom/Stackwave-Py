@@ -18,7 +18,14 @@
       ],
       "timeline": "1–2 weeks",
       "service": "Web Development",
-      "featured": false
+      "featured": false,
+      "estimates": [
+        {
+          "label": "Starter Website",
+          "min": 25000,
+          "max": 40000
+        }
+      ]
     },
     {
       "slug": "business",
@@ -37,7 +44,14 @@
       ],
       "timeline": "2–4 weeks",
       "service": "Web Development",
-      "featured": false
+      "featured": false,
+      "estimates": [
+        {
+          "label": "Business Website",
+          "min": 55000,
+          "max": 100000
+        }
+      ]
     },
     {
       "slug": "tour-travel",
@@ -58,7 +72,14 @@
       "timeline": "3–5 weeks",
       "service": "Web Development",
       "featured": true,
-      "badge": "Our Specialty"
+      "badge": "Our Specialty",
+      "estimates": [
+        {
+          "label": "Tour & Travel / Safari Website",
+          "min": 80000,
+          "max": 160000
+        }
+      ]
     },
     {
       "slug": "ecommerce",
@@ -67,9 +88,18 @@
       "summary": "A full online store with Kenyan payment methods built in from day one.",
       "price": "",
       "tiers": [
-        {"label": "Basic — up to 30 products", "price": "KSh 65,000–95,000"},
-        {"label": "Standard — up to 100 products", "price": "KSh 100,000–160,000"},
-        {"label": "Advanced — 100+ / multi-vendor", "price": "KSh 180,000+"}
+        {
+          "label": "Basic — up to 30 products",
+          "price": "KSh 65,000–95,000"
+        },
+        {
+          "label": "Standard — up to 100 products",
+          "price": "KSh 100,000–160,000"
+        },
+        {
+          "label": "Advanced — 100+ / multi-vendor",
+          "price": "KSh 180,000+"
+        }
       ],
       "features": [
         "Product catalog & inventory management",
@@ -80,7 +110,24 @@
       ],
       "timeline": "4–6 weeks (by tier)",
       "service": "Web Development",
-      "featured": false
+      "featured": false,
+      "estimates": [
+        {
+          "label": "E-Commerce (Basic)",
+          "min": 65000,
+          "max": 95000
+        },
+        {
+          "label": "E-Commerce (Standard)",
+          "min": 100000,
+          "max": 160000
+        },
+        {
+          "label": "E-Commerce (Advanced)",
+          "min": 180000,
+          "max": null
+        }
+      ]
     },
     {
       "slug": "custom-platform",
@@ -98,17 +145,80 @@
       ],
       "timeline": "6–12+ weeks",
       "service": "SaaS Development",
-      "featured": false
+      "featured": false,
+      "estimates": [
+        {
+          "label": "Custom Web Application / Platform",
+          "min": 250000,
+          "max": null
+        }
+      ]
     }
   ],
   "addons": [
-    {"slug": "domain-hosting", "name": "Domain & hosting setup", "detail": "Assistance only", "price": "KSh 5,000"},
-    {"slug": "payments", "name": "M-Pesa Daraja / Paystack integration", "detail": "Add-on to an existing site", "price": "KSh 20,000–45,000"},
-    {"slug": "email-setup", "name": "Email setup & troubleshooting", "detail": "Google Workspace, Truehost, etc.", "price": "KSh 3,000–8,000"},
-    {"slug": "monthly-maintenance", "name": "Monthly maintenance & support", "detail": "Updates, fixes and a point of contact", "price": "KSh 6,000–15,000/mo"},
-    {"slug": "monthly-seo", "name": "Monthly SEO optimization", "detail": "Ongoing technical and on-page work", "price": "KSh 10,000–25,000/mo"},
-    {"slug": "extra-page", "name": "Extra page", "detail": "Added to an existing package or site", "price": "KSh 5,000–10,000"},
-    {"slug": "copywriting", "name": "Content / copywriting", "detail": "Per page or itinerary", "price": "KSh 3,000–8,000"}
+    {
+      "slug": "domain-hosting",
+      "name": "Domain & hosting setup",
+      "detail": "Assistance only",
+      "price": "KSh 5,000",
+      "min": 5000,
+      "max": 5000,
+      "monthly": false
+    },
+    {
+      "slug": "payments",
+      "name": "M-Pesa Daraja / Paystack integration",
+      "detail": "Add-on to an existing site",
+      "price": "KSh 20,000–45,000",
+      "min": 20000,
+      "max": 45000,
+      "monthly": false
+    },
+    {
+      "slug": "email-setup",
+      "name": "Email setup & troubleshooting",
+      "detail": "Google Workspace, Truehost, etc.",
+      "price": "KSh 3,000–8,000",
+      "min": 3000,
+      "max": 8000,
+      "monthly": false
+    },
+    {
+      "slug": "monthly-maintenance",
+      "name": "Monthly maintenance & support",
+      "detail": "Updates, fixes and a point of contact",
+      "price": "KSh 6,000–15,000/mo",
+      "min": 6000,
+      "max": 15000,
+      "monthly": true
+    },
+    {
+      "slug": "monthly-seo",
+      "name": "Monthly SEO optimization",
+      "detail": "Ongoing technical and on-page work",
+      "price": "KSh 10,000–25,000/mo",
+      "min": 10000,
+      "max": 25000,
+      "monthly": true
+    },
+    {
+      "slug": "extra-page",
+      "name": "Extra page",
+      "detail": "Added to an existing package or site",
+      "price": "KSh 5,000–10,000",
+      "min": 5000,
+      "max": 10000,
+      "monthly": false
+    },
+    {
+      "slug": "copywriting",
+      "name": "Content / copywriting",
+      "detail": "Per page or itinerary",
+      "price": "KSh 3,000–8,000",
+      "min": 3000,
+      "max": 8000,
+      "monthly": false
+    }
   ],
   "notes": [
     "All prices are starting points — final quotes depend on page count, features, content readiness, and integrations.",

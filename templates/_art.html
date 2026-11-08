@@ -1,0 +1,66 @@
+{# Self-hosted SVG illustrations (replace the Google-hosted images). Usage: {{ art('savanna') }} #}
+{% macro art(name) -%}
+<svg class="art art--{{ name }}" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+<defs>
+  <linearGradient id="ar-acc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b8c3ff"/><stop offset="1" stop-color="#26fedc"/></linearGradient>
+  <linearGradient id="ar-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17203a"/><stop offset="1" stop-color="#0b0f10"/></linearGradient>
+  <linearGradient id="ar-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1230"/><stop offset=".55" stop-color="#3a2a5c"/><stop offset="1" stop-color="#f08a3c"/></linearGradient>
+  <radialGradient id="ar-sun"><stop offset="0" stop-color="#ffd27a" stop-opacity=".85"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+  <radialGradient id="ar-glow"><stop offset="0" stop-color="#2e5bff" stop-opacity=".45"/><stop offset="1" stop-color="#2e5bff" stop-opacity="0"/></radialGradient>
+</defs>
+{%- if name == 'savanna' %}
+<rect width="640" height="360" fill="url(#ar-sky)"/>
+<circle cx="470" cy="236" r="130" fill="url(#ar-sun)"/><circle cx="470" cy="236" r="32" fill="#ffe3a3"/>
+<path d="M0 262 Q120 236 240 258 T480 252 T640 262 V360 H0Z" fill="#241a38" opacity=".9"/>
+<path d="M0 304 Q160 280 320 300 T640 294 V360 H0Z" fill="#120d1e"/>
+<g fill="#0a0713"><path d="M150 300 V262 M150 276 L128 262 M150 272 L172 258" stroke="#0a0713" stroke-width="5" fill="none" stroke-linecap="round"/>
+<ellipse cx="150" cy="254" rx="52" ry="12"/><ellipse cx="124" cy="262" rx="26" ry="7"/><ellipse cx="178" cy="258" rx="28" ry="7"/>
+<path d="M566 304 V270 M566 284 L548 272" stroke="#0a0713" stroke-width="4" fill="none" stroke-linecap="round"/><ellipse cx="566" cy="264" rx="40" ry="10"/><ellipse cx="546" cy="271" rx="20" ry="6"/>
+<path d="M300 306 h74 l-6 -16 h-30 l-8 -12 h-22 z"/><circle cx="318" cy="308" r="7"/><circle cx="362" cy="308" r="7"/></g>
+{%- elif name == 'web-layout' %}
+<rect width="640" height="360" fill="url(#ar-bg)"/><circle cx="500" cy="80" r="170" fill="url(#ar-glow)"/>
+<g fill="none" stroke="#b8c3ff" stroke-opacity=".28"><rect x="70" y="50" width="500" height="260" rx="14"/><path d="M70 90 H570"/><rect x="100" y="120" width="190" height="150" rx="10"/><rect x="310" y="120" width="230" height="64" rx="10"/><rect x="310" y="200" width="108" height="70" rx="10"/><rect x="432" y="200" width="108" height="70" rx="10"/></g>
+<rect x="100" y="64" width="46" height="9" rx="4.5" fill="url(#ar-acc)"/><rect x="470" y="62" width="68" height="14" rx="7" fill="#2e5bff"/>
+<rect x="118" y="140" width="110" height="12" rx="6" fill="#e0e3e5" opacity=".85"/><rect x="118" y="164" width="150" height="7" rx="3.5" fill="#434656"/><rect x="118" y="180" width="130" height="7" rx="3.5" fill="#434656"/><rect x="118" y="216" width="72" height="22" rx="11" fill="#26fedc" opacity=".85"/>
+<rect x="326" y="140" width="120" height="9" rx="4.5" fill="#b8c3ff" opacity=".8"/><rect x="326" y="160" width="170" height="7" rx="3.5" fill="#434656"/>
+{%- elif name == 'growth' %}
+<rect width="640" height="360" fill="url(#ar-bg)"/><circle cx="130" cy="300" r="190" fill="url(#ar-glow)"/>
+<g fill="#b8c3ff" fill-opacity=".22"><rect x="90" y="236" width="54" height="74" rx="8"/><rect x="164" y="210" width="54" height="100" rx="8"/><rect x="238" y="178" width="54" height="132" rx="8"/><rect x="312" y="150" width="54" height="160" rx="8"/><rect x="386" y="112" width="54" height="198" rx="8"/></g>
+<path d="M117 226 L191 196 L265 164 L339 132 L413 92" fill="none" stroke="url(#ar-acc)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#26fedc"><circle cx="117" cy="226" r="6"/><circle cx="191" cy="196" r="6"/><circle cx="265" cy="164" r="6"/><circle cx="339" cy="132" r="6"/><circle cx="413" cy="92" r="8"/></g>
+<g><circle cx="510" cy="110" r="26" fill="#1e293b" stroke="#b8c3ff" stroke-opacity=".4"/><circle cx="510" cy="104" r="9" fill="#b8c3ff"/><path d="M493 128 q17 -16 34 0" fill="#b8c3ff"/>
+<circle cx="560" cy="170" r="22" fill="#1e293b" stroke="#26fedc" stroke-opacity=".45"/><circle cx="560" cy="165" r="8" fill="#26fedc"/><path d="M546 185 q14 -13 28 0" fill="#26fedc"/>
+<circle cx="500" cy="232" r="20" fill="#1e293b" stroke="#2e5bff" stroke-opacity=".6"/><circle cx="500" cy="227" r="7" fill="#7f9bff"/><path d="M488 245 q12 -11 24 0" fill="#7f9bff"/></g>
+{%- elif name == 'code' %}
+<rect width="640" height="360" fill="url(#ar-bg)"/><circle cx="520" cy="60" r="170" fill="url(#ar-glow)"/>
+<rect x="60" y="44" width="520" height="272" rx="16" fill="#0b0f10" stroke="#b8c3ff" stroke-opacity=".25"/><rect x="60" y="44" width="520" height="34" rx="16" fill="#191c1e"/>
+<circle cx="86" cy="61" r="5" fill="#434656"/><circle cx="104" cy="61" r="5" fill="#434656"/><circle cx="122" cy="61" r="5" fill="#434656"/>
+<g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15"><text x="84" y="112"><tspan fill="#b8c3ff">const</tspan><tspan fill="#e0e3e5"> site = </tspan><tspan fill="#26fedc">build</tspan><tspan fill="#e0e3e5">({</tspan></text>
+<text x="108" y="140"><tspan fill="#8e90a2">pages:</tspan><tspan fill="#26fedc"> "custom"</tspan><tspan fill="#e0e3e5">,</tspan></text><text x="108" y="168"><tspan fill="#8e90a2">speed:</tspan><tspan fill="#26fedc"> "fast"</tspan><tspan fill="#e0e3e5">,</tspan></text>
+<text x="108" y="196"><tspan fill="#8e90a2">payments:</tspan><tspan fill="#b8c3ff"> ["mpesa"]</tspan><tspan fill="#e0e3e5">,</tspan></text><text x="84" y="224"><tspan fill="#e0e3e5">});</tspan></text><text x="84" y="268"><tspan fill="#b8c3ff">await</tspan><tspan fill="#e0e3e5"> site.</tspan><tspan fill="#26fedc">launch</tspan><tspan fill="#e0e3e5">();</tspan></text></g>
+{%- elif name == 'dataviz' %}
+<rect width="640" height="360" fill="url(#ar-bg)"/><circle cx="110" cy="80" r="170" fill="url(#ar-glow)"/>
+<g transform="translate(150 190)"><circle r="86" fill="none" stroke="#323537" stroke-width="26"/><circle r="86" fill="none" stroke="#2e5bff" stroke-width="26" stroke-dasharray="230 541" transform="rotate(-90)"/><circle r="86" fill="none" stroke="#26fedc" stroke-width="26" stroke-dasharray="120 541" stroke-dashoffset="-236" transform="rotate(-90)"/><circle r="86" fill="none" stroke="#b8c3ff" stroke-width="26" stroke-dasharray="70 541" stroke-dashoffset="-360" transform="rotate(-90)"/></g>
+<g fill="#b8c3ff" fill-opacity=".25"><rect x="318" y="210" width="34" height="90" rx="6"/><rect x="366" y="170" width="34" height="130" rx="6"/><rect x="414" y="130" width="34" height="170" rx="6"/><rect x="462" y="96" width="34" height="204" rx="6"/><rect x="510" y="150" width="34" height="150" rx="6"/></g>
+<path d="M335 200 L383 160 L431 120 L479 86 L527 140" fill="none" stroke="url(#ar-acc)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+{%- elif name == 'dashboard' %}
+<rect width="640" height="360" fill="url(#ar-bg)"/><circle cx="540" cy="70" r="170" fill="url(#ar-glow)"/>
+<g fill="#0b0f10" stroke="#b8c3ff" stroke-opacity=".22"><rect x="40" y="40" width="130" height="280" rx="14"/><rect x="186" y="40" width="130" height="80" rx="12"/><rect x="330" y="40" width="130" height="80" rx="12"/><rect x="474" y="40" width="126" height="80" rx="12"/><rect x="186" y="136" width="414" height="184" rx="14"/></g>
+<g fill="#434656"><rect x="58" y="64" width="70" height="9" rx="4.5"/><rect x="58" y="96" width="94" height="8" rx="4"/><rect x="58" y="120" width="80" height="8" rx="4"/><rect x="58" y="144" width="90" height="8" rx="4"/></g><rect x="58" y="64" width="40" height="9" rx="4.5" fill="url(#ar-acc)"/>
+<g font-family="Inter,sans-serif" font-weight="700" font-size="22"><text x="204" y="86" fill="#26fedc">128</text><text x="348" y="86" fill="#b8c3ff">42</text><text x="492" y="86" fill="#e0e3e5">9</text></g>
+<path d="M210 290 L270 250 L330 262 L390 206 L450 222 L510 168 L575 186" fill="none" stroke="url(#ar-acc)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M210 290 L270 250 L330 262 L390 206 L450 222 L510 168 L575 186 V310 H210Z" fill="#2e5bff" fill-opacity=".14"/>
+{%- elif name == 'mobile' %}
+<rect width="640" height="360" fill="url(#ar-bg)"/><circle cx="320" cy="180" r="190" fill="url(#ar-glow)"/>
+<rect x="240" y="14" width="160" height="332" rx="26" fill="#0b0f10" stroke="#b8c3ff" stroke-opacity=".4" stroke-width="2"/><rect x="292" y="24" width="56" height="8" rx="4" fill="#323537"/>
+<rect x="258" y="52" width="124" height="14" rx="7" fill="url(#ar-acc)"/><rect x="258" y="82" width="124" height="70" rx="12" fill="#1e293b"/><path d="M258 140 L290 112 L318 132 L348 100 L382 128 V140 Z" fill="#2e5bff" fill-opacity=".5"/>
+<g fill="#1e293b"><rect x="258" y="168" width="124" height="42" rx="10"/><rect x="258" y="220" width="124" height="42" rx="10"/><rect x="258" y="272" width="124" height="42" rx="10"/></g>
+<g fill="#434656"><rect x="270" y="180" width="64" height="7" rx="3.5"/><rect x="270" y="194" width="88" height="6" rx="3"/><rect x="270" y="232" width="70" height="7" rx="3.5"/><rect x="270" y="246" width="84" height="6" rx="3"/><rect x="270" y="284" width="58" height="7" rx="3.5"/><rect x="270" y="298" width="92" height="6" rx="3"/></g>
+{%- endif %}
+</svg>
+{%- endmacro %}
+
+{# Product screenshot if one has been added, otherwise a generic illustration. #}
+{% macro shot_or_art(slug, fallback, alt) -%}
+{%- set shot = screenshot_for(slug) -%}
+{%- if shot %}<img class="shot-img" src="{{ url_for('static', filename=shot) }}" alt="{{ alt }}" loading="lazy">{% else %}{{ art(fallback) }}{% endif %}
+{%- endmacro %}

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import project_frame, chip %}
+{% from "_macros.html" import project_frame, chip, browser_shot, compare_slider %}
 
 {% block title %}{{ project.name }} Case Study | Stackwave Developers{% endblock %}
 {% block meta_description %}{{ cs.intro }}{% endblock %}
@@ -63,6 +63,21 @@
       </div>
     </div>
   </section>
+
+  <!-- Site preview (screenshot appears here once added to static/assets/screens/<slug>.webp) -->
+  <section class="w-medium mx-auto px-margin-mobile md:px-margin-desktop py-2xl" aria-labelledby="cs-preview">
+    <h2 id="cs-preview" class="font-headline-lg text-headline-lg mb-xl">Site preview</h2>
+    {{ browser_shot(project) }}
+  </section>
+
+  {% if compare %}
+  <!-- Before / after -->
+  <section class="w-medium mx-auto px-margin-mobile md:px-margin-desktop py-2xl" aria-labelledby="cs-compare">
+    <h2 id="cs-compare" class="font-headline-lg text-headline-lg mb-sm">Before and after</h2>
+    <p class="text-on-surface-variant mb-xl max-w-2xl">Drag the handle, or use the arrow keys, to compare the previous site with the new one.</p>
+    {{ compare_slider(compare, project.name) }}
+  </section>
+  {% endif %}
 
   <!-- Features -->
   <section class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-2xl" aria-labelledby="cs-features">

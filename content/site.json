@@ -8,7 +8,12 @@
   "whatsapp_message": "Hi Stackwave, I'd like to talk about a project.",
   "tiktok_url": "https://www.tiktok.com/@stackwavedevs?_r=1&_t=ZS-9B976LHz9Hz",
   "instagram_url": "https://www.instagram.com/stackwave_devs?psln=NTAzODA1YmV6YnRq&utm_source=qr",
-  "office_lines": ["Orchard apartments, Eastern Bypass", "Nairobi", "Kenya"],
+  "office_lines": [
+    "Orchard apartments, Eastern Bypass",
+    "Nairobi",
+    "Kenya"
+  ],
   "business_reg_no": "BN-36SMLVPE",
-  "legal_last_updated": "November 5, 2026"
+  "legal_last_updated": "November 5, 2026",
+  "site_url": "https://stackwavedevs.co.ke"
 }

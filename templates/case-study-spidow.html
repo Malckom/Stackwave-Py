@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% from "_art.html" import art, shot_or_art with context %}
 
 {% block title %}Case Study: Spidow - Revolutionizing Tour Operations | Stackwave{% endblock %}
+{% block meta_description %}How Stackwave built Spidow, a CRM and automated quotation engine that helps Kenyan tour operators quote faster and convert more.{% endblock %}
 
 {% block extra_style %}
 <style>
@@ -60,7 +62,7 @@ body {
 <div class="relative">
 <div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full"></div>
 <div class="glass-card p-sm rounded-xl overflow-hidden relative border border-white/10">
-<img alt="Spidow Dashboard" class="w-full h-auto rounded-lg shadow-2xl" src="https://lh3.googleusercontent.com/aida/AP1WRLsUyMkSr57OK-2Dhq3laL-6X5Wv6hOiL_yVyu1Xh_HkOul__vX3-ANjZidT48p5lDiXIVnuev114xeUirDNrm7io6hUdaLbZfcbzXpsPvNDZU7zIERglAEs-SLfwrijJ8IRZLuO_KmEdqYEsKG_n6X2zu1DnIwn6HnC2t2nluHdfxkMroy1bLjiUX_fL9x4jw5Jz6pT3ee2eiWgvceZ_znvMIUn5F4sLYdKeEbP-G_V5NibY9clyvtAr7Q"/>
+{{ shot_or_art('spidow', 'dashboard', 'Spidow dashboard') }}
 </div>
 </div>
 </div>
@@ -153,7 +155,7 @@ body {
 <div class="relative">
 <div class="absolute -inset-10 bg-secondary/10 blur-3xl"></div>
 <div class="glass-card p-sm rounded-2xl border border-white/5 relative">
-<img class="w-full rounded-xl" data-alt="A futuristic professional UI design for a travel management mobile application shown on a high-end smartphone. The screen displays a colorful interactive world map with glowing booking hotspots across Africa and Europe. Sleek charts showing regional performance and revenue metrics are rendered in vibrant neon cyan and purple. The overall mood is high-tech, professional, and sophisticated, set against a dark, slightly blurred modern office background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeFYtJkJo0vxbkG5TRUohKtk3lmYi-3XCO74W78DnfwUwHu10yAR5pdo2hwdHgbVmWkfYYdyQ0AFwFxpPtwXJ0vfDzsjdJCK2ee82UxW6yneiCAizDlnUf0LOhmDwukVGQv6eZurzYtCy6NICTXDgmYHs8jyw0-43s-qzxyAqcsDPsIeCuYUWeFxdvdztQH2MeZ2aGNI5QGOd52y063ARupQTYRgIk08fJvEU-TtLeAlX0o8TXryKl"/>
+{{ art('mobile') }}
 </div>
 </div>
 </div>

@@ -80,10 +80,10 @@ def static_exists(rel_path):
     return os.path.isfile(os.path.join(app.static_folder, rel_path))
 
 
-def screenshot_for(slug):
-    """Return a screenshot path if you've dropped one in static/assets/screens/<slug>.(webp|jpg|png)."""
+def screenshot_for(name):
+    """Return a screenshot path if you've dropped one in static/assets/screens/<name>.(webp|jpg|png)."""
     for ext in ("webp", "jpg", "jpeg", "png"):
-        rel = f"assets/screens/{slug}.{ext}"
+        rel = f"assets/screens/{name}.{ext}"
         if static_exists(rel):
             return rel
     return None
@@ -91,6 +91,11 @@ def screenshot_for(slug):
 
 STATUS_LABELS = {"live": "Live", "refurbishing": "Being refurbished",
                  "in-build": "Under production", "coming-soon": "Details coming soon"}
+
+
+def site_url():
+    """Public base URL (set site_url in content/site.json); falls back to the URL the request came in on."""
+    return (content.load("site").get("site_url") or request.url_root).rstrip("/")
 
 
 def get_projects():
@@ -105,6 +110,8 @@ def get_projects():
             p["case_study_url"] = None
         p["domain"] = urlparse(p["url"]).netloc.removeprefix("www.") if p.get("url") else None
         p["screenshot"] = screenshot_for(p["slug"])
+        thumb = f"assets/logos/thumbs/{p['slug']}.webp"
+        p["logo_thumb"] = thumb if p.get("logo") and static_exists(thumb) else None
         p["status_label"] = STATUS_LABELS.get(p.get("status"), p.get("status", ""))
         projects.append(p)
     return projects
@@ -143,6 +150,9 @@ def inject_globals():
         "csrf_token": get_csrf_token,
         "screenshot_for": screenshot_for,
         "current_year": datetime.date.today().year,
+        "site_url": site_url(),
+        "canonical_url": site_url() + request.path,
+        "og_image": site_url() + url_for("static", filename="assets/og-image.jpg"),
     }
 
 
@@ -171,8 +181,19 @@ def security_headers(resp):
 
 @app.route("/")
 def home():
-    featured = [p for p in get_projects() if p.get("featured_home")]
-    return render_template("index.html", current_page="home", featured_projects=featured)
+    projects = get_projects()
+    featured = [p for p in projects if p.get("featured_home")]
+    logo_strip = [p for p in projects if p.get("status") == "live" and p.get("logo_thumb")]
+    packages = content.load("pricing")["packages"]
+    cheapest = min(e["min"] for pk in packages for e in pk["estimates"])
+    # Only figures that can be derived from the site's own data. Nothing here is a claim about results.
+    stats = [
+        {"value": sum(1 for p in projects if p.get("status") == "live"), "prefix": "", "label": "Live websites and platforms"},
+        {"value": 2, "prefix": "", "label": "Local payment gateways integrated: M-Pesa Daraja and Paystack"},
+        {"value": cheapest, "prefix": "KSh ", "label": "Starting price for a custom website"},
+    ]
+    return render_template("index.html", current_page="home", featured_projects=featured, logo_strip=logo_strip,
+                           stats=stats, testimonials=content.load("testimonials"))
 
 
 @app.route("/services")
@@ -204,7 +225,13 @@ def service_detail(slug):
 
 @app.route("/pricing")
 def pricing():
-    return render_template("pricing.html", current_page="pricing", pricing=content.load("pricing"))
+    data = content.load("pricing")
+    estimator = {
+        "options": [{"slug": pk["slug"], "label": e["label"], "min": e["min"], "max": e["max"]}
+                    for pk in data["packages"] for e in pk["estimates"]],
+        "addons": [{"slug": ad["slug"], "min": ad["min"], "max": ad["max"], "monthly": ad["monthly"]} for ad in data["addons"]],
+    }
+    return render_template("pricing.html", current_page="pricing", pricing=data, estimator=estimator)
 
 
 @app.route("/portfolio")
@@ -239,7 +266,31 @@ def case_study(slug):
     project = get_project(slug)
     if not project or not project.get("case_study"):
         abort(404)
-    return render_template("case-study.html", current_page="portfolio", project=project, cs=project["case_study"])
+    compare = None
+    if project["case_study"].get("compare"):
+        compare = {"before": screenshot_for(f"{slug}-before"), "after": screenshot_for(f"{slug}-after")}
+    return render_template("case-study.html", current_page="portfolio", project=project, cs=project["case_study"],
+                           compare=compare)
+
+
+# ---------- SEO files ----------
+
+@app.route("/sitemap.xml")
+def sitemap():
+    paths = [url_for(e) for e in ("home", "services", "web_development", "pricing", "portfolio", "roadmap",
+                                  "contact", "terms", "privacy")]
+    paths += [url_for("service_detail", slug=s["slug"]) for s in get_services()]
+    paths += [p["case_study_url"] for p in get_projects() if p["case_study_url"]]
+    base = site_url()
+    urls = "".join(f"<url><loc>{base}{path}</loc></url>" for path in dict.fromkeys(paths))
+    xml = f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>'
+    return Response(xml, mimetype="application/xml")
+
+
+@app.route("/robots.txt")
+def robots():
+    body = f"User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /onboarding\n\nSitemap: {site_url()}/sitemap.xml\n"
+    return Response(body, mimetype="text/plain")
 
 
 # ---------- Legal ----------

@@ -76,36 +76,55 @@
     </div>
   </div>
 
-  <!-- Add-on services -->
+  <!-- Estimate builder + add-on services -->
   <section id="addons" class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop pb-2xl" aria-labelledby="addons-title">
     <div class="addons">
       <div class="addons-head">
-        <span class="material-symbols-outlined" aria-hidden="true">add_circle</span>
-        <h2 id="addons-title">Add-On Services</h2>
+        <span class="material-symbols-outlined" aria-hidden="true">calculate</span>
+        <h2 id="addons-title">Build Your Estimate</h2>
       </div>
-      <p class="addons-intro">Available on top of any package, or on their own for an existing site. Switch on the ones you want and we'll include them in your quote request.</p>
+      <p class="addons-intro">Choose a package, switch on any add-ons, and see a starting range as you go. It's an estimate, not a quote: your final price depends on page count, features, content readiness and integrations.</p>
 
-      <ul class="addon-list">
-        {% for a in pricing.addons %}
-        <li>
-          <label class="addon" for="addon-{{ a.slug }}">
-            <input class="addon-input" type="checkbox" id="addon-{{ a.slug }}" value="{{ a.slug }}">
-            <span class="addon-box">
-              <span class="switch" aria-hidden="true"></span>
-              <span class="addon-text">
-                <span class="addon-name">{{ a.name }}</span>
-                <span class="addon-detail">{{ a.detail }}</span>
+      <fieldset class="est-fieldset">
+        <legend class="est-legend"><span class="est-step">1</span> Package <span class="est-optional">(optional)</span></legend>
+        <div class="est-options" id="est-options">
+          <label class="est-option"><input class="est-radio" type="radio" name="est-package" value="" checked><span class="est-chip"><span class="est-chip-name">Add-ons only</span><span class="est-chip-price">I already have a site</span></span></label>
+          {% for o in estimator.options %}
+          <label class="est-option"><input class="est-radio" type="radio" name="est-package" value="{{ loop.index0 }}"><span class="est-chip"><span class="est-chip-name">{{ o.label }}</span><span class="est-chip-price" data-range data-min="{{ o.min }}" data-max="{{ o.max if o.max is not none else '' }}"></span></span></label>
+          {% endfor %}
+        </div>
+      </fieldset>
+
+      <fieldset class="est-fieldset">
+        <legend class="est-legend"><span class="est-step">2</span> Add-ons</legend>
+        <ul class="addon-list">
+          {% for a in pricing.addons %}
+          <li>
+            <label class="addon" for="addon-{{ a.slug }}">
+              <input class="addon-input" type="checkbox" id="addon-{{ a.slug }}" value="{{ a.slug }}">
+              <span class="addon-box">
+                <span class="switch" aria-hidden="true"></span>
+                <span class="addon-text">
+                  <span class="addon-name">{{ a.name }}</span>
+                  <span class="addon-detail">{{ a.detail }}</span>
+                </span>
+                <span class="addon-price">{{ a.price }}</span>
               </span>
-              <span class="addon-price">{{ a.price }}</span>
-            </span>
-          </label>
-        </li>
-        {% endfor %}
-      </ul>
+            </label>
+          </li>
+          {% endfor %}
+        </ul>
+      </fieldset>
 
-      <div class="addon-bar" id="addon-bar" hidden>
-        <p id="addon-count" aria-live="polite">0 add-ons selected</p>
-        <a class="btn btn-primary btn-sm" id="addon-cta" data-base="{{ url_for('contact') }}" href="{{ url_for('contact', _anchor='inquiry-form') }}">Request a quote with these add-ons</a>
+      <div class="estimate" id="estimate" hidden>
+        <div class="estimate-figures" aria-live="polite">
+          <div><span class="estimate-label">Estimated one-off cost</span><strong class="estimate-total" id="est-once">KSh 0</strong></div>
+          <div id="est-monthly-wrap" hidden><span class="estimate-label">Plus monthly</span><strong class="estimate-total estimate-total--sm" id="est-monthly"></strong></div>
+        </div>
+        <div class="estimate-cta">
+          <a class="btn btn-primary btn-sm" id="addon-cta" data-base="{{ url_for('contact') }}" href="{{ url_for('contact', _anchor='inquiry-form') }}">Request a quote for this</a>
+          <p class="estimate-note">Starting estimate only. We confirm the final price in writing.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -137,27 +156,63 @@
 {% endblock %}
 
 {% block scripts %}
+<script type="application/json" id="estimator-data">{{ estimator|tojson }}</script>
 <script>
-  // Add-on toggles: show a summary bar, and carry the selection into every quote link.
+  // Estimate builder: package + add-ons -> running range, carried into every quote link.
   (function () {
+    var data = JSON.parse(document.getElementById('estimator-data').textContent);
+    var radios = Array.prototype.slice.call(document.querySelectorAll('.est-radio'));
     var inputs = Array.prototype.slice.call(document.querySelectorAll('.addon-input'));
-    var bar = document.getElementById('addon-bar');
-    var count = document.getElementById('addon-count');
-    var barCta = document.getElementById('addon-cta');
+    var box = document.getElementById('estimate');
+    var onceEl = document.getElementById('est-once');
+    var monthlyWrap = document.getElementById('est-monthly-wrap');
+    var monthlyEl = document.getElementById('est-monthly');
+    var cta = document.getElementById('addon-cta');
     var packageLinks = document.querySelectorAll('[data-package-link]');
-    if (!inputs.length) return;
+    var addonBySlug = {};
+    data.addons.forEach(function (a) { addonBySlug[a.slug] = a; });
+
+    function fmt(n) { return Number(n).toLocaleString('en-US'); }
+    function range(min, max, open) {
+      if (open) return 'KSh ' + fmt(min) + '+';
+      return min === max ? 'KSh ' + fmt(min) : 'KSh ' + fmt(min) + '\u2013' + fmt(max);
+    }
+
+    // Print each package option's own range under its name
+    document.querySelectorAll('[data-range]').forEach(function (el) {
+      var min = +el.dataset.min, max = el.dataset.max === '' ? null : +el.dataset.max;
+      el.textContent = max === null ? 'From KSh ' + fmt(min) : range(min, max, false);
+    });
 
     function update() {
+      var picked = radios.filter(function (r) { return r.checked; })[0];
+      var option = picked && picked.value !== '' ? data.options[+picked.value] : null;
       var chosen = inputs.filter(function (i) { return i.checked; }).map(function (i) { return i.value; });
-      var list = encodeURIComponent(chosen.join(','));
-      bar.hidden = chosen.length === 0;
-      count.textContent = chosen.length + (chosen.length === 1 ? ' add-on selected' : ' add-ons selected');
-      barCta.href = barCta.dataset.base + (chosen.length ? '?addons=' + list : '') + '#inquiry-form';
-      packageLinks.forEach(function (a) {
-        a.href = a.dataset.base + (chosen.length ? '&addons=' + list : '') + '#inquiry-form';
+      var oneMin = 0, oneMax = 0, open = false, moMin = 0, moMax = 0;
+
+      if (option) { oneMin += option.min; if (option.max === null) open = true; else oneMax += option.max; }
+      chosen.forEach(function (slug) {
+        var a = addonBySlug[slug];
+        if (a.monthly) { moMin += a.min; moMax += a.max; } else { oneMin += a.min; oneMax += a.max; }
       });
+
+      var any = option || chosen.length;
+      box.hidden = !any;
+      if (any) {
+        onceEl.textContent = (oneMin === 0 && !open) ? 'None' : range(oneMin, oneMax, open);
+        monthlyWrap.hidden = moMin === 0;
+        monthlyEl.textContent = moMin ? range(moMin, moMax, false) + ' / month' : '';
+      }
+
+      var qs = [];
+      if (option) qs.push('package=' + encodeURIComponent(option.slug));
+      if (chosen.length) qs.push('addons=' + encodeURIComponent(chosen.join(',')));
+      cta.href = cta.dataset.base + (qs.length ? '?' + qs.join('&') : '') + '#inquiry-form';
+
+      var addonQs = chosen.length ? '&addons=' + encodeURIComponent(chosen.join(',')) : '';
+      packageLinks.forEach(function (a) { a.href = a.dataset.base + addonQs + '#inquiry-form'; });
     }
-    inputs.forEach(function (i) { i.addEventListener('change', update); });
+    radios.concat(inputs).forEach(function (el) { el.addEventListener('change', update); });
     update();
   })();
 </script>

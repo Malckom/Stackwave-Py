@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% from "_art.html" import art, shot_or_art with context %}
 
 {% block title %}Services | Stackwave Digital Agency{% endblock %}
+{% block meta_description %}Web design, SEO, digital strategy and performance optimization from Stackwave Developers: custom-coded websites for Kenyan businesses and tour operators.{% endblock %}
 
 {% block body_class %}bg-background text-on-background font-body-md selection:bg-primary-container selection:text-white{% endblock %}
 
@@ -91,7 +93,7 @@
 </a>
 </div>
 <div class="order-1 lg:order-2 relative aspect-video rounded-3xl overflow-hidden glass-card">
-<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" alt="Workstation with code" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVU4CtY5JiKJkihEU4iHYAZNQY9ldDb1bldLeCDBNnNBixmTiWFkNCXZH-dFQl1vcjBssklWI_B3wUomvTgk3on51bXumWOe5j_0omTpm1hB4Q93GbH3I0_j0n4spsH8iZmkim75zT4zxcDgHDYwYmUwHcI3CYNapyzu55BUMqQQf7PQvg7E58UHOR8kp6Q5LIEl7FLfb8WIJ19p5Uv6cKcd-2CZBFhYye_cjDY0dwpMJMebTWc763"/>
+{{ art('code') }}
 <div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
 </div>
 </div>
@@ -100,7 +102,7 @@
 <section class="service-card group" id="seo">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
 <div class="relative aspect-video rounded-3xl overflow-hidden glass-card">
-<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" alt="Data visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyCOuLHX2QMqYWkyGAmXFGioeKoDRiQq0C1gSntraFq5yd-K1QjRIwdOMO-CEeV_W6ecMt6W0SwVFvTP0Fk8CTnZVWFoJoCqxGJ3Yv9H6Byae--bhWvQqQll-hyHYoxMtLWwwwrLWr7gXXvtjGh5Ex7p0fNSH9_seHwlHuILbhmG-ORHDU_1NP7lUMXZ8NuNfJzIS38YXN2vp0bIDWyYCELWlEDyu5Zw8NKrmKN5RO3zjSe6jeyrwb"/>
+{{ art('dataviz') }}
 <div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
 </div>
 <div>

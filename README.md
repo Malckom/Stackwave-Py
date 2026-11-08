@@ -127,3 +127,18 @@ working, and the inquiry is always saved first. Set these in cPanel > Setup Pyth
 | `MAIL_USERNAME`, `MAIL_FROM`, `MAIL_TO` | Optional. Default to `bookings@stackwavedevs.co.ke` |
 
 After saving, open `/admin` and press **Send a test email**: the page shows whether it worked and the exact error if not.
+
+## Screenshots, testimonials and other polish features
+
+- **Screenshots:** put them in `static/assets/screens/` (see the README.txt in that folder for the exact file names). Project cards, the
+  homepage tiles and the "Site preview" section of each case study switch to the screenshot automatically. Until then a placeholder is shown.
+- **Before/after slider:** add `sizwe-africa-safaris-before.webp` and `sizwe-africa-safaris-after.webp`. To show the slider on another case
+  study, add `"compare": true` inside that project's `case_study` block in `content/projects.json` and add `<slug>-before` / `<slug>-after` images.
+- **Testimonials:** add entries to `content/testimonials.json` and a "What clients say" section appears on the homepage. Only add real quotes
+  you have permission to use. Format: `[{"quote": "...", "name": "Full Name", "role": "Title", "company": "Company"}]`
+- **Logo strip:** uses the live projects that have a logo. After adding or changing a logo, run `pip install pillow` then `python scripts/make_logo_thumbs.py`.
+- **Homepage numbers** (live sites, payment gateways, starting price) are calculated from `projects.json` and `pricing.json`, so they never go out of date.
+- **Price estimator:** the pricing page calculates ranges from the numbers in `content/pricing.json` (`estimates` for packages, `min`/`max`/`monthly` for add-ons).
+- **Share previews and SEO:** set the public address in `content/site.json` (`site_url`). It feeds the sitemap (`/sitemap.xml`), `robots.txt`,
+  canonical links and the WhatsApp/Facebook link preview image (`static/assets/og-image.jpg`, 1200 x 630).
+- **WhatsApp button:** the floating button uses the number and greeting in `content/site.json`.

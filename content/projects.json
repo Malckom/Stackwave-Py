@@ -214,7 +214,8 @@
         "A short route from browsing to enquiry",
         "Custom-coded and mobile-friendly"
       ],
-      "results": []
+      "results": [],
+      "compare": true
     }
   },
   {

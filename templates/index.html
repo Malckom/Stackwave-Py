@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_art.html" import art, shot_or_art with context %}
 {% from "_macros.html" import project_frame, chip %}
 
 {% block title %}Stackwave | Elevating Your Digital Presence{% endblock %}
@@ -67,6 +68,31 @@ body {
     <div class="hero-visual">{% include "_hero_visual.html" %}</div>
   </div>
 </section>
+<!-- Logo strip + stats -->
+{% if logo_strip %}
+<section class="logo-strip" aria-label="Websites we have built">
+  <div class="logo-strip-head">
+    <p class="logo-strip-title">Websites we've built for</p>
+    <button class="marquee-toggle" type="button" aria-pressed="false" data-marquee-toggle><span class="material-symbols-outlined" aria-hidden="true">pause</span><span class="marquee-toggle-text">Pause</span></button>
+  </div>
+  <div class="marquee" data-marquee>
+    <div class="marquee-inner">
+      {% for copy in (0, 1) %}
+      <ul class="marquee-track" {% if copy == 1 %}aria-hidden="true"{% endif %}>
+        {% for p in logo_strip %}
+        <li><a class="logo-tile logo-tile--{{ p.frame or 'light' }}" href="{{ p.case_study_url or p.url }}" {% if copy == 1 %}tabindex="-1"{% endif %} {% if not p.case_study_url %}target="_blank" rel="noopener"{% endif %} title="{{ p.name }}"><img src="{{ url_for('static', filename=p.logo_thumb) }}" alt="{% if copy == 0 %}{{ p.name }}{% endif %}" loading="lazy" decoding="async"></a></li>
+        {% endfor %}
+      </ul>
+      {% endfor %}
+    </div>
+  </div>
+  <dl class="stats">
+    {% for st in stats %}
+    <div class="stat"><dt class="stat-num"><span data-count="{{ st.value }}" data-prefix="{{ st.prefix }}">{{ st.prefix }}{{ '{:,}'.format(st.value) }}</span></dt><dd class="stat-label">{{ st.label }}</dd></div>
+    {% endfor %}
+  </dl>
+</section>
+{% endif %}
 <!-- Services Section (Bento Grid) -->
 <section class="py-3xl px-margin-mobile md:px-margin-desktop bg-surface">
 <div class="max-w-[1440px] mx-auto">
@@ -88,7 +114,7 @@ body {
 <span class="px-md py-xs bg-surface-container-highest rounded-full text-label-sm">Cloud Scaling</span>
 </div>
 <div class="absolute right-0 bottom-0 w-1/2 h-full opacity-20 group-hover:opacity-40 transition-opacity">
-<img class="w-full h-full object-cover" alt="Website layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBd07j6d0Si1xjl9tjmv_Wepw2huPyglJ7wKA5IdwqWhv9k92GufEAjEUOUTl_I5W7S7ze2FDB3btFMrFtUbvWMWkpM6gTzfzVT0QiqV_43Br2BQrdJ5BZgMKnZCYRnhWhSPZNyBI95udAtPMOMSslsbFKQeGFqK0ODwYon9QjlzG_gs_M2-LpUlwwdqp49XQPqWgDF-OIvbRhJmf5nHWuvP-n5gIqAWy0kLQ93R8vvjBfr8EJXRFJ"/>
+{{ art('web-layout') }}
 </div>
 </a>
 <!-- Small Feature: SEO -->
@@ -129,7 +155,7 @@ body {
 <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-2xl items-center">
 <div class="order-2 lg:order-1">
 <div class="relative rounded-2xl overflow-hidden glass-card p-2 aspect-video">
-<img class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-700" alt="Team collaboration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBoBhbxtXuPuJAhocIUHfMXsinC7Go2NWMBYe3DaC-NfhmnyaYTZqYn-PYnqgajHEyLgCR73jDyYwkbmlaHBJCBzrSQibHKomcmuDJMbxcbY2ZhsGkfOPGSolgj9HPivwAQzxOYpkQAdyAfQjEq43jvZ2d1fO844PEO7GCDSV8UoGYM5kFk-jKf5D4LgRjIygdVw9JchBgL96U6xf2mjF5XB-cTBDtRO6dcawqBbHhxpswOESy7LLJ"/>
+{{ art('growth') }}
 </div>
 </div>
 <div class="order-1 lg:order-2">
@@ -189,6 +215,22 @@ body {
 </div>
 </div>
 </section>
+<!-- Testimonials: appear automatically once content/testimonials.json has entries -->
+{% if testimonials %}
+<section class="testimonials" aria-labelledby="testi-title">
+  <div class="testimonials-inner">
+    <h2 class="testimonials-title" id="testi-title">What clients say</h2>
+    <div class="testimonials-grid">
+      {% for t in testimonials %}
+      <figure class="quote-card">
+        <blockquote>{{ t.quote }}</blockquote>
+        <figcaption><strong>{{ t.name }}</strong>{% if t.role or t.company %}<span>{{ [t.role, t.company]|select|join(', ') }}</span>{% endif %}</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
 <!-- CTA Section -->
 <section class="py-3xl px-margin-mobile md:px-margin-desktop bg-surface-container-lowest relative overflow-hidden">
 <div class="absolute top-0 right-0 w-[40%] h-full opacity-10 blur-3xl pointer-events-none">
@@ -204,6 +246,8 @@ body {
 </div>
 </section>
 </main>
+{% set same_as = [site.tiktok_url, site.instagram_url]|select|list %}
+<script type="application/ld+json">{{ {"@context": "https://schema.org", "@type": "ProfessionalService", "name": site.name, "url": site_url, "logo": site_url ~ url_for('static', filename='assets/logo.png'), "image": og_image, "description": site.tagline, "email": site.email, "telephone": site.phone_tel, "address": {"@type": "PostalAddress", "streetAddress": site.office_lines[0], "addressLocality": site.office_lines[1], "addressCountry": "KE"}, "areaServed": "Kenya", "sameAs": same_as }|tojson }}</script>
 {% endblock %}
 
 {% block scripts %}

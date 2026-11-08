@@ -1,4 +1,5 @@
 {% from "_icons.html" import brand_icon %}
+{% from "_art.html" import art %}
 
 {# Social links: only platforms with a value in content/site.json are shown. #}
 {% macro social_links(site, whatsapp_url, size="footer") -%}
@@ -46,4 +47,40 @@
 
 {% macro chip(text, style="primary") -%}
 <span class="chip chip--{{ style }}">{{ text }}</span>
+{%- endmacro %}
+
+
+{# Large site preview: shows static/assets/screens/<slug>.webp once you add it, otherwise a tidy placeholder. #}
+{% macro browser_shot(p) -%}
+<div class="browser-frame browser-frame--16-10 browser-frame--lg">
+  <div class="browser-bar" aria-hidden="true">
+    <span class="browser-dots"><i></i><i></i><i></i></span>
+    <span class="browser-url">{{ p.domain or p.status_label }}</span>
+  </div>
+  <div class="browser-body browser-body--shot">
+    {%- if p.screenshot %}
+    <img src="{{ url_for('static', filename=p.screenshot) }}" alt="{{ p.name }} website homepage" loading="lazy">
+    {%- else %}
+    <div class="shot-placeholder">{{ art('web-layout') }}<span class="shot-placeholder-note">Screenshot coming soon</span></div>
+    {%- endif %}
+  </div>
+</div>
+{%- endmacro %}
+
+{# Before / after slider. Add <slug>-before.webp and <slug>-after.webp to static/assets/screens/. #}
+{% macro compare_slider(compare, name) -%}
+<div class="compare" data-compare style="--pos: 50%">
+  <div class="compare-pane compare-after">
+    {%- if compare.after %}<img src="{{ url_for('static', filename=compare.after) }}" alt="{{ name }} website, new version" loading="lazy">
+    {%- else %}<div class="shot-placeholder">{{ art('web-layout') }}<span class="shot-placeholder-note">New site screenshot coming soon</span></div>{% endif %}
+  </div>
+  <div class="compare-pane compare-before">
+    {%- if compare.before %}<img src="{{ url_for('static', filename=compare.before) }}" alt="{{ name }} website, previous version" loading="lazy">
+    {%- else %}<div class="shot-placeholder shot-placeholder--old">{{ art('web-layout') }}<span class="shot-placeholder-note">Previous site screenshot coming soon</span></div>{% endif %}
+  </div>
+  <span class="compare-tag compare-tag--before">Before</span>
+  <span class="compare-tag compare-tag--after">After</span>
+  <span class="compare-handle" aria-hidden="true"><span class="material-symbols-outlined">code</span></span>
+  <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare the previous and new {{ name }} website">
+</div>
 {%- endmacro %}

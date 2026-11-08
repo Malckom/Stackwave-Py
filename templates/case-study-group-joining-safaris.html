@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% from "_art.html" import art, shot_or_art with context %}
 
 {% block title %}Case Study: Group Joining Safaris | Stackwave Digital Agency{% endblock %}
+{% block meta_description %}How Stackwave built a group-joining safari booking platform for Kenya Group Joining Safaris, with SEO-optimized itineraries.{% endblock %}
 
 {% block body_class %}bg-background text-on-background font-body-md selection:bg-primary/30{% endblock %}
 
@@ -39,7 +41,7 @@
 <!-- Hero Section -->
 <section class="relative min-h-[85vh] flex items-center overflow-hidden px-margin-desktop">
 <div class="absolute inset-0 z-0">
-<div class="w-full h-full bg-cover bg-center opacity-40" data-alt="A sweeping, majestic landscape of the Maasai Mara at sunrise, featuring golden grassy plains and a lone acacia tree silhouette against a vibrant orange and purple sky. The cinematic lighting captures the essence of luxury travel in Kenya with deep shadows and high-contrast highlights, reflecting the brand's premium digital agency aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCVqlrIsFO0M9iano1bBXGYLMPXY6x6erbrqBD0zE_5-x694HhgHeIzJypy_r8mFUiHWc7RKJq96u7mlNf30qjQt5zv08K9Q804vwGJDiAVZAE7TKQPRVk5b2GzE4IKj8D0tkdqLHzKdWlJUzbmdPXdd_nxcRFEixqJyOPf2JN-goImUf-XT4QQa00auG72BGCdoFlVsqe1CRZayEydgdz4BvCrYJXAFkiS5maNg7r81UUEUwKokUhv')"></div>
+<div class="w-full h-full opacity-40">{{ art('savanna') }}</div>
 <div class="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
 </div>
 <div class="relative z-10 max-w-4xl grid lg:grid-cols-2 gap-2xl items-center">
@@ -69,7 +71,7 @@
 </div>
 <div class="hidden lg:block relative">
 <div class="relative z-10 glass-card p-4 rounded-[2.5rem] shadow-2xl rotate-3 border-white/20">
-<img class="rounded-[2rem] w-full shadow-inner" src="https://lh3.googleusercontent.com/aida/AP1WRLuXMW1Osr64SCRE5qybMWlogV6_CgqRLkRZvnvn6nbG_TjGZFLN8v1ekL4ud0gxZLJjPiuZNHs4mF3SZe3k5GGLPoZF0QgKeXD8Q45Ekf7PwZCcQvGjg1ZFd_wHmFY8CnEl9q9ehfM_XeJM1T-n9stxJDILa758wtAS6OQP9rXc3RWFuCktYJBEUSNWa4FTvjtOVQu6hGtnf4VgKHde0EYKd4eB4fD61Rsa76fNVyj_BQ90Ruam78k0BcE"/>
+<div class="rounded-[2rem] overflow-hidden">{{ art('mobile') }}</div>
 </div>
 <!-- Decorative Element -->
 <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-primary/20 rounded-full blur-[100px]"></div>
@@ -110,7 +112,7 @@
 </div>
 <!-- Visual Mockup Image -->
 <div class="md:col-span-4 bento-item rounded-3xl overflow-hidden relative group">
-<div class="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-700" data-alt="A high-tech digital workspace with a curved ultra-wide monitor displaying complex data visualizations and safari booking code. A professional developer is seated at a minimalist floating wooden desk in a modern architectural office with large glass windows and soft blue ambient lighting, representing the engineering excellence behind the safari platform." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBex2oa7SalPUUR7wTl7Z4RLvf1vmK8Pk2ivC5rZJhSmi1G_OltrzoZfJ3LNeA1algtpOMXJto5O1MPLnQtSTfC1D5nDimQpH1w9-LFr7ZFrD7u0_YI9eP8N53rNe_MPPMSeNI8aD7e83cwz17PJql44BF9xYUOAQhRFxWyCeBdaNRjPwtPl4DOTOM8J8O8s74laWcVK79q8g5wHaxvx7bJWDLO06J5AR2X0K0JIJJX6jZPJr9QywPt')"></div>
+<div class="w-full h-full group-hover:scale-110 transition-transform duration-700">{{ art('dashboard') }}</div>
 <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
 <div class="absolute bottom-lg left-lg">
 <div class="font-label-sm bg-white/10 backdrop-blur-md px-md py-xs rounded-full">Engineering Excellence</div>

@@ -7,6 +7,19 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>{% block title %}Stackwave Developers{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}Stackwave Developers builds fast, custom-coded websites and web applications for Kenyan businesses and tour operators.{% endblock %}"/>
+  <link rel="canonical" href="{{ canonical_url }}"/>
+
+  <!-- Link previews (WhatsApp, Facebook, LinkedIn, X) -->
+  <meta property="og:site_name" content="Stackwave Developers"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:locale" content="en_KE"/>
+  <meta property="og:url" content="{{ canonical_url }}"/>
+  <meta property="og:title" content="{% block og_title %}{{ self.title()|striptags }}{% endblock %}"/>
+  <meta property="og:description" content="{{ self.meta_description()|striptags|trim }}"/>
+  <meta property="og:image" content="{% block og_image %}{{ og_image }}{% endblock %}"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
 
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -143,6 +156,13 @@
       </div>
     </div>
   </footer>
+
+  {% if whatsapp_url and not request.path.startswith('/admin') %}
+  <a class="wa-fab" href="{{ whatsapp_url }}" target="_blank" rel="noopener noreferrer" aria-label="Chat with Stackwave on WhatsApp">
+    <span class="wa-fab-label" aria-hidden="true">Chat on WhatsApp</span>
+    {{ brand_icon('whatsapp', 28) }}
+  </a>
+  {% endif %}
 
   <script src="{{ url_for('static', filename='js/site.js') }}" defer></script>
   {% block scripts %}{% endblock %}
