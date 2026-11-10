@@ -8,6 +8,7 @@
   <title>{% block title %}Stackwave Developers{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}Stackwave Developers builds fast, custom-coded websites and web applications for Kenyan businesses and tour operators.{% endblock %}"/>
   <link rel="canonical" href="{{ canonical_url }}"/>
+  {% if site.google_site_verification %}<meta name="google-site-verification" content="{{ site.google_site_verification|replace('google-site-verification=', '')|trim }}"/>{% endif %}
 
   <!-- Link previews (WhatsApp, Facebook, LinkedIn, X) -->
   <meta property="og:site_name" content="Stackwave Developers"/>

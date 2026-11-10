@@ -287,6 +287,18 @@ def sitemap():
     return Response(xml, mimetype="application/xml")
 
 
+VERIFICATION_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "verification")
+
+
+@app.route("/google<token>.html")
+def google_verification(token):
+    """Serve Google Search Console's HTML verification file(s) from /verification at the site root."""
+    name = f"google{token}.html"
+    if not re.fullmatch(r"google[0-9a-f]{16}\.html", name):
+        abort(404)
+    return send_from_directory(VERIFICATION_DIR, name, mimetype="text/html")
+
+
 @app.route("/robots.txt")
 def robots():
     body = f"User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /onboarding\n\nSitemap: {site_url()}/sitemap.xml\n"

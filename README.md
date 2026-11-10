@@ -142,3 +142,10 @@ After saving, open `/admin` and press **Send a test email**: the page shows whet
 - **Share previews and SEO:** set the public address in `content/site.json` (`site_url`). It feeds the sitemap (`/sitemap.xml`), `robots.txt`,
   canonical links and the WhatsApp/Facebook link preview image (`static/assets/og-image.jpg`, 1200 x 630).
 - **WhatsApp button:** the floating button uses the number and greeting in `content/site.json`.
+
+## Search Console and screenshot optimization
+
+- **Google Search Console:** the verification token lives in `content/site.json` (`google_site_verification`) and is output as a `<meta>` tag on every page.
+  After deploying, submit `https://stackwavedevs.co.ke/sitemap.xml` under Sitemaps in Search Console.
+- **Screenshots:** after adding a PNG or JPG to `static/assets/screens/`, run `python scripts/optimize_screens.py` to create a small `.webp` copy
+  (the site prefers `.webp` automatically). Raw 1920px PNGs are 2-3 MB each; the WebP copies are about 100 KB.
