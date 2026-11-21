@@ -147,7 +147,7 @@
   if (!list || tabs.length < 2) return;
   list.hidden = false;
   root.classList.add('is-ready');
-  var select = function (i, focus) {
+  var select = function (i, focus, init) {
     tabs.forEach(function (t, n) {
       var on = n === i;
       t.setAttribute('aria-selected', String(on));
@@ -155,8 +155,12 @@
       panels[n].hidden = !on;
       panels[n].classList.toggle('is-entering', on);
     });
-    if (focus) tabs[i].focus();
-    tabs[i].scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+    if (focus) tabs[i].focus({ preventScroll: true });
+    if (!init) {
+      // Scroll only the tab row sideways; never move the page itself.
+      var t = tabs[i];
+      list.scrollTo({ left: t.offsetLeft - (list.clientWidth - t.offsetWidth) / 2, behavior: 'smooth' });
+    }
   };
   tabs.forEach(function (t, i) {
     t.addEventListener('click', function () { select(i); });
@@ -169,7 +173,7 @@
       if (j !== null) { e.preventDefault(); select(j, true); }
     });
   });
-  select(0);
+  select(0, false, true);
 })();
 
 
