@@ -52,13 +52,23 @@ body {
 {% endblock %}
 
 {% block content %}
+<!-- Intro splash: plays once per session, skippable -->
+<div class="intro" id="intro" role="presentation">
+  <div class="intro-mark">
+    <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="" class="intro-logo"/>
+    <p class="intro-name">Stackwave</p>
+    <p class="intro-tag">Web development studio</p>
+  </div>
+  <button class="intro-skip" id="intro-skip" type="button">Skip intro</button>
+</div>
+<script>try{if(sessionStorage.getItem('sw-intro')){document.getElementById('intro').remove();}}catch(e){}</script>
 <main id="main">
 <!-- Hero Section -->
 <section class="hero mesh-bg">
   <div class="hero-inner">
     <div>
       <div class="hero-badge"><i></i><span>Defining the Next Digital Era</span></div>
-      <h1 class="hero-title">Elevating Your <span>Digital Presence</span></h1>
+      <h1 class="hero-title hero-title--xl"><span class="ht-line">We build websites</span> <span class="ht-line ht-accent">that bring clients.</span></h1>
       <p class="hero-lede">High-performance Web Design, technical SEO, and data-driven Digital Strategy crafted for enterprise-scale growth and boutique-level precision.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="{{ url_for('contact', _anchor='inquiry-form') }}">Launch Your Project</a>
@@ -94,61 +104,47 @@ body {
 </section>
 {% endif %}
 <!-- Services Section (Bento Grid) -->
-<section class="py-3xl px-margin-mobile md:px-margin-desktop bg-surface">
-<div class="max-w-[1440px] mx-auto">
-<div class="mb-2xl text-center md:text-left">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Integrated Services</h2>
-<p class="text-on-surface-variant font-body-md mt-sm max-w-xl">We build the architecture of your success through a multidisciplinary approach to the modern web.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-12 gap-lg h-auto md:h-[600px]">
-<!-- Large Feature: Web Design -->
-<a class="md:col-span-8 group relative overflow-hidden rounded-xl bg-surface-container border border-white/5 p-xl flex flex-col justify-between bento-card hover:bg-surface-container-high" href="{{ url_for('web_development') }}">
-<div class="relative z-10">
-<span class="material-symbols-outlined text-secondary text-5xl mb-md">desktop_windows</span>
-<h3 class="font-headline-lg text-headline-lg mb-md">Web Design &amp; Architecture</h3>
-<p class="text-on-surface-variant max-w-md">Bespoke digital experiences that merge aesthetic brilliance with lightning-fast performance and seamless UX.</p>
-</div>
-<div class="mt-lg flex gap-md flex-wrap relative z-10">
-<span class="px-md py-xs bg-surface-container-highest rounded-full text-label-sm">React / Next.js</span>
-<span class="px-md py-xs bg-surface-container-highest rounded-full text-label-sm">UI/UX Strategy</span>
-<span class="px-md py-xs bg-surface-container-highest rounded-full text-label-sm">Cloud Scaling</span>
-</div>
-<div class="absolute right-0 bottom-0 w-1/2 h-full opacity-20 group-hover:opacity-40 transition-opacity">
-{{ art('web-layout') }}
-</div>
-</a>
-<!-- Small Feature: SEO -->
-<a class="md:col-span-4 gradient-border bento-card p-xl flex flex-col justify-center" href="{{ url_for('service_detail', slug='seo-mastery') }}">
-<span class="material-symbols-outlined text-primary text-4xl mb-md">query_stats</span>
-<h3 class="font-headline-md text-headline-md mb-sm">SEO Mastery</h3>
-<p class="text-on-surface-variant text-body-md">Dominating search rankings through technical audits and intent-driven content strategies.</p>
-</a>
-<!-- Small Feature: Digital Marketing -->
-<a class="md:col-span-4 bento-card bg-surface-container-low border border-white/5 p-xl rounded-xl flex flex-col justify-center hover:bg-surface-container-high" href="{{ url_for('service_detail', slug='digital-strategy') }}">
-<span class="material-symbols-outlined text-tertiary text-4xl mb-md">campaign</span>
-<h3 class="font-headline-md text-headline-md mb-sm">Digital Strategy</h3>
-<p class="text-on-surface-variant text-body-md">Precision-targeted campaigns that convert visitors into brand advocates across all channels.</p>
-</a>
-<!-- Medium Feature: ROI Focus -->
-<a class="md:col-span-8 bento-card bento-perf bg-surface-container border border-white/5 p-xl rounded-xl flex flex-col md:flex-row items-center gap-xl hover:bg-surface-container-high" href="{{ url_for('service_detail', slug='performance-first') }}">
-<div class="flex-1">
-<h3 class="font-headline-md text-headline-md mb-sm text-secondary-fixed">Performance First</h3>
-<p class="text-on-surface-variant">Every line of code and every pixel is optimized for one thing: your return on investment.</p>
-</div>
-<div class="flex-none flex items-center gap-md">
-<div class="text-center">
-<div class="text-display-lg text-primary font-bold">140%</div>
-<div class="text-label-sm uppercase">Avg. Traffic Lift</div>
-</div>
-<div class="w-px h-16 bg-white/10"></div>
-<div class="text-center">
-<div class="text-display-lg text-secondary-fixed font-bold">3.2x</div>
-<div class="text-label-sm uppercase">Conversion Rate</div>
-</div>
-</div>
-</a>
-</div>
-</div>
+<section class="svc" aria-labelledby="svc-title">
+  <div class="svc-inner">
+    <div class="svc-head">
+      <h2 class="svc-title" id="svc-title">What we do</h2>
+      <p class="svc-sub">Websites first, with the search and strategy work that gets them found.</p>
+    </div>
+    <div class="acc" data-acc>
+      {% set rows = [{'slug': None, 'icon': 'desktop_windows', 'title': 'Web design & development', 'text': 'Custom-coded websites and web applications for Kenyan businesses and tour operators: fast, mobile-first and built around how your customers book and pay.', 'href': url_for('web_development'), 'cta': 'See web development'}] %}
+      {% for sv in nav_services %}
+        {% set _ = rows.append({'slug': sv.slug, 'icon': sv.icon, 'title': sv.card_title, 'text': sv.card_text, 'href': url_for('service_detail', slug=sv.slug), 'cta': 'Learn more'}) %}
+      {% endfor %}
+      {% for r in rows %}
+      <div class="acc-item">
+        <h3 class="acc-h">
+          <button class="acc-btn" type="button" id="acc-b{{ loop.index }}" aria-expanded="{{ 'true' if loop.first else 'false' }}" aria-controls="acc-p{{ loop.index }}">
+            <span class="material-symbols-outlined acc-ic" aria-hidden="true">{{ r.icon }}</span>
+            <span class="acc-name">{{ r.title }}</span>
+            <span class="material-symbols-outlined acc-plus" aria-hidden="true">add</span>
+          </button>
+        </h3>
+        <div class="acc-panel" id="acc-p{{ loop.index }}" role="region" aria-labelledby="acc-b{{ loop.index }}">
+          <div class="acc-panel-in">
+            <p>{{ r.text }}</p>
+            <a class="ppanel-link" href="{{ r.href }}">{{ r.cta }} <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- Stack -->
+<section class="stack" aria-labelledby="stack-title">
+  <div class="svc-inner">
+    <h2 class="svc-title" id="stack-title">What we build with</h2>
+    <ul class="stack-grid">
+      {% for icon, name in [('terminal','Python / Flask'),('deployed_code','Node.js / Express'),('code','React'),('palette','Tailwind CSS'),('database','SQLite'),('payments','M-Pesa Daraja'),('credit_card','Paystack'),('merge','Git & GitHub')] %}
+      <li class="stack-tile"><span class="material-symbols-outlined" aria-hidden="true">{{ icon }}</span>{{ name }}</li>
+      {% endfor %}
+    </ul>
+  </div>
 </section>
 <!-- Why Choose Us Section -->
 <section id="about" class="py-3xl bg-surface-container-lowest relative overflow-hidden">
@@ -204,14 +200,27 @@ body {
                         Full Portfolio <span class="material-symbols-outlined">trending_flat</span>
 </a>
 </div>
-<div class="project-grid project-grid--4">
-{% for p in featured_projects %}
-<a class="project-tile" href="{{ p.case_study_url or p.url }}" {% if not p.case_study_url %}target="_blank" rel="noopener"{% endif %}>
-  {{ project_frame(p, '4-3') }}
-  <h3 class="project-card-title-sm">{{ p.name }}</h3>
-  <p class="project-tile-meta">{{ p.category }}</p>
-</a>
-{% endfor %}
+<div class="ptabs" data-ptabs>
+  <div class="ptabs-list" role="tablist" aria-label="Featured projects" hidden>
+    {% for p in featured_projects %}
+    <button class="ptab" role="tab" type="button" id="ptab-{{ p.slug }}" aria-controls="ppanel-{{ p.slug }}" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ '0' if loop.first else '-1' }}">{{ p.name }}</button>
+    {% endfor %}
+  </div>
+  {% for p in featured_projects %}
+  <article class="ppanel" role="tabpanel" id="ppanel-{{ p.slug }}" aria-labelledby="ptab-{{ p.slug }}">
+    <div class="ppanel-shot">{{ project_frame(p, '16-10') }}</div>
+    <div class="ppanel-info">
+      <p class="ppanel-cat">{{ p.category }}</p>
+      <h3 class="ppanel-name">{{ p.name }}</h3>
+      <p class="ppanel-sum">{{ p.summary }}</p>
+      {% if p.case_study_url %}
+      <a class="ppanel-link" href="{{ p.case_study_url }}">Read the case study <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></a>
+      {% elif p.url %}
+      <a class="ppanel-link" href="{{ p.url }}" target="_blank" rel="noopener">Visit website <span class="material-symbols-outlined" aria-hidden="true">arrow_outward</span></a>
+      {% endif %}
+    </div>
+  </article>
+  {% endfor %}
 </div>
 </div>
 </section>

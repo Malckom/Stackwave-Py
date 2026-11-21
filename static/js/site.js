@@ -118,3 +118,78 @@
     update();
   });
 })();
+
+
+// ---------- Home intro splash (once per session, skippable) ----------
+(function () {
+  'use strict';
+  var intro = document.getElementById('intro');
+  if (!intro) return;
+  var done = function () {
+    try { sessionStorage.setItem('sw-intro', '1'); } catch (e) {}
+    intro.classList.add('is-leaving');
+    setTimeout(function () { intro.remove(); }, 600);
+  };
+  var skip = document.getElementById('intro-skip');
+  if (skip) skip.addEventListener('click', done);
+  setTimeout(done, 3600);
+})();
+
+
+// ---------- Project tabs (home): arrow-key navigable, works without JS as a stacked list ----------
+(function () {
+  'use strict';
+  var root = document.querySelector('[data-ptabs]');
+  if (!root) return;
+  var list = root.querySelector('[role="tablist"]');
+  var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+  var panels = Array.prototype.slice.call(root.querySelectorAll('[role="tabpanel"]'));
+  if (!list || tabs.length < 2) return;
+  list.hidden = false;
+  root.classList.add('is-ready');
+  var select = function (i, focus) {
+    tabs.forEach(function (t, n) {
+      var on = n === i;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      panels[n].hidden = !on;
+      panels[n].classList.toggle('is-entering', on);
+    });
+    if (focus) tabs[i].focus();
+    tabs[i].scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+  };
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(i); });
+    t.addEventListener('keydown', function (e) {
+      var n = tabs.length, k = e.key, j = null;
+      if (k === 'ArrowRight') j = (i + 1) % n;
+      else if (k === 'ArrowLeft') j = (i - 1 + n) % n;
+      else if (k === 'Home') j = 0;
+      else if (k === 'End') j = n - 1;
+      if (j !== null) { e.preventDefault(); select(j, true); }
+    });
+  });
+  select(0);
+})();
+
+
+// ---------- Services accordion (home): one open at a time; all open if JS is off ----------
+(function () {
+  'use strict';
+  var acc = document.querySelector('[data-acc]');
+  if (!acc) return;
+  acc.classList.add('is-ready');
+  var btns = Array.prototype.slice.call(acc.querySelectorAll('.acc-btn'));
+  var set = function (b, open) {
+    b.setAttribute('aria-expanded', String(open));
+    document.getElementById(b.getAttribute('aria-controls')).classList.toggle('acc-open', open);
+  };
+  btns.forEach(function (b) {
+    set(b, b.getAttribute('aria-expanded') === 'true');
+    b.addEventListener('click', function () {
+      var open = b.getAttribute('aria-expanded') !== 'true';
+      btns.forEach(function (o) { set(o, false); });
+      set(b, open);
+    });
+  });
+})();
