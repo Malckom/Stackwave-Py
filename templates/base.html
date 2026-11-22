@@ -168,6 +168,8 @@
   {% endif %}
 
   <script src="{{ url_for('static', filename='js/site.js') }}" defer></script>
+  {% block three %}{% endblock %}
+  <script src="{{ url_for('static', filename='js/fx3d.js') }}" defer></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

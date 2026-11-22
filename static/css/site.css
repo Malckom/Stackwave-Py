@@ -761,7 +761,6 @@ a.project-card:hover .project-card-link .material-symbols-outlined { transform: 
 .mono-label { position: absolute; left: 0; top: 0; padding: 4px 12px 4px 10px; font: 600 12px/1 Montserrat, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lc, #fff);
   border-left: 2px solid var(--lc, #fff); background: linear-gradient(90deg, rgba(16, 20, 21, 0.7), transparent); will-change: transform; }
 .hero--3d .hero-visual { display: none !important; }
-.spot { position: relative; }
 .spot::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity 0.25s;
   background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(38, 254, 220, 0.14), rgba(90, 120, 255, 0.06) 45%, transparent 70%); }
 .spot:hover::after { opacity: 1; }
@@ -769,3 +768,26 @@ a.project-card:hover .project-card-link .material-symbols-outlined { transform: 
 .btn-primary:hover { box-shadow: 0 4px 0 #1a3bb8, 0 0 28px rgba(46, 91, 255, 0.55); }
 .btn-primary:active { box-shadow: 0 1px 0 #1a3bb8, 0 4px 12px rgba(46, 91, 255, 0.3); }
 .fx-trail { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 40; pointer-events: none; }
+
+
+/* ---------- Globe + constellation + site-wide cursor layer ---------- */
+.contact-hero { min-height: 0; }
+.contact-globe { position: relative; height: 320px; margin-top: 16px; opacity: 0; transition: opacity 1s ease; }
+.contact-globe.is-on { opacity: 1; }
+.contact-globe canvas { width: 100%; height: 100%; display: block; cursor: grab; touch-action: pan-y; }
+.contact-globe canvas.is-drag { cursor: grabbing; }
+.globe-label { position: absolute; left: 0; top: 0; margin: -34px 0 0 14px; padding: 5px 12px; font: 600 12px/1 Montserrat, sans-serif; letter-spacing: 0.08em; color: #26fedc; white-space: nowrap;
+  border: 1px solid rgba(38, 254, 220, 0.4); border-radius: 999px; background: rgba(10, 16, 32, 0.75); pointer-events: none; opacity: 0; transition: opacity 0.3s; will-change: transform; }
+@media (min-width: 1024px) {
+  .contact-hero { min-height: 440px; display: flex; align-items: center; }
+  .contact-globe { position: absolute; right: 2%; top: 50%; width: min(48%, 520px); height: min(100%, 520px); margin: 0; transform: translateY(-50%); }
+}
+.constellation { position: relative; height: clamp(340px, 52vw, 520px); margin-top: 24px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.07);
+  background: radial-gradient(60% 70% at 50% 50%, rgba(46, 91, 255, 0.12), transparent 70%); opacity: 0; transition: opacity 1s ease; overflow: hidden; touch-action: pan-y; }
+.constellation.is-on { opacity: 1; }
+.constellation canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.const-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.const-label { position: absolute; left: 0; top: 0; font: 600 12px/1 Montserrat, sans-serif; letter-spacing: 0.06em; color: #dff6ff; white-space: nowrap; will-change: transform; text-shadow: 0 0 12px rgba(38, 254, 220, 0.5); }
+.stack--3d .stack-grid { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.tilt.tilt { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+.tilt.tilt:hover { translate: 0 -3px; }

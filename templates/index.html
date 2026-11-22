@@ -141,6 +141,10 @@ body {
 <section class="stack" aria-labelledby="stack-title">
   <div class="svc-inner">
     <h2 class="svc-title" id="stack-title">What we build with</h2>
+    <div class="constellation" id="constellation" aria-hidden="true">
+      <canvas></canvas>
+      <div class="const-labels"></div>
+    </div>
     <ul class="stack-grid">
       {% for icon, name in [('terminal','Python / Flask'),('deployed_code','Node.js / Express'),('code','React'),('palette','Tailwind CSS'),('database','SQLite'),('payments','M-Pesa Daraja'),('credit_card','Paystack'),('merge','Git & GitHub')] %}
       <li class="stack-tile"><span class="material-symbols-outlined" aria-hidden="true">{{ icon }}</span>{{ name }}</li>
@@ -261,9 +265,12 @@ body {
 <script type="application/ld+json">{{ {"@context": "https://schema.org", "@type": "ProfessionalService", "name": site.name, "url": site_url, "logo": site_url ~ url_for('static', filename='assets/logo.png'), "image": og_image, "description": site.tagline, "email": site.email, "telephone": site.phone_tel, "address": {"@type": "PostalAddress", "streetAddress": site.office_lines[0], "addressLocality": site.office_lines[1], "addressCountry": "KE"}, "areaServed": "Kenya", "sameAs": same_as }|tojson }}</script>
 {% endblock %}
 
-{% block scripts %}
+{% block three %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="{{ url_for('static', filename='js/fx3d.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/fx3d-scenes.js') }}" defer></script>
+{% endblock %}
+
+{% block scripts %}
 <script>
         // Micro-interactions and scroll effects
         document.addEventListener('DOMContentLoaded', () => {

@@ -3,13 +3,17 @@
 (function () {
   'use strict';
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.location.pathname.indexOf('/admin') === 0) return;
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var qsa = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
   var clamp = function (v, a, b) { return Math.min(Math.max(v, a), b); };
 
   // ---------- Cards: 3D tilt + gliding spotlight ----------
   if (fine) {
-    qsa('.stack-tile, .ppanel-shot, .acc-item').forEach(function (el) {
+    qsa('.stack-tile, .ppanel-shot, .acc-item, .glass-card, .service-card, .project-card, .service-link-card').forEach(function (el) {
+      // never tilt forms (typing) or cards nested inside an already-tilted card
+      if (el.querySelector('input, textarea, select') || (el.parentElement && el.parentElement.closest('.tilt'))) return;
+      if (window.getComputedStyle(el).position === 'static') el.style.position = 'relative';
       el.classList.add('tilt', 'spot');
       el.addEventListener('pointermove', function (e) {
         var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
